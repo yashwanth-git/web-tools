@@ -1,0 +1,30 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin:0;
+}
+html, body{
+    height:100%;
+}
+body{
+    font-family: sans-serif;
+}
+header{
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #8739fa;
+    color: #ffffff;
+}
+header h1{
+    margin-left:0.25em;
+}
+main{
+    background-color: #fbfbff;
+}
+footer{
+    background-color: #151418;
+    padding:12px 24px;
+}
+footer a{
+    color:#ffffff;
+}
