@@ -1,0 +1,4 @@
+.privacy-content p::first-letter {
+    font-size: 150%;
+    line-height: 1.6;
+  }
