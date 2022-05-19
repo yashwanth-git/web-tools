@@ -8,27 +8,27 @@ html, body{
 body{
     font-family: sans-serif;
 }
-header{
+.navbar{
     display: flex;
     align-items: center;
     padding: 12px 24px;
     background-color: #8739fa;
     color: #ffffff;
 }
-header h1{
+.navbar h1{
     margin-left:0.25em;
 }
 .logo{
     border-radius: 50%;
 }
-main{
+.main{
     background-color: #fbfbff;
     padding:24px;
 }
-footer{
+.footer{
     background-color: #151418;
     padding:12px 24px;
 }
-footer a{
+.footer a{
     color:#ffffff;
 }
