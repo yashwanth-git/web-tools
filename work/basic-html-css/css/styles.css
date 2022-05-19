@@ -18,6 +18,9 @@ header{
 header h1{
     margin-left:0.25em;
 }
+.logo{
+    border-radius: 50%;
+}
 main{
     background-color: #fbfbff;
     padding:24px;
