@@ -15,7 +15,7 @@ body{
     background-color: #8739fa;
     color: #ffffff;
 }
-.navbar h1{
+.navbar .logo-title{
     margin-left:0.25em;
 }
 .logo{
