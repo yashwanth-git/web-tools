@@ -13,7 +13,7 @@ function compare(word, guess) {
   guessedWord.forEach((letter) => {
     if (givenWord.includes(letter)) {
       counter++;
-      givenWord.splice(givenWord.indexOf(letter), 0);
+      givenWord.splice(givenWord.indexOf(letter), 1);
     }
   });
   return counter;
