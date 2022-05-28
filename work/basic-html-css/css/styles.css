@@ -1,0 +1,34 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin:0;
+}
+html, body{
+    height:100%;
+}
+body{
+    font-family: sans-serif;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #8739fa;
+    color: #ffffff;
+}
+.navbar .logo-title{
+    margin-left:0.25em;
+}
+.logo{
+    border-radius: 50%;
+}
+.main{
+    background-color: #fbfbff;
+    padding:24px;
+}
+.footer{
+    background-color: #151418;
+    padding:12px 24px;
+}
+.footer .footer-link{
+    color:#ffffff;
+}
