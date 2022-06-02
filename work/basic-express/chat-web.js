@@ -1,5 +1,5 @@
 const chatWeb = {
-  chatPage: function(chat) {
+  chatPage: function (chat) {
     // Fill in/modify anything below!
     return `
       <!doctype html>
@@ -19,35 +19,55 @@ const chatWeb = {
   `;
   },
 
-  getMessageList: function(chat) {
-    return `<ol class="messages">` +
+  getMessageList: function (chat) {
+    return (
+      `<ol class="messages">` +
       // Fill in
       // Generate the HTML for the list of messages
-      `</ol>`;
+      Object.values(chat.messages)
+        .map(
+          (message) => `
+      <li>
+        <div class="message">
+          <span class="sender">${message.sender}</span>
+          <p class="message-text">${message.text}</p>
+        </div>
+      </li>
+    `
+        )
+        .join("") +
+      `</ol>`
+    );
   },
-  getUserList: function(chat) {
-    return `<ul class="users">` +
-    Object.values(chat.users).map( user => `
+  getUserList: function (chat) {
+    return (
+      `<ul class="users">` +
+      Object.values(chat.users)
+        .map(
+          (user) => `
       <li>
         <div class="user">
           <span class="username">${user}</span>
         </div>
       </li>
-    `).join('') +
-    `</ul>`;
+    `
+        )
+        .join("") +
+      `</ul>`
+    );
   },
-  getOutgoing: function() {
+  getOutgoing: function () {
     // Fill in
     // Generate the HTML for a form to send a message
     return `
       <div class="outgoing">
-        <form action="/chat" method="POST">
-          <input type="text" placeholder="Enter a message"/>
+        <form action="./chat" method="POST">
+          <input type="text" name="message" placeholder="Enter a message"/>
           <input type="hidden" name="username" value="Amit"/>
           <button type="submit">Send</button>
         </form>
       </div>
-    `
-  }
+    `;
+  },
 };
 module.exports = chatWeb;
