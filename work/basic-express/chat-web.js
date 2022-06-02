@@ -6,6 +6,7 @@ const chatWeb = {
       <html>
         <head>
           <title>Chat</title>
+          <link rel="stylesheet" href="./css/chat.css"/>
         </head>
         <body>
           <div id="chat-app">
@@ -38,6 +39,15 @@ const chatWeb = {
   getOutgoing: function() {
     // Fill in
     // Generate the HTML for a form to send a message
+    return `
+      <div class="outgoing">
+        <form action="/chat" method="POST">
+          <input type="text" placeholder="Enter a message"/>
+          <input type="hidden" name="username" value="Amit"/>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    `
   }
 };
 module.exports = chatWeb;
