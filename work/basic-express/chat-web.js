@@ -29,8 +29,11 @@ const chatWeb = {
           (message) => `
       <li>
         <div class="message">
-          <span class="sender">${message.sender}</span>
-          <p class="message-text">${message.text}</p>
+          <span class="sender-avatar">${message.sender.charAt(0)}</span>
+          <div class="message-content">
+            <p class="message-sender">${message.sender}</p>
+            <p class="message-text">${message.text}</p>
+          </div>
         </div>
       </li>
     `
@@ -62,9 +65,9 @@ const chatWeb = {
     return `
       <div class="outgoing">
         <form action="./chat" method="POST">
-          <input type="text" name="message" placeholder="Enter a message"/>
+          <input type="text" name="message" placeholder="Type your message"/>
           <input type="hidden" name="username" value="Amit"/>
-          <button type="submit">Send</button>
+          <button type="submit" class="send-btn">Send</button>
         </form>
       </div>
     `;
