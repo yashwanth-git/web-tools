@@ -20,7 +20,48 @@ body{
     font-size:1.25rem;
 }
 .users li:not(:last-child){
-    margin-right:1em;
+    margin-right:2em;
+}
+.user{
+    display: flex;
+    align-items: center;
+}
+.users li:first-child .user::before{
+    content: '';
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin-right:0.5em;
+    background-color: #008001;
+    border-radius:50%;
+}
+.messages{
+    list-style:none;
+}
+.message{
+    display: flex;
+    align-items: center;
+    margin-bottom:1.5em;
+}
+.sender-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: #0560ff;
+    color:#ffffff;
+    padding: 1em;
+    font-size: 1.625rem;
+}
+.message-content{
+    margin-left:1em;
+}
+.message-sender{
+    font-size:0.85rem;
+    color:#616161;
+    margin-bottom:0.2em;
 }
 .outgoing{
     width:100%;
