@@ -78,6 +78,7 @@ html,body {
   width: 60%;
   font-size: 20px;
   padding: 8px 16px;
+  border:2px solid #b7b7b7;
 }
 .send-btn {
   width: 15%;
@@ -85,7 +86,7 @@ html,body {
   padding: 8px 16px;
   background-color: #0560ff;
   color: #ffffff;
-  border: 2px solid #0560ff;
+  border: 1px solid #0560ff;
   cursor: pointer;
   transition: background-color 200ms ease-in-out;
 }
