@@ -1,92 +1,94 @@
-*{
-    box-sizing: border-box;
-    padding:0;
-    margin:0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-body{
-    font-family: sans-serif;
+html,body {
+  font-family: sans-serif;
 }
-#chat-app{
-    max-width:800px;
-    margin: 48px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#chat-app {
+  max-width: 800px;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.users{
-    display:flex;
-    align-items:center;
-    list-style:none;
-    font-size:20px;
+.users {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 20px;
 }
-.users li:not(:last-child){
-    margin-right:32px;
+.users li:not(:last-child) {
+  margin-right: 32px;
 }
-.user{
-    display: flex;
-    align-items: center;
+.user {
+  display: flex;
+  align-items: center;
 }
-.users li:first-child .user::before{
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 12px;
-    background-color: #008001;
-    border-radius:50%;
+.users li:first-child .user::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 12px;
+  background-color: #008001;
+  border-radius: 50%;
 }
-.messages{
-    list-style:none;
+.messages {
+  list-style: none;
 }
-.message{
-    display: flex;
-    align-items: center;
-    margin-bottom:24px;
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
 }
-.sender-avatar{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #0560ff;
-    color:#ffffff;
-    padding: 24px;
-    font-size: 26px;
+.sender-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0560ff;
+  color: #ffffff;
+  padding: 24px;
+  font-size: 26px;
 }
-.message-content{
-    margin-left:16px;
+.message-content {
+  margin-left: 16px;
 }
-.message-sender{
-    font-size:14px;
-    color:#616161;
-    margin-bottom:6px;
+.message-sender {
+  font-size: 14px;
+  color: #616161;
+  margin-bottom: 6px;
 }
-.outgoing{
-    width:100%;
-    margin:16px 0;
+.outgoing {
+  width: 100%;
+  margin: 16px 0;
 }
-.outgoing form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.outgoing form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.outgoing form input{
-    width:60%;
-    font-size: 20px;
-    padding: 8px 16px;
+.outgoing form .to-send {
+  width: 60%;
+  font-size: 20px;
+  padding: 8px 16px;
 }
-.send-btn{
-    width: 15%;
-    font-size: 22px;
-    padding: 8px 16px;
-    background-color: #0560ff;
-    color: #ffffff;
-    border: 2px solid #0560ff;
-    cursor:pointer;
-    transition:background-color 200ms ease-in-out
+.send-btn {
+  width: 15%;
+  font-size: 22px;
+  padding: 8px 16px;
+  background-color: #0560ff;
+  color: #ffffff;
+  border: 2px solid #0560ff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
 }
-.send-btn:hover{
-    background-color: #0458e9;
+.send-btn:hover {
+  background-color: #0458e9;
 }
