@@ -6,6 +6,7 @@ const dataWeb = {
           <head>
             <title>User Application</title>
             <link rel="stylesheet" href="./css/styles.css"/>
+            <link rel="stylesheet" href="./css/form.css"/>
           </head>
           <body>
             <div id="user-app">
@@ -21,7 +22,7 @@ const dataWeb = {
             <h1 class="signup-title">Sign Up</h1>
             <form method="POST" action="./signup">
                 <div class="input-field">
-                    <input type="text" class="username" name="username" />
+                    <input type="text" class="username" name="username" placeholder=" " />
                     <label for="username">Username</label>
                 </div>
                 <button type="submit" class="signup-btn">Sign Up</button>
