@@ -5,6 +5,7 @@ const dataWeb = {
         <html>
           <head>
             <title>User Application</title>
+            <link rel="stylesheet" href="./css/styles.css"/>
           </head>
           <body>
             <div id="user-app">
@@ -17,12 +18,13 @@ const dataWeb = {
   getLogin: function(){
     return  `
         <div class="signup-form">
-            <h1>Sign In</h1>
+            <h1 class="signup-title">Sign Up</h1>
             <form method="POST" action="./signup">
                 <div class="input-field">
-                    <input type="text" name="username" />
+                    <input type="text" class="username" name="username" />
                     <label for="username">Username</label>
                 </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
             </form>
         </div>
     `

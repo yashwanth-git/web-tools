@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  font-family: sans-serif;
+}
+#user-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signup-form {
+  min-width: 600px;
+  margin: 64px auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 32px;
+  text-align: center;
+  position: relative;
+}
+.signup-title {
+  position: absolute;
+  top: -20px;
+  left: 35%;
+  background: #fff;
+  padding: 0 12px;
+}
+.signup-form form{
+    padding:32px 0;
+}
+.signup-btn{
+    margin-top:18px;
+}
