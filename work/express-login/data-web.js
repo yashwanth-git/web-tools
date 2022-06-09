@@ -1,5 +1,5 @@
 const dataWeb = {
-  indexPage: function (data, cookie) {
+  indexPage: function (data, sid) {
     return `
         <!doctype html>
         <html>
@@ -10,7 +10,7 @@ const dataWeb = {
           </head>
           <body>
             <div id="user-app">
-                ${!cookie ? dataWeb.getLogin() : ''}
+                ${!sid ? dataWeb.getLogin() : `The session id is ${sid}`}
             </div>
           </body>
         </html>

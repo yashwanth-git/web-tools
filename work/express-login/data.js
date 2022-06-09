@@ -5,12 +5,15 @@ const users = {
   },
 };
 
+const sessions = {}
+
 const addUsers = ({ username, message = "" }) => {
   users.push({ username, message });
 };
 
 const data = {
   users,
+  sessions,
   addUsers
 }
 
