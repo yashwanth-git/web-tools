@@ -1,5 +1,5 @@
 const dataWeb = {
-  indexPage: function () {
+  indexPage: function (data, cookie) {
     return `
         <!doctype html>
         <html>
@@ -10,7 +10,7 @@ const dataWeb = {
           </head>
           <body>
             <div id="user-app">
-              ${dataWeb.getLogin()}
+                ${!cookie ? dataWeb.getLogin() : ''}
             </div>
           </body>
         </html>
