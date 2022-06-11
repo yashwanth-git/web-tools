@@ -19,7 +19,11 @@ app.get("/", (req, res) => {
     res.status(401).send(dataWeb.indexPage(data));
     return;
   }
-  res.send(dataWeb.indexPage(data, sid));
+
+  const { username } = data.sessions[sid];
+  const userData = helpers.findUser(username);
+
+  res.send(dataWeb.indexPage(data, userData));
 });
 
 app.get("/error", (req, res) => {

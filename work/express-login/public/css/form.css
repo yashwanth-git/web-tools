@@ -1,4 +1,5 @@
-.signup-form {
+.signup-form,
+.update-form {
   min-width: 600px;
   margin: 64px auto;
   border: 1px solid #3b3b3b;
@@ -7,30 +8,39 @@
   text-align: center;
   position: relative;
 }
-.signup-title {
+.signup-title,
+.update-title {
   position: absolute;
   top: -20px;
   left: 35%;
   background: #fff;
   padding: 0 12px;
 }
-.signup-form form {
+.update-title {
+  left: 27%;
+}
+.signup-form form,
+.update-form form {
   padding: 32px 0;
 }
 .input-field {
   position: relative;
   width: 100%;
 }
-.username {
+.username,
+.message {
   width: 100%;
   padding: 16px 12px;
   font-size: 18px;
 }
-.username:focus {
+.username:focus,
+.message:focus {
   outline-color: #0560ff;
 }
 .username:focus + label,
-.username:not(:placeholder-shown) + label {
+.message:focus + label,
+.username:not(:placeholder-shown) + label,
+.message:not(:placeholder-shown) + label {
   top: -10px;
   background: #ffffff;
 }
@@ -42,7 +52,8 @@
   background: #ffffff;
   transition: all ease-in-out 200ms;
 }
-.signup-btn {
+.signup-btn,
+.update-msg-btn {
   font-size: 22px;
   padding: 12px 24px;
   background-color: #0560ff;
@@ -53,6 +64,7 @@
   margin-top: 24px;
   border-radius: 5px;
 }
-.signup-btn:hover {
+.signup-btn:hover,
+.update-msg-btn:hover {
   background-color: #0458e9;
 }

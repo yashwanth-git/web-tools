@@ -1,4 +1,4 @@
-const { sessions, users, addUsers } = require("./data");
+const { sessions, users } = require("./data");
 const { v4: uuidv4 } = require("uuid");
 
 const validateUserName = (username) => {
@@ -24,10 +24,22 @@ const isValidSessionId = (sid) => {
   return sessions[sid]
 };
 
+const findUser = (username) =>{
+  let userData;
+  if (users[username]) {
+    userData = users[username];
+  } else {
+    users[username] = { username };
+    userData = users[username];
+  }
+  return userData;
+}
+
 const helpers = {
   validateUserName,
   createSession,
-  isValidSessionId
+  isValidSessionId,
+  findUser
 };
 
 module.exports = helpers;
