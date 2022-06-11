@@ -5,6 +5,7 @@ const PORT = 3000;
 
 const data = require("./data");
 const dataWeb = require("./data-web");
+const errorWeb = require("./error-web");
 
 const helpers = require("./helpers");
 
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
   const sid = req.cookies.sid;
   if (sid && !helpers.isValidSessionId(sid)) {
     res.clearCookie("sid");
-    res.status(401).send(dataWeb.indexPage(data));
+    res.redirect("/error");
     return;
   }
 
@@ -27,17 +28,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/error", (req, res) => {
-  res.send("Error");
+  res.status(401).send(errorWeb.unAuthorizedPage());
 });
 
 app.post("/signup", express.urlencoded({ extended: false }), (req, res) => {
-  const { username, message } = req.body;
+  const { username } = req.body;
   if (username) {
     const formattedUname = username.trim().toLowerCase();
     const validUser = helpers.validateUserName(formattedUname);
 
     if (!validUser) {
-      res.status(401).redirect("/error");
+      res.redirect("/error");
       return;
     }
 
@@ -45,16 +46,19 @@ app.post("/signup", express.urlencoded({ extended: false }), (req, res) => {
     helpers.createUser(formattedUname);
     res.cookie("sid", sessionId);
     res.redirect("/");
-  } 
-  
-  else if (message) {
+  } else {
+    res.redirect("/error");
+  }
+});
+
+app.post("/message", express.urlencoded({ extended: false }), (req, res) => {
+  const { message } = req.body;
+  if (message) {
     const sid = req.cookies.sid;
     const { username } = data.sessions[sid];
     helpers.updateMessage(username, message);
     res.redirect("/");
-  } 
-  
-  else {
+  } else {
     res.redirect("/");
   }
 });

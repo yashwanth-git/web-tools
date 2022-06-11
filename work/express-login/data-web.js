@@ -61,7 +61,7 @@ const dataWeb = {
     </div>
     <div class="update-form">
         <h1 class="update-title">Update Message</h1>
-        <form method="POST" action="./signup">
+        <form method="POST" action="./message">
             <div class="input-field">
                 <input type="text" class="message" name="message" placeholder=" " />
                 <label for="message">Message</label>
