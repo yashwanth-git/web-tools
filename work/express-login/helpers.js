@@ -21,25 +21,36 @@ const createSession = (username) => {
 };
 
 const isValidSessionId = (sid) => {
-  return sessions[sid]
+  return sessions[sid];
 };
 
-const findUser = (username) =>{
-  let userData;
-  if (users[username]) {
-    userData = users[username];
-  } else {
-    users[username] = { username };
-    userData = users[username];
+const createUser = (username, message = "") => {
+  if (!users[username]) {
+    users[username] = { username, message };
   }
-  return userData;
-}
+  return users[username]
+};
+
+const findUser = (username) => {
+  if (users[username]) {
+    return users[username];
+  }
+};
+
+const updateMessage = (username, message) => {
+  if (users[username]) {
+    users[username].message = message;
+  }
+  return users[username];
+};
 
 const helpers = {
   validateUserName,
   createSession,
   isValidSessionId,
-  findUser
+  createUser,
+  findUser,
+  updateMessage,
 };
 
 module.exports = helpers;

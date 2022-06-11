@@ -43,7 +43,9 @@ const dataWeb = {
           </div>
         </li>
         <li>
-          <button class="logout-btn" type="submit">Logout</button>
+          <form method="POST" action="./logout">
+            <button class="logout-btn" type="submit">Logout</button>
+          </form>
         </li>
       </ul>
     </nav>
