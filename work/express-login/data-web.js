@@ -39,7 +39,10 @@ const dataWeb = {
             <span class="user-avatar">${userData.username
               .charAt(0)
               .toUpperCase()}</span>
-            <span class="user-name">${userData.username}</span>
+            <span class="user-name">${
+              userData.username.charAt(0).toUpperCase() +
+              userData.username.slice(1)
+            }</span>
           </div>
         </li>
         <li>
@@ -50,7 +53,7 @@ const dataWeb = {
       </ul>
     </nav>
     <div class="user-message">
-      <p>Message: <span>${
+      <p><span class="message-label">Message</span><span class="message-content">${
         !userData.message
           ? "No message has been updated"
           : `${userData.message}`
