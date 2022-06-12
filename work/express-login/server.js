@@ -5,7 +5,6 @@ const PORT = 3000;
 
 const data = require("./data");
 const dataWeb = require("./data-web");
-const errorWeb = require("./error-web");
 
 const helpers = require("./helpers");
 
