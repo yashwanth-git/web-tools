@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   const sid = req.cookies.sid;
   if (sid && !helpers.isValidSessionId(sid)) {
     res.clearCookie("sid");
-    res.redirect("/error");
+    res.status(401).send(dataWeb.getError());
     return;
   }
 
@@ -27,10 +27,6 @@ app.get("/", (req, res) => {
   return;
 });
 
-app.get("/error", (req, res) => {
-  res.status(401).send(errorWeb.unAuthorizedPage());
-});
-
 app.post("/signup", express.urlencoded({ extended: false }), (req, res) => {
   const { username } = req.body;
   if (username) {
@@ -38,7 +34,7 @@ app.post("/signup", express.urlencoded({ extended: false }), (req, res) => {
     const validUser = helpers.validateUserName(formattedUname);
 
     if (!validUser) {
-      res.redirect("/error");
+      res.status(401).send(dataWeb.getError());
       return;
     }
 
@@ -47,7 +43,7 @@ app.post("/signup", express.urlencoded({ extended: false }), (req, res) => {
     res.cookie("sid", sessionId);
     res.redirect("/");
   } else {
-    res.redirect("/error");
+    res.status(401).send(dataWeb.getError());
   }
 });
 
