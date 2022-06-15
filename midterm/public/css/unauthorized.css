@@ -1,0 +1,14 @@
+#unauthorized-page{
+    margin:64px auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.error-description{
+    font-size: 18px;
+    margin-top: 12px;
+}
+.home-link{
+    margin-top: 24px;
+}

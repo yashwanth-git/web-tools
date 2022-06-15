@@ -1,19 +1,12 @@
 "use-strict";
 const players = {
-  jorts: {
-    username: "jorts",
-    secretWord: "",
-    history: [],
-    stepsCount: 0,
-    isMatch: false,
-  },
 };
 
-const session = {};
+const sessions = {};
 
 const game = {
   players,
-  session,
+  sessions,
 };
 
 module.exports = game;
