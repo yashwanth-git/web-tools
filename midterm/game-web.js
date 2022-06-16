@@ -1,5 +1,5 @@
 const gameWeb = {
-  gamePage: function (playerData) {
+  gamePage: function (playerData, words) {
     return `
         <!doctype html>
         <html>
@@ -7,10 +7,15 @@ const gameWeb = {
             <title>Word Game</title>
             <link rel="stylesheet" href="./css/styles.css"/>
             <link rel="stylesheet" href="./css/form.css"/>
+            <link rel="stylesheet" href="./css/game.css"/>
           </head>
           <body>
             <div id="game-app">
-              ${!playerData ? gameWeb.getLogin() : gameWeb.getGame(playerData)}
+              ${
+                !playerData
+                  ? gameWeb.getLogin()
+                  : gameWeb.getGame(playerData, words)
+              }
             </div>
           </body>
         </html>
@@ -30,8 +35,9 @@ const gameWeb = {
             </div>
         `;
   },
-  getGame: function (playerData) {
-    return `
+  getGame: function (playerData, words) {
+    return (
+      `
     <nav class="user-navbar">
       <ul>
         <li>
@@ -52,7 +58,21 @@ const gameWeb = {
         </li>
       </ul>
     </nav>
-    `;
+    <div class="guess-words-container">
+      <h1>Guess Words List</h1>
+      <div class="guess-words-cover">
+        <ul class="guess-words-list">` +
+        words.map(word => `
+        <li>
+            <div class="guess">
+                <span class="each-guess">${word}</span>
+            </div>
+        </li>
+        `).join('') +
+        `</ul>
+      </div>
+    </div>`
+    );
   },
   getError: function () {
     return `

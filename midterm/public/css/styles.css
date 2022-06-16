@@ -8,6 +8,7 @@
 html,
 body {
   font-family: sans-serif;
+  height:100%;
 }
 #game-app {
   display: flex;
@@ -17,7 +18,7 @@ body {
   background-color: #fefeff;
 }
 .user-navbar {
-  height: 18vh;
+  height: 74px;
   width: 100%;
   padding: 12px 24px;
   box-shadow: #d1d1d1 0px 0px 25px 0px;

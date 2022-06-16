@@ -31,6 +31,7 @@ const createPlayer = (username) => {
       secretWord: "",
       history: [],
       stepsCount: 0,
+      inGame: true,
       isMatch: false
     };
   }

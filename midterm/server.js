@@ -6,6 +6,9 @@ const PORT = 3000;
 const game = require("./game-data");
 const gameWeb = require("./game-web");
 
+const wordsList = require("./words");
+const words = Object.values(wordsList);
+
 const helpers = require("./helpers");
 
 app.use(express.static("./public"));
@@ -20,7 +23,7 @@ app.get("/", (req, res) => {
   }
   const { username } = game.sessions[sid] || {};
   const playerData = helpers.findPlayer(username);
-  res.send(gameWeb.gamePage(playerData));
+  res.send(gameWeb.gamePage(playerData, words));
 });
 
 app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
