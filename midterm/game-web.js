@@ -10,8 +10,7 @@ const gameWeb = {
           </head>
           <body>
             <div id="game-app">
-              <h1>Welcome to the Word Guess Game</h1>
-              ${!playerData ? gameWeb.getLogin() : playerData.stepsCount}
+              ${!playerData ? gameWeb.getLogin() : gameWeb.getGame(playerData)}
             </div>
           </body>
         </html>
@@ -30,6 +29,30 @@ const gameWeb = {
                 </form>
             </div>
         `;
+  },
+  getGame: function (playerData) {
+    return `
+    <nav class="user-navbar">
+      <ul>
+        <li>
+          <div class="user-details">
+            <span class="user-avatar">${playerData.username
+              .charAt(0)
+              .toUpperCase()}</span>
+            <span class="user-name">${
+              playerData.username.charAt(0).toUpperCase() +
+              playerData.username.slice(1)
+            }</span>
+          </div>
+        </li>
+        <li>
+          <form method="POST" action="./logout">
+            <button class="logout-btn" type="submit">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+    `;
   },
   getError: function () {
     return `

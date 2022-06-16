@@ -43,4 +43,11 @@ app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
   }
 });
 
+app.post("/logout", express.urlencoded({ extended: false }), (req, res) => {
+  const sid = req.cookies.sid;
+  delete game.sessions[sid];
+  res.clearCookie("sid");
+  res.redirect("/");
+});
+
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
