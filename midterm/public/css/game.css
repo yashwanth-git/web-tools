@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top:24px;
 }
 .guess-words-container {
   margin-top: 24px;
@@ -64,4 +65,26 @@
 }
 .guess:hover {
   background-color: #a4c4ff;
+}
+.game-guess-status{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 24px 0;
+}
+.valids p, .last-guess p{
+  font-size: 24px;
+  font-weight: 300;
+}
+.valids p span, .last-guess p span{
+  font-weight: 500;
+}
+.valids p span, .last-guess p span.valid{
+  color:green
+}
+.last-guess p span.invalid{
+  color:red;
+}
+.last-guess p span.not-started{
+  color:orange;
 }

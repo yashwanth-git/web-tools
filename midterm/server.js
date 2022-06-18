@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
       `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
   }
-
+  console.log(playerData)
   res.send(gameWeb.gamePage(playerData, words));
 });
 

@@ -78,13 +78,37 @@ const gameWeb = {
       `</ul>
         </div>
       </div>
-    </div>
-    <div class="player-guess-container">
-        <form method="POST" action="./guess">
-          <input type="text" class="guessed-word" name="guess"/>
-          <button type="submit" class="to-check">Check</button>
-        </form>
+      <div class="player-guess-container">
+          <form method="POST" action="./guess">
+            <input type="text" class="guessed-word" name="guess"/>
+            <button type="submit" class="to-check">Check</button>
+          </form>
       </div>
+      <div class="game-status">
+          <div class="game-guess-status">
+            <div class="valids">
+              <p>Valid Guesses: <span>${playerData.validGuessCount}</span></p>
+            </div>
+            <div class="last-guess">
+              <p>Last Guess: <span class=${
+                playerData.history.length
+                  ? playerData.history[playerData.history.length - 1].valid
+                    ? "valid"
+                    : "invalid"
+                  : "not-started"
+              }>${
+        playerData.history.length
+          ? playerData.history[playerData.history.length - 1].valid
+            ? "Valid"
+            : "Invalid"
+          : "No Guesses Yet"
+      }</span>
+              </p>
+            </div>
+          </div>
+      </div>
+    </div>
+
     `
     );
   },
