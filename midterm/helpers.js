@@ -30,9 +30,9 @@ const createPlayer = (username) => {
       username,
       secretWord: "",
       history: [],
-      stepsCount: 0,
+      validGuessCount: 0,
       inGame: true,
-      isMatch: false
+      isMatch: false,
     };
   }
   return players[username];

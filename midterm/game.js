@@ -2,12 +2,13 @@ const { players } = require("./game-data");
 
 const playGame = (username, guess) => {
   const playerDetails = getPlayer(username);
-  
-  playerDetails.stepsCount += 1;
 
   const history = createHistory(playerDetails.secretWord, guess);
   if (history.match === playerDetails.secretWord.length) {
     playerDetails.isMatch = true;
+  }
+  if (history.match > 0) {
+    playerDetails.validGuessCount += 1;
   }
   playerDetails.history.push(history);
 };
@@ -43,17 +44,18 @@ const compare = (secret, guess) => {
 
 const createHistory = (secret, guess) => {
   const match = compare(secret, guess);
+  const valid = match > 0 ? true : false;
   return {
     word: `${guess}`,
     match,
-    status: `${match > 0 ? "valid" : "invalid"}`,
+    valid,
   };
 };
 
 const gameHelpers = {
   createSecretWord,
   getPlayer,
-  playGame
+  playGame,
 };
 
 module.exports = gameHelpers;
