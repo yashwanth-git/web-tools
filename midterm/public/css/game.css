@@ -1,29 +1,49 @@
-.guess-words-container {
+.game-container {
   width: 1100px;
   margin: 32px auto;
+}
+.guessed-word {
+  width: 400px;
+  padding: 8px 12px;
+  font-size: 18px;
+}
+.to-check {
+  font-size: 18px;
+  padding: 9px 24px;
+  background-color: #0560ff;
+  color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  border-radius: 5px;
+}
+.player-guess-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.guess-words-container {
+  margin-top: 24px;
 }
 .guess-words-cover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 28px 0;
-  padding:12px 0;
+  margin: 18px 0;
   overflow-y: scroll;
   background-color: #fff;
   border: 1px solid #065fff;
   border-radius: 5px;
-  height:400px;
+  height: 400px;
 }
 .guess-words-list {
   list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  height:100%;
+  display: block;
+  height: 100%;
 }
 .guess-words-list li {
-  margin:10px;
+  display: inline-block;
+  margin: 10px;
   font-size: 18px;
   min-width: 80px;
   text-align: center;

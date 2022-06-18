@@ -58,20 +58,27 @@ const gameWeb = {
         </li>
       </ul>
     </nav>
-    <div class="guess-words-container">
-      <h1>Guess Words List</h1>
-      <div class="guess-words-cover">
-        <ul class="guess-words-list">` +
-        words.map(word => `
-        <li>
-            <div class="guess">
-                <span class="each-guess">${word}</span>
-            </div>
-        </li>
-        `).join('') +
-        `</ul>
+    <div class="game-container">
+      <div class="guess-words-container">
+        <h1>Guess Words List</h1>
+        <div class="guess-words-cover">
+          <ul class="guess-words-list">` +
+          words.map(word => `
+          <li>
+              <div class="guess">
+                  <span class="each-guess">${word}</span>
+              </div>
+          </li>
+          `).join('') +
+          `</ul>
+        </div>
       </div>
-    </div>`
+    </div>
+    <div class="player-guess-container">
+        <input type="text" class="guessed-word" disabled/>
+        <button type="submit" class="to-check">Check</button>
+      </div>
+    `
     );
   },
   getError: function () {

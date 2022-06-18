@@ -10,6 +10,7 @@ const wordsList = require("./words");
 const words = Object.values(wordsList);
 
 const helpers = require("./helpers");
+const gameHelpers = require("./game");
 
 app.use(express.static("./public"));
 app.use(cookieParser());
@@ -23,6 +24,18 @@ app.get("/", (req, res) => {
   }
   const { username } = game.sessions[sid] || {};
   const playerData = helpers.findPlayer(username);
+
+  if (playerData && playerData.secretWord === "") {
+    playerData.secretWord = gameHelpers.createSecretWord(words);
+    console.log(
+      `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+    );
+  } else if(playerData){
+    console.log(
+      `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+    );
+  }
+
   res.send(gameWeb.gamePage(playerData, words));
 });
 
