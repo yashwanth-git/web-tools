@@ -80,8 +80,10 @@ const gameWeb = {
       </div>
     </div>
     <div class="player-guess-container">
-        <input type="text" class="guessed-word" disabled/>
-        <button type="submit" class="to-check">Check</button>
+        <form method="POST" action="./guess">
+          <input type="text" class="guessed-word" name="guess"/>
+          <button type="submit" class="to-check">Check</button>
+        </form>
       </div>
     `
     );

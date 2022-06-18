@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
     console.log(
       `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
-  } else if(playerData){
+  } else if (playerData) {
     console.log(
       `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
@@ -64,6 +64,20 @@ app.post("/logout", express.urlencoded({ extended: false }), (req, res) => {
   delete game.sessions[sid];
   res.clearCookie("sid");
   res.redirect("/");
+});
+
+app.post("/guess", express.urlencoded({ extended: false }), (req, res) => {
+  const { guess } = req.body;
+  if (guess) {
+    const sid = req.cookies.sid;
+    const { username } = game.sessions[sid];
+    gameHelpers.playGame(username, guess);
+    const playerDetails = gameHelpers.getPlayer(username);
+    console.log(playerDetails);
+    res.redirect("/");
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
