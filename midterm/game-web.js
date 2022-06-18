@@ -8,6 +8,7 @@ const gameWeb = {
             <link rel="stylesheet" href="./css/styles.css"/>
             <link rel="stylesheet" href="./css/form.css"/>
             <link rel="stylesheet" href="./css/game.css"/>
+            <script defer src="./scripts/main.js"></script>
           </head>
           <body>
             <div id="game-app">
@@ -60,17 +61,21 @@ const gameWeb = {
     </nav>
     <div class="game-container">
       <div class="guess-words-container">
-        <h1>Guess Words List</h1>
+        <h1>Guess Words List <span>Please select your guess by clicking words from the below list:</span></h1>
         <div class="guess-words-cover">
           <ul class="guess-words-list">` +
-          words.map(word => `
-          <li>
-              <div class="guess">
-                  <span class="each-guess">${word}</span>
+      words
+        .map(
+          (word) => `
+          <li class="guess-word">
+              <div class="guess" data-word="${word}">
+                  ${word}
               </div>
           </li>
-          `).join('') +
-          `</ul>
+          `
+        )
+        .join("") +
+      `</ul>
         </div>
       </div>
     </div>

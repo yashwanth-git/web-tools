@@ -25,6 +25,12 @@
 .guess-words-container {
   margin-top: 24px;
 }
+.guess-words-container h1 span {
+  font-size: 16px;
+  font-weight: 300;
+  margin-left: 12px;
+  color: #333333;
+}
 .guess-words-cover {
   display: flex;
   align-items: center;
@@ -53,4 +59,8 @@
   padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
+  transition:background-color 200ms ease-in-out;
+}
+.guess:hover {
+  background-color: #a4c4ff;
 }
