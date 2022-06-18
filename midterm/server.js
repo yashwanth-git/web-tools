@@ -35,8 +35,33 @@ app.get("/", (req, res) => {
       `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
   }
-  console.log(playerData)
+  console.log(playerData);
   res.send(gameWeb.gamePage(playerData, words));
+});
+
+app.post("/new-game", (req, res) => {
+  const sid = req.cookies.sid;
+  if (sid && !helpers.isValidSessionId(sid)) {
+    res.clearCookie("sid");
+    res.status(401).send(gameWeb.getError());
+    return;
+  }
+  const { username } = game.sessions[sid] || {};
+
+  delete game.players[username];
+  const playerData = helpers.createPlayer(username);
+  if (playerData && playerData.secretWord === "") {
+    playerData.secretWord = gameHelpers.createSecretWord(words);
+    console.log(
+      `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+    );
+  } else if (playerData) {
+    console.log(
+      `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+    );
+  }
+  console.log(playerData);
+  res.redirect("/");
 });
 
 app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
@@ -71,8 +96,12 @@ app.post("/guess", express.urlencoded({ extended: false }), (req, res) => {
   if (guess) {
     const sid = req.cookies.sid;
     const { username } = game.sessions[sid];
-    gameHelpers.playGame(username, guess);
-    const playerDetails = gameHelpers.getPlayer(username);
+    let playerDetails;
+    playerDetails = gameHelpers.getPlayer(username);
+    if (!playerDetails.isMatch) {
+      gameHelpers.playGame(username, guess);
+    }
+    playerDetails = gameHelpers.getPlayer(username);
     console.log(playerDetails);
     res.redirect("/");
   } else {

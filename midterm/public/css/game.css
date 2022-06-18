@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top:24px;
+  margin-top: 24px;
 }
 .guess-words-container {
   margin-top: 24px;
@@ -66,25 +66,85 @@
 .guess:hover {
   background-color: #a4c4ff;
 }
-.game-guess-status{
+.game-guess-status {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 24px 0;
 }
-.valids p, .last-guess p{
+.valids p,
+.last-guess p {
   font-size: 24px;
   font-weight: 300;
 }
-.valids p span, .last-guess p span{
+.valids p span,
+.last-guess p span {
   font-weight: 500;
 }
-.valids p span, .last-guess p span.valid{
-  color:green
+.valids p span,
+.last-guess p span.valid {
+  color: green;
 }
-.last-guess p span.invalid{
-  color:red;
+.last-guess p span.invalid {
+  color: red;
 }
-.last-guess p span.not-started{
-  color:orange;
+.last-guess p span.not-started {
+  color: orange;
+}
+.game-activity-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.game-activity-status h2 {
+  font-size: 34px;
+}
+.activities:empty::after {
+  content: "Game is not started";
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 12px;
+}
+.activities {
+  list-style: auto;
+  margin-top: 12px;
+}
+.activity {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.activity::marker {
+  font-size: 14px;
+}
+.activity span {
+  font-size: 14px;
+  margin: 0 12px;
+}
+.game-end {
+  text-align: center;
+  margin-top: 12px;
+}
+.game-end h2 {
+  font-size: 30px;
+}
+.game-end p {
+  font-size: 22px;
+  margin-top: 8px;
+}
+.start-game {
+  font-size: 18px;
+  padding: 8px 24px;
+  margin-top:12px;
+  color: #0560ff;
+  background-color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 5px;
+  margin-left: 16px;
+}
+.start-game:hover {
+  background-color: #0458e9;
+  color: #ffffff;
 }

@@ -4,7 +4,10 @@ const playGame = (username, guess) => {
   const playerDetails = getPlayer(username);
 
   const history = createHistory(playerDetails.secretWord, guess);
-  if (history.match === playerDetails.secretWord.length) {
+  if (
+    history.match === playerDetails.secretWord.length &&
+    playerDetails.secretWord.toLowerCase() === history.word.toLowerCase()
+  ) {
     playerDetails.isMatch = true;
   }
   if (history.match > 0) {

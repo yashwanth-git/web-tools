@@ -80,7 +80,7 @@ const gameWeb = {
       </div>
       <div class="player-guess-container">
           <form method="POST" action="./guess">
-            <input type="text" class="guessed-word" name="guess"/>
+            <input type="text" class="guessed-word" placeholder="Select/ Enter your guess" name="guess"/>
             <button type="submit" class="to-check">Check</button>
           </form>
       </div>
@@ -106,9 +106,43 @@ const gameWeb = {
               </p>
             </div>
           </div>
+          ${
+            playerData.isMatch
+              ? `
+                <div class="game-end">
+                    <h2>Well Done, You Won!</h2>
+                    <p>The secret word was ${
+                      playerData.history[playerData.history.length - 1].word
+                    }
+                    <div class="new-game">
+                      <form method="POST" action="./new-game">
+                      <button type="submit" class="start-game">Start a New Game</button>
+                      </form>
+                    </div>
+                </div>
+              `
+              : `<div class="game-activity-status">
+              <h2>History</h2>
+                <ul class="activities">` +
+                (
+                  playerData.history &&
+                  playerData.history.map(
+                    (activity) =>
+                      `<li class="activity">${
+                        activity.word
+                      } <span>-- matches --</span> ${
+                        activity.match
+                      } letters <span> -- [${
+                        activity.match > 0 ? "Valid Guess" : "Invalid Guess"
+                      }]</span></li>`
+                  )
+                ).join("") +
+                `</ul>
+            </div>
+              `
+          }
       </div>
     </div>
-
     `
     );
   },
