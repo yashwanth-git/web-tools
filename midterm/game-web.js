@@ -92,15 +92,13 @@ const gameWeb = {
             <div class="last-guess">
               <p>Last Guess: <span class=${
                 playerData.history.length
-                  ? playerData.history[playerData.history.length - 1].valid
+                  ? playerData.history[playerData.history.length - 1].match > 0
                     ? "valid"
                     : "invalid"
                   : "not-started"
               }>${
         playerData.history.length
-          ? playerData.history[playerData.history.length - 1].valid
-            ? "Valid"
-            : "Invalid"
+          ? playerData.history[playerData.history.length - 1].valid + " Guess"
           : "No Guesses Yet"
       }</span>
               </p>
@@ -133,7 +131,11 @@ const gameWeb = {
                       } <span>-- matches --</span> ${
                         activity.match
                       } letters <span> -- [${
-                        activity.match > 0 ? "Valid Guess" : "Invalid Guess"
+                        activity.match === playerData.secretWord.length
+                          ? "Incorrect Guess"
+                          : activity.match > 0
+                          ? "Valid Guess"
+                          : "Invalid Guess"
                       }]</span></li>`
                   )
                 ).join("") +

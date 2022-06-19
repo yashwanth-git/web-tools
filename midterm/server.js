@@ -30,12 +30,12 @@ app.get("/", (req, res) => {
     console.log(
       `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
-  } else if (playerData) {
-    console.log(
-      `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
-    );
-  }
-  console.log(playerData);
+  } 
+  // else if (playerData) {
+  //   console.log(
+  //     `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+  //   );
+  // }
   res.send(gameWeb.gamePage(playerData, words));
 });
 
@@ -49,18 +49,7 @@ app.post("/new-game", (req, res) => {
   const { username } = game.sessions[sid] || {};
 
   delete game.players[username];
-  const playerData = helpers.createPlayer(username);
-  if (playerData && playerData.secretWord === "") {
-    playerData.secretWord = gameHelpers.createSecretWord(words);
-    console.log(
-      `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
-    );
-  } else if (playerData) {
-    console.log(
-      `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
-    );
-  }
-  console.log(playerData);
+  helpers.createPlayer(username);
   res.redirect("/");
 });
 
@@ -102,7 +91,6 @@ app.post("/guess", express.urlencoded({ extended: false }), (req, res) => {
       gameHelpers.playGame(username, guess);
     }
     playerDetails = gameHelpers.getPlayer(username);
-    console.log(playerDetails);
     res.redirect("/");
   } else {
     res.redirect("/");

@@ -1,3 +1,4 @@
+"use strict";
 const { players } = require("./game-data");
 
 const playGame = (username, guess) => {
@@ -47,7 +48,12 @@ const compare = (secret, guess) => {
 
 const createHistory = (secret, guess) => {
   const match = compare(secret, guess);
-  const valid = match > 0 ? true : false;
+  const valid =
+    match === secret.length && guess.toLowerCase() !== secret.toLowerCase()
+      ? "Incorrect"
+      : match > 0
+      ? "Valid"
+      : "Invalid";
   return {
     word: `${guess}`,
     match,
