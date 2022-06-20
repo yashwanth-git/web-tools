@@ -31,11 +31,11 @@ app.get("/", (req, res) => {
       `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
   } 
-  // else if (playerData) {
-  //   console.log(
-  //     `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
-  //   );
-  // }
+  else if (playerData) {
+    console.log(
+      `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
+    );
+  }
   res.send(gameWeb.gamePage(playerData, words));
 });
 
@@ -91,9 +91,9 @@ app.post("/guess", express.urlencoded({ extended: false }), (req, res) => {
       gameHelpers.playGame(username, guess);
     }
     playerDetails = gameHelpers.getPlayer(username);
-    res.redirect("/");
+    res.redirect("/#guess-container");
   } else {
-    res.redirect("/");
+    res.redirect("/#guess-container");
   }
 });
 

@@ -8,7 +8,6 @@ const gameWeb = {
             <link rel="stylesheet" href="./css/styles.css"/>
             <link rel="stylesheet" href="./css/form.css"/>
             <link rel="stylesheet" href="./css/game.css"/>
-            <script defer src="./scripts/main.js"></script>
           </head>
           <body>
             <div id="game-app">
@@ -60,8 +59,24 @@ const gameWeb = {
       </ul>
     </nav>
     <div class="game-container">
-      <div class="guess-words-container">
-        <h1>Guess Words List <span>Please select your guess by clicking words from the below list:</span></h1>
+      <div class="game-header">
+        <h1>Welcome to the Guessing Game</h1>
+        <div class="new-game manual-new-game">
+          <form method="POST" action="./new-game">
+            <button type="submit" class="start-game">Start a New Game</button>
+          </form>
+        </div>
+      </div>
+      <div class="game-rules">
+         <p>Make a guess from the given list below and find out what the secret word.</p>
+         <p>If your guess contains the letter in the secret word, you will get the 
+         number of matches and it is considered as a <strong>Valid Guess</strong>.</p> <p>If it does not match,
+         then it is considered as <strong>Invalid Guess</strong>.</p> <p>If the letters match but it is not the secret
+         word then it is considered as <strong>Incorrect Guess</strong></p> 
+         <p class="game-rules-note"><em>Enough with the rules, let the game begin!</em></p>
+      </div>
+      <div class="guess-words-container" id="guess-container">
+        <h1>Guess Words List <span>Please select your guess by entering a word from the below list:</span></h1>
         <div class="guess-words-cover">
           <ul class="guess-words-list">` +
       words

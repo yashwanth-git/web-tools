@@ -2,6 +2,23 @@
   max-width: 1100px;
   margin: 32px auto;
 }
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-header h1{
+  font-size:34px;
+}
+.game-rules {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.25;
+}
+.game-rules-note{
+  margin-top:16px;
+  font-size: 22px;
+}
 .guessed-word {
   width: 400px;
   padding: 8px 12px;
@@ -25,6 +42,9 @@
 }
 .guess-words-container {
   margin-top: 24px;
+}
+.guess-words-container h1{
+  font-size:32px;
 }
 .guess-words-container h1 span {
   display: inline-block;
@@ -60,11 +80,7 @@
   background-color: #76a7ff;
   padding: 6px 12px;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 200ms ease-in-out;
-}
-.guess:hover {
-  background-color: #a4c4ff;
 }
 .game-guess-status {
   display: flex;
@@ -132,17 +148,20 @@
   font-size: 22px;
   margin-top: 8px;
 }
+.manual-new-game {
+  display: flex;
+  justify-content: flex-end;
+}
 .start-game {
   font-size: 18px;
   padding: 8px 24px;
-  margin-top:12px;
+  margin-top: 12px;
   color: #0560ff;
   background-color: #ffffff;
   border: 1px solid #0560ff;
   cursor: pointer;
   transition: all 200ms ease-in-out;
   border-radius: 5px;
-  margin-left: 16px;
 }
 .start-game:hover {
   background-color: #0458e9;
