@@ -49,14 +49,24 @@ const compare = (secret, guess) => {
   return match;
 };
 
+const findStatus = (match, guess, secret) =>{
+  if(match === secret.length && guess.toLowerCase() !== secret.toLowerCase()){
+    return "Incorrect"
+  }
+  else if(match === secret.length && guess.toLowerCase() === secret.toLowerCase()){
+    return "Correct"
+  }
+  else if(match>0){
+    return "Valid"
+  }
+  else{
+    return "Invalid"
+  }
+}
+
 const createHistory = (secret, guess) => {
   const match = compare(secret, guess);
-  const valid =
-    match === secret.length && guess.toLowerCase() !== secret.toLowerCase()
-      ? "Incorrect"
-      : match > 0
-      ? "Valid"
-      : "Invalid";
+  const valid = findStatus(match, guess, secret);
   return {
     word: `${guess}`,
     match,
