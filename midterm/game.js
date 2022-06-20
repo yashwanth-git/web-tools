@@ -5,7 +5,6 @@ const playGame = (username, guess) => {
   const playerDetails = getPlayer(username);
   const historyWords = playerDetails.history.map((h) => h.word);
   if (!historyWords.includes(guess.toLowerCase())) {
-    //Checks if guess is from the list
     const history = createHistory(playerDetails.secretWord, guess);
     if (
       history.match === playerDetails.secretWord.length &&

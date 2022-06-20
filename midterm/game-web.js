@@ -1,3 +1,4 @@
+"use strict";
 const gameWeb = {
   gamePage: function (playerData, words) {
     return `
