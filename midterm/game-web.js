@@ -178,7 +178,7 @@ const gameWeb = {
       <body>
         <div id="unauthorized-page">
             <h1 class="error-title">Unauthorized User</h1>
-            <p class="error-description">The user is not authorized to sign up. Please try again. </p>
+            <p class="error-description">The username is invalid. Please try again with a valid username. </p>
             <a href="/" class="home-link">Home</a>
         </div>
       </body>
