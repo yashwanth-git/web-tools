@@ -27,14 +27,14 @@ const gameWeb = {
             <div class="game-heading">
               <h1>Guessing Game</h1>
             </div>
-            <div class="signup-form">
-                <h2 class="signup-title">Sign Up</h2>
+            <div class="login-form">
+                <h2 class="login-title">Login</h2>
                 <form method="POST" action="./login">
                     <div class="input-field">
                         <input type="text" class="username" name="username" placeholder=" " />
                         <label for="username">Username</label>
                     </div>
-                    <button type="submit" class="signup-btn">Sign Up</button>
+                    <button type="submit" class="login-btn">Login</button>
                 </form>
             </div>
         `;
