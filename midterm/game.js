@@ -3,18 +3,19 @@ const { players } = require("./game-data");
 
 const playGame = (username, guess) => {
   const playerDetails = getPlayer(username);
-
-  const history = createHistory(playerDetails.secretWord, guess);
-  if (
-    history.match === playerDetails.secretWord.length &&
-    playerDetails.secretWord.toLowerCase() === history.word.toLowerCase()
-  ) {
-    playerDetails.isMatch = true;
+  if (playerDetails.availableWords.includes(guess.toLowerCase())) { //Checks if guess is from the list
+    const history = createHistory(playerDetails.secretWord, guess);
+    if (
+      history.match === playerDetails.secretWord.length &&
+      playerDetails.secretWord.toLowerCase() === history.word.toLowerCase()
+    ) {
+      playerDetails.isMatch = true;
+    }
+    if (history.match > 0) {
+      playerDetails.validGuessCount += 1;
+    }
+    playerDetails.history.push(history);
   }
-  if (history.match > 0) {
-    playerDetails.validGuessCount += 1;
-  }
-  playerDetails.history.push(history);
 };
 
 const createSecretWord = (words) => {

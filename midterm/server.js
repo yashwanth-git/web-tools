@@ -6,9 +6,6 @@ const PORT = 3000;
 const game = require("./game-data");
 const gameWeb = require("./game-web");
 
-const wordsList = require("./words");
-const words = Object.values(wordsList);
-
 const helpers = require("./helpers");
 const gameHelpers = require("./game");
 
@@ -26,17 +23,18 @@ app.get("/", (req, res) => {
   const playerData = helpers.findPlayer(username);
 
   if (playerData && playerData.secretWord === "") {
-    playerData.secretWord = gameHelpers.createSecretWord(words);
+    playerData.secretWord = gameHelpers.createSecretWord(
+      playerData.availableWords
+    );
     console.log(
       `New Game:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
-  } 
-  else if (playerData) {
+  } else if (playerData) {
     console.log(
       `Game Running:\nPlayer: ${playerData.username} | SecretWord: ${playerData.secretWord}`
     );
   }
-  res.send(gameWeb.gamePage(playerData, words));
+  res.send(gameWeb.gamePage(playerData, playerData?.availableWords));
 });
 
 app.post("/new-game", (req, res) => {
@@ -88,7 +86,10 @@ app.post("/guess", express.urlencoded({ extended: false }), (req, res) => {
     let playerDetails;
     playerDetails = gameHelpers.getPlayer(username);
     if (!playerDetails.isMatch) {
-      gameHelpers.playGame(username, guess);
+      gameHelpers.playGame(username, guess, playerDetails.availableWords);
+      playerDetails.availableWords = playerDetails.availableWords.filter(
+        (word) => word.toLowerCase() !== guess.toLowerCase()
+      );
     }
     playerDetails = gameHelpers.getPlayer(username);
     res.redirect("/#guess-container");

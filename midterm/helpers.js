@@ -1,6 +1,7 @@
 "use strict";
 const { sessions, players } = require("./game-data");
 const { v4: uuidv4 } = require("uuid");
+const game = require("./game-data");
 
 const validateUserName = (username) => {
   const formattedUname = username.trim().toLowerCase();
@@ -32,6 +33,7 @@ const createPlayer = (username) => {
       secretWord: "",
       history: [],
       validGuessCount: 0,
+      availableWords: [...game.words],
       inGame: true,
       isMatch: false,
     };

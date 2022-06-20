@@ -95,7 +95,7 @@ const gameWeb = {
       </div>
       <div class="player-guess-container">
           <form method="POST" action="./guess">
-            <input type="text" class="guessed-word" placeholder="Select/ Enter your guess" name="guess"/>
+            <input type="text" class="guessed-word" placeholder="Enter your guess" name="guess"/>
             <button type="submit" class="to-check">Check</button>
           </form>
       </div>
