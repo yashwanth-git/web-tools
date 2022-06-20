@@ -23,8 +23,11 @@ const gameWeb = {
   },
   getLogin: function () {
     return `
+            <div class="game-heading">
+              <h1>Guessing Game</h1>
+            </div>
             <div class="signup-form">
-                <h1 class="signup-title">Sign Up</h1>
+                <h2 class="signup-title">Sign Up</h2>
                 <form method="POST" action="./login">
                     <div class="input-field">
                         <input type="text" class="username" name="username" placeholder=" " />
@@ -76,7 +79,7 @@ const gameWeb = {
          <p class="game-rules-note"><em>Enough with the rules, let the game begin!</em></p>
       </div>
       <div class="guess-words-container" id="guess-container">
-        <h1>Guess Words List <span>Please select your guess by entering a word from the below list:</span></h1>
+        <h2>Guess Words List <span>Please select your guess by entering a word from the below list:</span></h2>
         <div class="guess-words-cover">
           <ul class="guess-words-list">` +
       words
@@ -95,7 +98,7 @@ const gameWeb = {
       </div>
       <div class="player-guess-container">
           <form method="POST" action="./guess">
-            <input type="text" class="guessed-word" placeholder="Enter your guess" name="guess"/>
+            <input type="text" class="guessed-word" placeholder="Enter your guess" name="guess" autofocus/>
             <button type="submit" class="to-check">Check</button>
           </form>
       </div>

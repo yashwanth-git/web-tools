@@ -1,3 +1,9 @@
+.game-heading{
+  margin-top:32px;
+}
+.game-heading h1{
+  font-size:36px;
+}
 .signup-form {
   min-width: 600px;
   margin: 64px auto;
@@ -13,6 +19,7 @@
   left: 35%;
   background: #fff;
   padding: 0 12px;
+  font-size:32px;
 }
 .update-title {
   left: 27%;

@@ -43,10 +43,10 @@
 .guess-words-container {
   margin-top: 24px;
 }
-.guess-words-container h1{
+.guess-words-container h2{
   font-size:32px;
 }
-.guess-words-container h1 span {
+.guess-words-container h2 span {
   display: inline-block;
   font-size: 16px;
   font-weight: 300;
@@ -80,7 +80,6 @@
   background-color: #76a7ff;
   padding: 6px 12px;
   border-radius: 5px;
-  transition: background-color 200ms ease-in-out;
 }
 .game-guess-status {
   display: flex;
