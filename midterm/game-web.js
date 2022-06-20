@@ -71,10 +71,11 @@ const gameWeb = {
         </div>
       </div>
       <div class="game-rules">
-         <p>Make a guess from the given list below and find out what the secret word.</p>
-         <p>If your guess contains the letter in the secret word, you will get the 
-         number of matches and it is considered as a <strong>Valid Guess</strong>.</p> <p>If it does not match,
-         then it is considered as <strong>Invalid Guess</strong>.</p> <p>If the letters match but it is not the secret
+         <p>- Make a guess from the given list below and find out what the secret word.</p>
+         <p>- If your guess contains the letter in the secret word, you will get the 
+         number of matches and it is considered as a <strong>Valid Guess</strong>.</p> 
+         <p>- If it does not match, then it is considered as <strong>Invalid Guess</strong>.</p> 
+         <p>- If the letters match but it is not the secret
          word then it is considered as <strong>Incorrect Guess</strong></p> 
          <p class="game-rules-note"><em>Enough with the rules, let the game begin!</em></p>
       </div>
@@ -98,7 +99,7 @@ const gameWeb = {
       </div>
       <div class="player-guess-container">
           <form method="POST" action="./guess">
-            <input type="text" class="guessed-word" placeholder="Enter your guess" name="guess" autofocus/>
+            <input type="text" class="guessed-word" placeholder="Enter your guess" name="guess"/>
             <button type="submit" class="to-check">Check</button>
           </form>
       </div>
