@@ -1,5 +1,6 @@
 "use strict";
 (function () {
+  let viewCart = false;
   const products = [
     {
       name: "Jorts",
@@ -26,26 +27,65 @@
       isAddedtoCart: false,
     },
   ];
-  const productsListEl = document.querySelector(".products-list");
-  const productItems = products
-    .map(
-      (product) => `
-    <li class="product">
-      <div class="product-display">
-        <img src="${product.img}" alt="${product.name} class="product-img""/>
-      </div>
-      <div class="product-details">
-        <p class="product-name">Name: ${product.name}</p>
-        <label>
-        Quantity:
-        <input type="number" value="${product.quantity}" class="product-price">
-        </label>
-        <p class="product-total"><span>Total:</span> ${product.total}</p>
-      </div>
-      <div 
-    </li>
-  `
-    )
-    .join("\n");
-  productsListEl.innerHTML = productItems;
+  const cartProducts = [
+  ];
+
+  const productListContainerEl = document.querySelector(
+    ".product-list-container"
+  );
+
+  const viewCartBtn = document.querySelector(".view-cart-btn");
+
+  render();
+  addEventListeners();
+
+  function render() {
+    productListContainerEl.innerHTML =
+      `
+    <div class="view-cart">
+      <button class="view-cart-btn">View Cart <span>${cartProducts.length}</span></button>
+    </div>
+    <ul class="products-list">
+    ` +
+      products
+        .map(
+          (product, index) => `
+      <li class="product">
+        <div class="product-display">
+          <img src="${product.img}" alt="${product.name} class="product-img""/>
+        </div>
+        <div class="product-details">
+          <p class="product-name">Name: ${product.name}</p>
+          <label>
+          Quantity:
+          <input type="number" value="${
+            product.quantity
+          }" class="product-price" min="1">
+          </label>
+          <p class="product-total"><span>Total:</span> ${product.total}</p>
+          <button class="add-to-cart" data-index='${index}'>${
+            product.isAddedtoCart ? "Added to Cart" : "Add to Cart"
+          }</button>
+        </div>
+        <div 
+      </li>
+    `
+        )
+        .join("\n") +
+      `</ul>`;
+  }
+
+  function addEventListeners() {
+    productListContainerEl.addEventListener("click", (e) => {
+      if (e.target.classList.contains("view-cart-btn")) {
+        viewCart = !viewCart;
+      }
+      if(e.target.classList.contains("add-to-cart")){
+        const index = e.target.dataset.index;
+        products[index].isAddedtoCart = true;
+        cartProducts.push(products[index]);
+        render();
+      }
+    });
+  }
 })();
