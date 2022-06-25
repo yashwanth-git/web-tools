@@ -27,14 +27,11 @@
       isAddedtoCart: false,
     },
   ];
-  const cartProducts = [
-  ];
+  const cartProducts = [];
 
   const productListContainerEl = document.querySelector(
     ".product-list-container"
   );
-
-  const viewCartBtn = document.querySelector(".view-cart-btn");
 
   render();
   addEventListeners();
@@ -60,7 +57,7 @@
           Quantity:
           <input type="number" value="${
             product.quantity
-          }" class="product-price" min="1">
+          }" class="product-quantity" data-index='${index}' min="1">
           </label>
           <p class="product-total"><span>Total:</span> ${product.total}</p>
           <button class="add-to-cart" data-index='${index}'>${
@@ -76,15 +73,28 @@
   }
 
   function addEventListeners() {
+    console.log(products);
     productListContainerEl.addEventListener("click", (e) => {
       if (e.target.classList.contains("view-cart-btn")) {
         viewCart = !viewCart;
       }
-      if(e.target.classList.contains("add-to-cart")){
+      if (e.target.classList.contains("add-to-cart")) {
         const index = e.target.dataset.index;
-        products[index].isAddedtoCart = true;
-        cartProducts.push(products[index]);
-        render();
+        if (!products[index].isAddedtoCart) {
+          products[index].isAddedtoCart = true;
+          console.log(products);
+          cartProducts.push(products[index]);
+          render();
+        }
+      }
+    });
+    productListContainerEl.addEventListener("change", (e) => {
+      if (e.target.classList.contains("product-quantity")) {
+        const index = e.target.dataset.index;
+        products[index].quantity = Number(e.target.value);
+        products[index].total = (
+          products[index].quantity * products[index].price
+        ).toFixed(2);
       }
     });
   }

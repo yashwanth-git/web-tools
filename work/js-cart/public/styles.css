@@ -12,6 +12,7 @@ body {
 #shopping-app {
   max-width: 800px;
   padding: 12px;
+  margin:0 auto;
 }
 .products-list {
   list-style: none;
@@ -34,7 +35,7 @@ img {
   margin-left: 12px;
 }
 .product-details .product-name,
-.product-price,
+.product-quantity,
 .product-total {
   margin-bottom: 12px;
 }
