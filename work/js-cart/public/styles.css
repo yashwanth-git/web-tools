@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+}
+#shopping-app {
+  max-width: 800px;
+  padding: 12px;
+}
+.products-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.product {
+  display: flex;
+  align-items: center;
+  border: 1px solid #2d2d2d;
+  border-radius: 5px;
+  margin: 12px;
+}
+.product-details {
+  margin-left: 12px;
+}
+.product-details * {
+  margin-bottom: 12px;
+}

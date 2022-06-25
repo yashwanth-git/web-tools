@@ -6,21 +6,26 @@
       img: "http://placekitten.com/150/150?image=1",
       quantity: 1,
       price: 0.99,
-      total: price * quantity,
+      total: 0.99,
     },
     {
       name: "Jorts",
       img: "http://placekitten.com/150/150?image=2",
       quantity: 1,
       price: 3.14,
-      total: price * quantity,
+      total: 3.14,
     },
     {
       name: "Jorts",
       img: "http://placekitten.com/150/150?image=3",
       quantity: 1,
       price: 2.73,
-      total: price * quantity,
+      total: 2.73,
     },
   ];
-});
+  const productsListEl = document.querySelector(".products-list")
+  const productItems = products.map(product => `
+    <li class="product">${product.name}</li>
+  `).join("\n");
+  productsListEl.innerHTML = productItems;
+})();
