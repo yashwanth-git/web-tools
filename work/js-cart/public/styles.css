@@ -12,7 +12,7 @@ body {
 #shopping-app {
   max-width: 800px;
   padding: 12px;
-  margin:0 auto;
+  margin: 0 auto;
 }
 .products-list {
   list-style: none;
@@ -23,6 +23,15 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+.cart-products {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin-top:32px;
+}
+.product-list {
+  padding: 0;
 }
 .product {
   display: flex;
@@ -57,7 +66,7 @@ img {
   display: flex;
   justify-content: flex-end;
 }
-.view-cart-btn {
+.view-cart-btn, .checkout-btn {
   font-size: 22px;
   padding: 8px 16px;
   background-color: #0560ff;
@@ -67,7 +76,7 @@ img {
   position: relative;
   transition: background-color 200ms ease-in-out;
 }
-.view-cart-btn:hover {
+.view-cart-btn:hover, .checkout-btn:hover {
   background-color: #0458e9;
 }
 .view-cart-btn span {
@@ -83,4 +92,29 @@ img {
   justify-content: center;
   width: 25px;
   height: 25px;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.total-price {
+  display: flex;
+  justify-content: flex-end;
+  font-size:22px;
+  margin: 24px 12px;
+}
+.total-price span{
+  border-top:1px solid #2d2d2d;
+  border-bottom: 1px solid #2d2d2d;
+  padding: 8px 0;
+}
+.empty-cart p{
+  font-size: 20px;
+  margin-top:12px;
+}
+.checkout{
+  display: flex;
+  justify-content: flex-end;
 }

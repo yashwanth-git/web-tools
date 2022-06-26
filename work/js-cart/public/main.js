@@ -1,6 +1,6 @@
 "use strict";
 (function () {
-  let viewCart = false;
+  let showCart = false;
   const products = [
     {
       name: "Jorts",
@@ -40,7 +40,9 @@
     productListContainerEl.innerHTML =
       `
     <div class="view-cart">
-      <button class="view-cart-btn">View Cart <span>${cartProducts.length}</span></button>
+      <button class="view-cart-btn">${
+        showCart ? "Hide Cart" : "Show Cart"
+      }<span>${cartProducts.length}</span></button>
     </div>
     <ul class="products-list">
     ` +
@@ -49,7 +51,7 @@
           (product, index) => `
       <li class="product">
         <div class="product-display">
-          <img src="${product.img}" alt="${product.name} class="product-img""/>
+          <img src="${product.img}" alt="${product.name} class="product-img"/>
         </div>
         <div class="product-details">
           <p class="product-name">Name: ${product.name}</p>
@@ -69,14 +71,61 @@
     `
         )
         .join("\n") +
-      `</ul>`;
+      `</ul>
+    <div class="cart-products ${showCart ? "show" : "hide"}">
+      <h1>Cart Details</h1>
+      ${
+        !cartProducts.length
+          ? `<div class="empty-cart"><p>Nothing in the cart<p></div>`
+          : `
+      <div class="cart-products-list">
+        <ul class="product-list">
+          ` +
+            cartProducts
+              .map(
+                (prod, index) => `
+          <li class="product">
+          <div class="product-display">
+            <img src="${prod.img}" alt="${prod.name} class="product-img""/>
+          </div>
+          <div class="product-details">
+            <p class="product-name">Name: ${prod.name}</p>
+            <div class="product-quantity">
+              <p>Quantity: <span> ${prod.quantity}</span></p>
+            </div>
+            <p class="product-total"><span>Total:</span> ${prod.total}</p>
+          </div>
+          <div 
+        </li>
+          `
+              )
+              .join("\n") +
+            `
+        </ul>
+        <div class="total-price">
+          <p>Total: <span>${
+            cartProducts.length > 0
+              ? cartProducts.reduce((sum, c) => sum + c.price * c.quantity, 0)
+              : ""
+          }</span><p>
+        </div>
+        <div class="checkout">
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      </div>
+      
+    </div>
+      `
+      }
+    `;
   }
 
   function addEventListeners() {
     console.log(products);
     productListContainerEl.addEventListener("click", (e) => {
       if (e.target.classList.contains("view-cart-btn")) {
-        viewCart = !viewCart;
+        showCart = !showCart;
+        render();
       }
       if (e.target.classList.contains("add-to-cart")) {
         const index = e.target.dataset.index;
