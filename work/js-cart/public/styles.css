@@ -49,7 +49,7 @@ img {
 }
 .product-details .product-name,
 .product-quantity,
-.product-total {
+.product-total, .prod-quantity {
   margin-bottom: 12px;
 }
 .add-to-cart {

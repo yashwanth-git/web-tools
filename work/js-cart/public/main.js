@@ -8,7 +8,6 @@
       quantity: 1,
       price: 0.99,
       total: 0.99,
-      isAddedtoCart: false,
     },
     {
       name: "Fluffball",
@@ -16,7 +15,6 @@
       quantity: 1,
       price: 3.14,
       total: 3.14,
-      isAddedtoCart: false,
     },
     {
       name: "General Meyhem",
@@ -24,10 +22,9 @@
       quantity: 1,
       price: 2.73,
       total: 2.73,
-      isAddedtoCart: false,
     },
   ];
-  const cartProducts = [];
+  const cart = [];
 
   const productListContainerEl = document.querySelector(
     ".product-list-container"
@@ -42,7 +39,7 @@
     <div class="view-cart">
       <button class="view-cart-btn">${
         showCart ? "Hide Cart" : "Show Cart"
-      }<span>${cartProducts.length}</span></button>
+      }<span>${cart.length}</span></button>
     </div>
     <ul class="products-list">
     ` +
@@ -55,13 +52,11 @@
         </div>
         <div class="product-details">
           <p class="product-name">Name: ${product.name}</p>
-          <div class="product-quantity">
+          <div class="prod-quantity">
             <p>Quantity: <span> ${product.quantity}</span></p>
           </div>
           <p class="product-total"><span>Total:</span> ${product.total}</p>
-          <button class="add-to-cart" data-index='${index}'>${
-            product.isAddedtoCart ? "Added to Cart" : "Add to Cart"
-          }</button>
+          <button class="add-to-cart" data-index='${index}'>Add to Cart</button>
         </div>
         <div 
       </li>
@@ -72,26 +67,32 @@
     <div class="cart-products ${showCart ? "show" : "hide"}">
       <h1>Cart Details</h1>
       ${
-        !cartProducts.length
+        !cart.length
           ? `<div class="empty-cart"><p>Nothing in the cart<p></div>`
           : `
       <div class="cart-products-list">
         <ul class="product-list">
           ` +
-            cartProducts
+            cart
               .map(
                 (prod, index) => `
           <li class="product">
           <div class="product-display">
-            <img src="${prod.img}" alt="${prod.name} class="product-img""/>
+            <img src="${products[prod.prodIndex].img}" alt="${
+                  products[prod.prodIndex].name
+                } class="product-img""/>
           </div>
           <div class="product-details">
-            <p class="product-name">Name: ${prod.name}</p>
+            <p class="product-name">Name: ${products[prod.prodIndex].name}</p>
             <label>
               Quantity:
-                <input type="number" value="${prod.quantity}" class="product-quantity" data-index='${index}' min="1">
+                <input type="number" value="${
+                  prod.quantity
+                }" class="product-quantity" data-index='${index}' min="1">
           </label>
-            <p class="product-total"><span>Total:</span> ${prod.total}</p>
+            <p class="product-total"><span>Total:</span> ${Number.parseFloat(
+              prod.quantity * products[prod.prodIndex].price
+            ).toFixed(2)}</p>
           </div>
           <div 
         </li>
@@ -102,9 +103,9 @@
         </ul>
         <div class="total-price">
           <p>Total: <span>${
-            cartProducts.length > 0
+            cart.length > 0
               ? Number.parseFloat(
-                  cartProducts.reduce((sum, c) => sum + c.price * c.quantity, 0)
+                  cart.reduce((sum, c) => sum + Number(c.total), 0)
                 ).toFixed(2)
               : ""
           }</span><p>
@@ -128,14 +129,23 @@
       }
       if (e.target.classList.contains("add-to-cart")) {
         const index = e.target.dataset.index;
-        if (!products[index].isAddedtoCart) {
-          products[index].isAddedtoCart = true;
-          cartProducts.push(products[index]);
+        if (!cart[index]) {
+          cart[index] = {
+            prodIndex: index,
+            quantity: products[index].quantity,
+            total: products[index].total,
+          };
+          render();
+        } else {
+          cart[index].quantity += 1;
+          cart[index].total = Number.parseFloat(
+            cart[index].quantity * products[cart[index].prodIndex].price
+          ).toFixed(2);
           render();
         }
       }
       if (e.target.classList.contains("checkout-btn")) {
-        cartProducts.length = 0;
+        cart.length = 0;
         showCart = !showCart;
         render();
       }
@@ -143,9 +153,9 @@
     productListContainerEl.addEventListener("change", (e) => {
       if (e.target.classList.contains("product-quantity")) {
         const index = e.target.dataset.index;
-        products[index].quantity = Number(e.target.value);
-        products[index].total = Number.parseFloat(
-          products[index].quantity * products[index].price
+        cart[index].quantity = Number(e.target.value);
+        cart[index].total = Number.parseFloat(
+          cart[index].quantity * products[cart[index].prodIndex].price
         ).toFixed(2);
         render();
       }
