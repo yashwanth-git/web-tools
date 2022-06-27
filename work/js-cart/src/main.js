@@ -16,7 +16,7 @@ import { products } from "./state";
       `
     <div class="view-cart">
       <button class="view-cart-btn">${
-        showCart ? "Hide Cart" : "Show Cart"
+        showCart ? "Hide Cart" : "View Cart"
       }<span>${cart.length}</span></button>
     </div>
     <ul class="products-list">
