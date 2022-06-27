@@ -55,12 +55,9 @@
         </div>
         <div class="product-details">
           <p class="product-name">Name: ${product.name}</p>
-          <label>
-          Quantity:
-          <input type="number" value="${
-            product.quantity
-          }" class="product-quantity" data-index='${index}' min="1">
-          </label>
+          <div class="product-quantity">
+            <p>Quantity: <span> ${product.quantity}</span></p>
+          </div>
           <p class="product-total"><span>Total:</span> ${product.total}</p>
           <button class="add-to-cart" data-index='${index}'>${
             product.isAddedtoCart ? "Added to Cart" : "Add to Cart"
@@ -90,9 +87,10 @@
           </div>
           <div class="product-details">
             <p class="product-name">Name: ${prod.name}</p>
-            <div class="product-quantity">
-              <p>Quantity: <span> ${prod.quantity}</span></p>
-            </div>
+            <label>
+              Quantity:
+                <input type="number" value="${prod.quantity}" class="product-quantity" data-index='${index}' min="1">
+          </label>
             <p class="product-total"><span>Total:</span> ${prod.total}</p>
           </div>
           <div 
@@ -105,7 +103,9 @@
         <div class="total-price">
           <p>Total: <span>${
             cartProducts.length > 0
-              ? cartProducts.reduce((sum, c) => sum + c.price * c.quantity, 0)
+              ? Number.parseFloat(
+                  cartProducts.reduce((sum, c) => sum + c.price * c.quantity, 0)
+                ).toFixed(2)
               : ""
           }</span><p>
         </div>
@@ -121,7 +121,6 @@
   }
 
   function addEventListeners() {
-    console.log(products);
     productListContainerEl.addEventListener("click", (e) => {
       if (e.target.classList.contains("view-cart-btn")) {
         showCart = !showCart;
@@ -131,19 +130,24 @@
         const index = e.target.dataset.index;
         if (!products[index].isAddedtoCart) {
           products[index].isAddedtoCart = true;
-          console.log(products);
           cartProducts.push(products[index]);
           render();
         }
+      }
+      if (e.target.classList.contains("checkout-btn")) {
+        cartProducts.length = 0;
+        showCart = !showCart;
+        render();
       }
     });
     productListContainerEl.addEventListener("change", (e) => {
       if (e.target.classList.contains("product-quantity")) {
         const index = e.target.dataset.index;
         products[index].quantity = Number(e.target.value);
-        products[index].total = (
+        products[index].total = Number.parseFloat(
           products[index].quantity * products[index].price
         ).toFixed(2);
+        render();
       }
     });
   }
