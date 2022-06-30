@@ -1,0 +1,71 @@
+.game-heading{
+  margin-top:32px;
+}
+.game-heading h1{
+  font-size:36px;
+}
+.login-form {
+  min-width: 600px;
+  margin: 64px auto;
+  border: 1px solid #3b3b3b;
+  border-radius: 5px;
+  padding: 32px;
+  text-align: center;
+  position: relative;
+}
+.login-title {
+  position: absolute;
+  top: -20px;
+  left: 40%;
+  background: #fff;
+  padding: 0 12px;
+  font-size:32px;
+}
+.update-title {
+  left: 27%;
+}
+.login-form form {
+  padding: 32px 0;
+}
+.input-field {
+  position: relative;
+  width: 100%;
+}
+.username {
+  width: 100%;
+  padding: 16px 12px;
+  font-size: 18px;
+}
+.username:focus {
+  outline-color: #0560ff;
+}
+.username:focus + label,
+.username:not(:placeholder-shown) + label {
+  top: -10px;
+  background: #ffffff;
+  font-size: 16px;
+  color: #0458e9;
+}
+.input-field label {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  font-size: 18px;
+  color: #3b3b3b;
+  background: #ffffff;
+  transition: all ease-in-out 200ms;
+}
+.login-btn {
+  font-size: 22px;
+  padding: 12px 24px;
+  background-color: #0560ff;
+  color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  margin-top: 24px;
+  border-radius: 5px;
+}
+.login-btn:hover {
+  background-color: #0458e9;
+}

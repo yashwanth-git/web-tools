@@ -1,0 +1,169 @@
+.game-container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding:0 16px;
+}
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-header h1{
+  font-size:34px;
+}
+.game-rules {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.25;
+}
+.game-rules-note{
+  margin-top:16px;
+  font-size: 22px;
+}
+.guessed-word {
+  width: 400px;
+  padding: 8px 12px;
+  font-size: 18px;
+}
+.to-check {
+  font-size: 18px;
+  padding: 9px 24px;
+  background-color: #0560ff;
+  color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  border-radius: 5px;
+}
+.player-guess-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+.guess-words-container {
+  margin-top: 24px;
+}
+.guess-words-container h2{
+  font-size:32px;
+}
+.guess-words-container h2 span {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  margin-left: 12px;
+  color: #333333;
+}
+.guess-words-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+  overflow-y: scroll;
+  background-color: #fff;
+  border: 1px solid #065fff;
+  border-radius: 5px;
+  height: 400px;
+}
+.guess-words-list {
+  list-style: none;
+  display: block;
+  height: 100%;
+}
+.guess-words-list li {
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+  min-width: 80px;
+  text-align: center;
+}
+.guess {
+  background-color: #76a7ff;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+.game-guess-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 24px 0;
+}
+.valids p,
+.last-guess p {
+  font-size: 24px;
+  font-weight: 300;
+}
+.valids p span,
+.last-guess p span {
+  font-weight: 500;
+}
+.valids p span,
+.last-guess p span.valid {
+  color: green;
+}
+.last-guess p span.invalid {
+  color: red;
+}
+.last-guess p span.not-started {
+  color: orange;
+}
+.game-activity-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.game-activity-status h2 {
+  font-size: 34px;
+}
+.activities:empty::after {
+  content: "Game is not started";
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 12px;
+}
+.activities {
+  list-style: auto;
+  margin-top: 12px;
+}
+.activity {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.activity::marker {
+  font-size: 14px;
+}
+.activity span {
+  font-size: 14px;
+  margin: 0 12px;
+}
+.game-end {
+  text-align: center;
+  margin-top: 12px;
+}
+.game-end h2 {
+  font-size: 30px;
+}
+.game-end p {
+  font-size: 22px;
+  margin-top: 8px;
+}
+.manual-new-game {
+  display: flex;
+  justify-content: flex-end;
+}
+.start-game {
+  font-size: 18px;
+  padding: 8px 24px;
+  margin-top: 12px;
+  color: #0560ff;
+  background-color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 5px;
+}
+.start-game:hover {
+  background-color: #0458e9;
+  color: #ffffff;
+}
