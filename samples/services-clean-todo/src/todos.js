@@ -1,6 +1,7 @@
 import { SERVER, CLIENT } from './constants';
 import state, {
   login,
+  logout,
   waitOnTodos,
   setTodos,
   setError,
@@ -70,15 +71,4 @@ function checkForSession() {
     render({ state, appEl });
   });
 }
-
-
-
-// addAbilityToLogin();
-// addAbilityToLogout();
-// addAbilityToRefresh();
-// addAbilityToToggleComplete();
-// addAbilityToAddTodo();
-// addAbilityToRemoveTodo();
-
-
 
