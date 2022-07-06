@@ -62,7 +62,7 @@ You have wide discretion on the appearance of the chat, but:
 
 ### Security Requirements
 
-- There should be password involved at all
+- There should not be password involved at all
 - User "dog" will be rejected with a 403 error on login
 - Services that require authorization should respond with the appropriate Status Codes (401, 403) if the request does not have a valid sid cookie value
 - You should allowlist to sanitize the username
