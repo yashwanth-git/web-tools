@@ -5,6 +5,9 @@
 
 # Always keep these out of commits
 node_modules/
+**/*.map
 
 # Skipping because samples aren't project code
 package-lock.json
+
+bundle.js
