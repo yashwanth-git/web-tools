@@ -1,5 +1,4 @@
-.signup-form,
-.update-form {
+.login-form {
   min-width: 600px;
   margin: 64px auto;
   border: 1px solid #3b3b3b;
@@ -8,55 +7,49 @@
   text-align: center;
   position: relative;
 }
-.signup-title,
-.update-title {
+.login-title {
   position: absolute;
   top: -20px;
-  left: 35%;
+  left: 40%;
   background: #fff;
   padding: 0 12px;
+  font-size:32px;
 }
 .update-title {
   left: 27%;
 }
-.signup-form form,
-.update-form form {
+.login-form form {
   padding: 32px 0;
 }
 .input-field {
   position: relative;
   width: 100%;
 }
-.username,
-.message {
+.username {
   width: 100%;
   padding: 16px 12px;
   font-size: 18px;
 }
-.username:focus,
-.message:focus {
+.username:focus {
   outline-color: #0560ff;
 }
 .username:focus + label,
-.message:focus + label,
-.username:not(:placeholder-shown) + label,
-.message:not(:placeholder-shown) + label {
+.username:not(:placeholder-shown) + label {
   top: -10px;
   background: #ffffff;
-  font-size:16px;
-  color:#0458e9;
+  font-size: 16px;
+  color: #0458e9;
 }
 .input-field label {
   position: absolute;
   left: 12px;
   top: 16px;
   font-size: 18px;
-  color:#3b3b3b;
+  color: #3b3b3b;
   background: #ffffff;
   transition: all ease-in-out 200ms;
 }
-.signup-btn,
-.update-msg-btn {
+.login-btn {
   font-size: 22px;
   padding: 12px 24px;
   background-color: #0560ff;
@@ -67,7 +60,6 @@
   margin-top: 24px;
   border-radius: 5px;
 }
-.signup-btn:hover,
-.update-msg-btn:hover {
+.login-btn:hover {
   background-color: #0458e9;
 }

@@ -1,3 +1,5 @@
-const appEl = document.querySelector("#chat-app")
+import render from "./render";
+import state, { login, logout, setError } from "./state";
+const appEl = document.querySelector("#chat-app");
 
-console.log(appEl);
+render({ state, appEl });
