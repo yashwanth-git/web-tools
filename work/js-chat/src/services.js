@@ -1,5 +1,4 @@
 export function fetchLogin(username) {
-  console.log(username);
   return fetch("/api/session", {
     method: "POST",
     headers: new Headers({

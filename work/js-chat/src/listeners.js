@@ -1,6 +1,6 @@
 import render from "./render";
 import { fetchLogin, fetchLogout } from "./services";
-import { login, logout } from "./state";
+import { login, logout, setError } from "./state";
 
 export function abilityToLogin({ state, appEl }) {
   appEl.addEventListener("submit", (e) => {
