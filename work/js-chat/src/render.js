@@ -28,9 +28,8 @@ const render = ({ state, appEl }) => {
           </div>
         </div>
     `;
-    }
-    else{
-      return ``
+    } else {
+      return ``;
     }
   }
 
@@ -87,9 +86,9 @@ const render = ({ state, appEl }) => {
         return (
           `<div class="messages-container">
               <ol class="messages">` +
-              Object.values(state.messages)
-                .map(
-                  (message) => `
+          Object.values(state.messages)
+            .map(
+              (message) => `
               <li>
                 <div class="message">
                   <span class="sender-avatar">${message.sender.charAt(0)}</span>
@@ -100,14 +99,14 @@ const render = ({ state, appEl }) => {
                 </div>
               </li>
             `
-                )
-                .join("") +
-              `</ol>
+            )
+            .join("") +
+          `</ol>
             </div>`
         );
       } else {
         return `
-          <div class="no-messages">No Messages Yet</div>
+          <div class="no-messages"><h2>No Messages Yet</h2></div>
         `;
       }
     } else {

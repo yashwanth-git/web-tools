@@ -1,6 +1,6 @@
 import render from "./render";
-import { fetchLogin } from "./services";
-import { login } from "./state";
+import { fetchLogin, fetchLogout } from "./services";
+import { login, logout } from "./state";
 
 export function abilityToLogin({ state, appEl }) {
   appEl.addEventListener("submit", (e) => {
@@ -16,8 +16,23 @@ export function abilityToLogin({ state, appEl }) {
         render({ state, appEl });
       })
       .catch((err) => {
-        setError(err?.error || "ERROR"); // Ensure that the error ends up truthy
+        setError(err?.error || "ERROR");
         render({ state, appEl });
       });
   });
 }
+
+export function abilityToLogout({ state, appEl }) {
+    appEl.addEventListener('click', (e) => {
+      if(!e.target.classList.contains('logout-btn')) {
+        return;
+      }
+      logout();
+      render({ state, appEl });
+      fetchLogout() 
+      .catch( err => {
+        setError(err?.error || 'ERROR'); 
+        render({ state, appEl });
+      });
+    });
+  }

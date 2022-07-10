@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get("/api/session", (req, res) => {
   const sid = req.cookies.sid;
-  if (sid && !sessions.isValidSessionId(sid)) {
+  if (!sid || !sessions.isValidSessionId(sid)) {
     res.clearCookie("sid");
     res.status(401).json({ error: "auth-missing" });
     return;
