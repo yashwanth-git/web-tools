@@ -41,4 +41,9 @@ export const setError = (error) => {
   state.error = MESSAGES[error] || MESSAGES.default;
 };
 
+export const setMessages = () => {
+  state.isLoggedIn = true;
+  state.error = "";
+};
+
 export default state;

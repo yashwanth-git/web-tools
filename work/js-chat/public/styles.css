@@ -10,10 +10,10 @@ body {
   font-family: sans-serif;
 }
 #chat-app {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
 .user-navbar {
   height: 15vh;
