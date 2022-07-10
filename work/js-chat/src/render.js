@@ -1,8 +1,10 @@
 const render = ({ state, appEl }) => {
   const html = `
         <main>
+            ${generateLoader(state)}
             ${generateStatusHtml(state)}
             ${getLogin(state)}
+            ${generateNav(state)}
             ${generateMessages(state)}
         </main>
     `;
@@ -12,6 +14,24 @@ const render = ({ state, appEl }) => {
     return `
         <div class="status">${state.error}</div>
     `;
+  }
+
+  function generateLoader(state) {
+    if (state.isLoginPending) {
+      return `
+        <div className="pre-loader">
+          <div className="styled-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+    `;
+    }
+    else{
+      return ``
+    }
   }
 
   function getLogin(state) {
@@ -34,7 +54,7 @@ const render = ({ state, appEl }) => {
     `;
   }
 
-  function generateMessages(state) {
+  function generateNav(state) {
     if (state.isLoggedIn) {
       return `
       <nav class="user-navbar">
@@ -45,8 +65,7 @@ const render = ({ state, appEl }) => {
               .charAt(0)
               .toUpperCase()}</span>
             <span class="user-name">${
-              state.username.charAt(0).toUpperCase() +
-              state.username.slice(1)
+              state.username.charAt(0).toUpperCase() + state.username.slice(1)
             }</span>
           </div>
         </li>
@@ -56,28 +75,43 @@ const render = ({ state, appEl }) => {
           </form>
         </li>
       </ul>
-    </nav>
-    <ol class="messages">` +
-        Object.values(state.messages)
-          .map(
-            (message) => `
-        <li>
-          <div class="message">
-            <span class="sender-avatar">${message.sender.charAt(0)}</span>
-            <div class="message-content">
-              <p class="message-sender">${message.sender}</p>
-              <p class="message-text">${message.text}</p>
-            </div>
-          </div>
-        </li>
-        `
-      )
-      .join("") +
-    `</ol>`
-      ;
+    </nav>`;
+    } else {
+      return ``;
     }
-    else{
-      return ``
+  }
+
+  function generateMessages(state) {
+    if (state.isLoggedIn) {
+      if (state.messages.length > 0) {
+        return (
+          `<div class="messages-container">
+              <ol class="messages">` +
+              Object.values(state.messages)
+                .map(
+                  (message) => `
+              <li>
+                <div class="message">
+                  <span class="sender-avatar">${message.sender.charAt(0)}</span>
+                  <div class="message-content">
+                    <p class="message-sender">${message.sender}</p>
+                    <p class="message-text">${message.text}</p>
+                  </div>
+                </div>
+              </li>
+            `
+                )
+                .join("") +
+              `</ol>
+            </div>`
+        );
+      } else {
+        return `
+          <div class="no-messages">No Messages Yet</div>
+        `;
+      }
+    } else {
+      return ``;
     }
   }
 };

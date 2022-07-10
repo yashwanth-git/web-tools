@@ -18,3 +18,18 @@ export function fetchLogin(username) {
         .then((err) => Promise.reject(err));
     });
 }
+
+export function fetchSession() {
+    return fetch('/api/session', {
+      method: 'GET',
+    })
+    .catch( () => Promise.reject({ error: 'networkError' }) )
+    .then( response => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response.json()
+      .catch( error => Promise.reject({ error }) )
+      .then( err => Promise.reject(err) );
+    });
+  }
