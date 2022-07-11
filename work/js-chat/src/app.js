@@ -6,7 +6,11 @@ import state, {
   updateMessages,
   waitOnLogin,
 } from "./state";
-import { abilityToLogin, abilityToLogout } from "./listeners";
+import {
+  abilityToAddMessage,
+  abilityToLogin,
+  abilityToLogout,
+} from "./listeners";
 import { fetchMessages, fetchSession } from "./services";
 import { SERVER, CLIENT } from "./constants";
 const appEl = document.querySelector("#chat-app");
@@ -14,6 +18,7 @@ const appEl = document.querySelector("#chat-app");
 render({ state, appEl });
 abilityToLogin({ state, appEl });
 abilityToLogout({ state, appEl });
+abilityToAddMessage({ state, appEl });
 checkForSession();
 
 function checkForSession() {

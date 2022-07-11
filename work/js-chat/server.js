@@ -42,8 +42,8 @@ app.post("/api/session", (req, res) => {
       return;
     }
 
-    const sessionId = sessions.createSession(formattedUname);
-    const userData = sessions.createUser(formattedUname);
+    const sessionId = sessions.createSession(username);
+    const userData = sessions.createUser(username);
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
