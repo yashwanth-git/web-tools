@@ -33,12 +33,12 @@ app.post("/api/session", (req, res) => {
     const validUser = sessions.validateUserName(formattedUname);
 
     if (!validUser) {
-      res.status(401).json({ error: 'auth-insufficient' });
+      res.status(401).json({ error: "auth-insufficient" });
       return;
     }
 
     if (formattedUname === "dog") {
-      res.status(403).json({ error: 'auth-insufficient' });
+      res.status(403).json({ error: "auth-insufficient" });
       return;
     }
 
@@ -47,7 +47,7 @@ app.post("/api/session", (req, res) => {
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
-    res.status(400).json({ error: 'required-username' });
+    res.status(400).json({ error: "required-username" });
     return;
   }
 });

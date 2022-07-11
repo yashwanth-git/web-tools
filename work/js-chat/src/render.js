@@ -82,7 +82,7 @@ const render = ({ state, appEl }) => {
 
   function generateMessages(state) {
     if (state.isLoggedIn) {
-      if (state.messages.length > 0) {
+      if (Object.values(state.messages).length > 0) {
         return (
           `<div class="messages-container">
               <ol class="messages">` +
@@ -91,10 +91,10 @@ const render = ({ state, appEl }) => {
               (message) => `
               <li>
                 <div class="message">
-                  <span class="sender-avatar">${message.sender.charAt(0)}</span>
+                  <span class="sender-avatar">${message.username.charAt(0)}</span>
                   <div class="message-content">
-                    <p class="message-sender">${message.sender}</p>
-                    <p class="message-text">${message.text}</p>
+                    <p class="message-sender">${message.username}</p>
+                    <p class="message-text">${message.message}</p>
                   </div>
                 </div>
               </li>
@@ -102,7 +102,14 @@ const render = ({ state, appEl }) => {
             )
             .join("") +
           `</ol>
-            </div>`
+              <div class="outgoing">
+                <form class="chat-send-form">
+                  <input type="text" class="to-send" name="message" placeholder="Type your message"/>
+                  <button type="submit" class="send-btn">Send</button>
+                </form>
+              </div>
+            </div>
+            `
         );
       } else {
         return `

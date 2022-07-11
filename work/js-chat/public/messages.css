@@ -1,12 +1,15 @@
-.messages-container, .no-messages {
+.messages-container,
+.no-messages {
   max-width: 800px;
   margin: 48px auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
-.no-messages{
-    font-size:22px;
+.no-messages {
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .users {
   display: flex;
@@ -61,11 +64,6 @@
 .outgoing {
   width: 100%;
   margin: 16px 0;
-}
-.outgoing form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .outgoing form .to-send {
   width: 60%;

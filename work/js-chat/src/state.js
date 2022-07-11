@@ -32,6 +32,18 @@ export const logout = () => {
   state.error = "";
 };
 
+export const waitOnMessages = () => {
+  state.messages = {};
+  state.isMessagePending = true;
+  state.error = "";
+};
+
+export const updateMessages = (messages) => {
+  state.messages = messages;
+  state.isMessagePending = false;
+  state.error = "";
+};
+
 export const setError = (error) => {
   console.log(error);
   if (!error) {

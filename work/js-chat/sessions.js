@@ -22,9 +22,9 @@ const isValidSessionId = (sid) => {
   return sessions[sid];
 };
 
-const createUser = (username, message = "") => {
+const createUser = (username) => {
   if (!users[username]) {
-    users[username] = { username, message };
+    users[username] = { username };
   }
   return users[username];
 };
