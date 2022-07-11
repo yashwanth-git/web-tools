@@ -5,6 +5,7 @@ const render = ({ state, appEl }) => {
             ${generateStatusHtml(state)}
             ${getLogin(state)}
             ${generateNav(state)}
+            ${generateUserList(state)}
             ${generateMessages(state)}
         </main>
     `;
@@ -91,7 +92,9 @@ const render = ({ state, appEl }) => {
               (message) => `
               <li>
                 <div class="message">
-                  <span class="sender-avatar">${message.username.charAt(0)}</span>
+                  <span class="sender-avatar">${message.username.charAt(
+                    0
+                  )}</span>
                   <div class="message-content">
                     <p class="message-sender">${message.username}</p>
                     <p class="message-text">${message.message}</p>
@@ -116,6 +119,28 @@ const render = ({ state, appEl }) => {
           <div class="no-messages"><h2>No Messages Yet</h2></div>
         `;
       }
+    } else {
+      return ``;
+    }
+  }
+
+  function generateUserList(state) {
+    if (state.isLoggedIn) {
+      return (
+        `<ul class="users">` +
+        Object.values(state.users)
+          .map(
+            (user) => `
+                <li>
+                  <div class="user">
+                    <span class="username">${user.username}</span>
+                  </div>
+                </li>
+              `
+          )
+          .join("") +
+        `</ul>`
+      );
     } else {
       return ``;
     }

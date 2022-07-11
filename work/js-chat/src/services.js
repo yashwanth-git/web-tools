@@ -67,20 +67,37 @@ export function fetchMessages() {
 }
 
 export function fetchAddMessage(username, message) {
-  return fetch('/api/messages', {
-    method: 'POST',
+  return fetch("/api/messages", {
+    method: "POST",
     headers: new Headers({
-      'content-type': 'application/json',
+      "content-type": "application/json",
     }),
-    body: JSON.stringify( { username, message } ),
+    body: JSON.stringify({ username, message }),
   })
-  .catch( () => Promise.reject({ error: 'networkError' }) )
-  .then( response => {
-    if (response.ok) {
-      return response.json();
-    }
-    return response.json()
-    .catch( error => Promise.reject({ error }) )
-    .then( err => Promise.reject(err) );
-  });
+    .catch(() => Promise.reject({ error: "networkError" }))
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response
+        .json()
+        .catch((error) => Promise.reject({ error }))
+        .then((err) => Promise.reject(err));
+    });
+}
+
+export function fetchUsers() {
+  return fetch("/api/users", {
+    method: "GET",
+  })
+    .catch(() => Promise.reject({ error: "networkError" }))
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response
+        .json()
+        .catch((error) => Promise.reject({ error }))
+        .then((err) => Promise.reject(err));
+    });
 }

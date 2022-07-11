@@ -22,7 +22,6 @@ app.get("/api/session", (req, res) => {
 
   const { username } = data.sessions[sid] || {};
   const userData = sessions.findUser(username);
-
   res.json({ userData });
 });
 
@@ -44,6 +43,7 @@ app.post("/api/session", (req, res) => {
 
     const sessionId = sessions.createSession(username);
     const userData = sessions.createUser(username);
+    userData.online = true;
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
@@ -56,6 +56,8 @@ app.delete("/api/session", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
   if (sid || sessions.isValidSessionId(sid)) {
+    const userData = sessions.findUser(username);
+    userData.online = false;
     delete data.sessions[sid];
     res.clearCookie("sid");
   }
@@ -102,4 +104,23 @@ app.post("/api/messages", (req, res) => {
   }
   const messagesList = messages.addMessage(username, message);
   res.json({ messagesList });
+});
+
+app.get("/api/users", (req, res) => {
+  const sid = req.cookies.sid;
+  if (!sid || !sessions.isValidSessionId(sid)) {
+    res.clearCookie("sid");
+    res.status(401).json({ error: "auth-missing" });
+    return;
+  }
+
+  const { username } = data.sessions[sid] || {};
+  const userData = sessions.findUser(username);
+
+  if (userData.username) {
+    const { users } = data;
+    res.json({ users });
+  } else {
+    res.status(401).json({ error: "auth-missing" });
+  }
 });

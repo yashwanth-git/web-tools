@@ -4,6 +4,7 @@ import state, {
   logout,
   setError,
   updateMessages,
+  updateUsers,
   waitOnLogin,
 } from "./state";
 import {
@@ -11,7 +12,7 @@ import {
   abilityToLogin,
   abilityToLogout,
 } from "./listeners";
-import { fetchMessages, fetchSession } from "./services";
+import { fetchMessages, fetchSession, fetchUsers } from "./services";
 import { SERVER, CLIENT } from "./constants";
 const appEl = document.querySelector("#chat-app");
 
@@ -24,15 +25,26 @@ checkForSession();
 function checkForSession() {
   fetchSession()
     .then((session) => {
+      console.log(session);
       login(session.userData.username);
       render({ state, appEl });
-      return fetchMessages();
+      return fetchUsers();
     })
     .catch((err) => {
       if (err?.error === SERVER.AUTH_MISSING) {
         return Promise.reject({ error: CLIENT.NO_SESSION });
       }
       return Promise.reject(err);
+    })
+    .then((users) => {
+      console.log(users);
+      updateUsers(users.users);
+      render({ state, appEl });
+      return fetchMessages();
+    })
+    .catch((err) => {
+      logout();
+      render({ state, appEl });
     })
     .then((messages) => {
       const { messagesList } = messages;
@@ -45,7 +57,5 @@ function checkForSession() {
         render({ state, appEl });
         return;
       }
-      setError(err?.error || "ERROR");
-      render({ state, appEl });
     });
 }

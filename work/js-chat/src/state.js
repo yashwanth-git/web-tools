@@ -2,6 +2,7 @@ import { MESSAGES } from "./constants";
 
 const state = {
   messages: {},
+  users: {},
   isLoggedIn: false,
   isLoginPending: true,
   isMessagePending: true,
@@ -41,6 +42,11 @@ export const waitOnMessages = () => {
 export const updateMessages = (messages) => {
   state.messages = messages;
   state.isMessagePending = false;
+  state.error = "";
+};
+
+export const updateUsers = (users) => {
+  state.users = users;
   state.error = "";
 };
 

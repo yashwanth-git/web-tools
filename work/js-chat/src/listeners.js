@@ -4,8 +4,9 @@ import {
   fetchLogin,
   fetchLogout,
   fetchMessages,
+  fetchUsers,
 } from "./services";
-import { login, logout, updateMessages, setError } from "./state";
+import { login, logout, updateMessages, setError, updateUsers } from "./state";
 
 export function abilityToLogin({ state, appEl }) {
   appEl.addEventListener("submit", (e) => {
@@ -18,9 +19,20 @@ export function abilityToLogin({ state, appEl }) {
       .then((res) => {
         login(username);
         render({ state, appEl });
+        return fetchUsers();
+      })
+      .catch((err) => {
+        setError(err?.error || "ERROR");
+        render({ state, appEl });
+      })
+      .then((users) => {
+        console.log(Object.values(users));
+        updateUsers(users.users);
+        render({ state, appEl });
         return fetchMessages();
       })
       .catch((err) => {
+        logout();
         setError(err?.error || "ERROR");
         render({ state, appEl });
       })
@@ -28,15 +40,10 @@ export function abilityToLogin({ state, appEl }) {
         console.log(messages);
         const { messagesList } = messages;
         updateMessages(messagesList);
-        console.log(state);
         render({ state, appEl });
       })
       .catch((err) => {
-        if (err?.error == CLIENT.NO_SESSION) {
-          logout();
-          render({ state, appEl });
-          return;
-        }
+        logout();
         setError(err?.error || "ERROR");
         render({ state, appEl });
       });
@@ -84,11 +91,7 @@ export function abilityToAddMessage({ state, appEl }) {
           render({ state, appEl });
         })
         .catch((err) => {
-          if (err?.error == CLIENT.NO_SESSION) {
-            logout();
-            render({ state, appEl });
-            return;
-          }
+          logout();
           setError(err?.error || "ERROR");
           render({ state, appEl });
         });
