@@ -5,8 +5,10 @@ const render = ({ state, appEl }) => {
             ${generateStatusHtml(state)}
             ${getLogin(state)}
             ${generateNav(state)}
-            ${generateUserList(state)}
-            ${generateMessages(state)}
+            <div class="messages-container">
+              ${generateUserList(state)}
+              ${generateMessages(state)}
+            </div>
         </main>
     `;
   appEl.innerHTML = html;
@@ -85,7 +87,7 @@ const render = ({ state, appEl }) => {
     if (state.isLoggedIn) {
       if (Object.values(state.messages).length > 0) {
         return (
-          `<div class="messages-container">
+          `
               <ol class="messages">` +
           Object.values(state.messages)
             .map(
@@ -111,7 +113,6 @@ const render = ({ state, appEl }) => {
                   <button type="submit" class="send-btn">Send</button>
                 </form>
               </div>
-            </div>
             `
         );
       } else {
@@ -132,8 +133,8 @@ const render = ({ state, appEl }) => {
           .map(
             (user) => `
                 <li>
-                  <div class="user">
-                    <span class="username">${user.username}</span>
+                  <div class="user ${user.online ? 'active': ''}">
+                    <span class="sender">${user.username}</span>
                   </div>
                 </li>
               `

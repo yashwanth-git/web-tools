@@ -1,3 +1,4 @@
+import { SERVER } from "./constants";
 import render from "./render";
 import {
   fetchAddMessage,
@@ -26,26 +27,22 @@ export function abilityToLogin({ state, appEl }) {
         render({ state, appEl });
       })
       .then((users) => {
-        console.log(Object.values(users));
         updateUsers(users.users);
         render({ state, appEl });
         return fetchMessages();
       })
       .catch((err) => {
-        logout();
         setError(err?.error || "ERROR");
-        render({ state, appEl });
+        logout();
       })
       .then((messages) => {
-        console.log(messages);
         const { messagesList } = messages;
         updateMessages(messagesList);
         render({ state, appEl });
       })
       .catch((err) => {
-        logout();
         setError(err?.error || "ERROR");
-        render({ state, appEl });
+        logout();
       });
   });
 }
@@ -70,9 +67,7 @@ export function abilityToAddMessage({ state, appEl }) {
       return;
     }
     const message = document.querySelector(".to-send").value;
-    console.log(message);
     if (message) {
-      console.log(message, state.username);
       fetchAddMessage(state.username, message)
         .then((message) => {
           render({ state, appEl });
@@ -84,11 +79,11 @@ export function abilityToAddMessage({ state, appEl }) {
           render({ state, appEl });
         })
         .then((messages) => {
-          console.log(messages);
           const { messagesList } = messages;
           updateMessages(messagesList);
-          console.log(state);
           render({ state, appEl });
+          const scrollDiv = document.querySelector(".messages");
+          scrollDiv.scrollTop = scrollDiv.scrollHeight;
         })
         .catch((err) => {
           logout();

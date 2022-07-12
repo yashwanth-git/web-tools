@@ -14,8 +14,13 @@
 .users {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   list-style: none;
   font-size: 20px;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 5px;
 }
 .users li:not(:last-child) {
   margin-right: 32px;
@@ -24,7 +29,7 @@
   display: flex;
   align-items: center;
 }
-.users li:first-child .user::before {
+.user.active::before {
   content: "";
   display: inline-block;
   width: 10px;
@@ -35,11 +40,19 @@
 }
 .messages {
   list-style: none;
+  height:400px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
 }
 .message {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 .sender-avatar {
   display: flex;
@@ -65,14 +78,17 @@
   width: 100%;
   margin: 16px 0;
 }
+.chat-send-form{
+  display:flex;
+}
 .outgoing form .to-send {
-  width: 60%;
+  width: 80%;
   font-size: 20px;
   padding: 8px 16px;
   border: 2px solid #b7b7b7;
 }
 .send-btn {
-  width: 15%;
+  width: 20%;
   font-size: 22px;
   padding: 8px 16px;
   background-color: #0560ff;
