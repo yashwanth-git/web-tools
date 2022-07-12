@@ -6,6 +6,8 @@ import state, {
   updateMessages,
   updateUsers,
   waitOnLogin,
+  waitOnMessages,
+  waitOnUsers,
 } from "./state";
 import {
   abilityToAddMessage,
@@ -22,11 +24,37 @@ abilityToLogout({ state, appEl });
 abilityToAddMessage({ state, appEl });
 checkForSession();
 
+function checkForMessages() {
+  fetchUsers()
+    .then((users) => {
+      updateUsers(users.users);
+      render({ state, appEl });
+      return fetchMessages();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((messages) => {
+      const { messagesList } = messages;
+      updateMessages(messagesList);
+      render({ state, appEl });
+      const scrollDiv = document.querySelector(".messages");
+      scrollDiv.scrollTop = scrollDiv.scrollHeight;
+      const inputEl = document.querySelector(".to-send");
+      inputEl.focus();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 function checkForSession() {
+  console.log(state)
   fetchSession()
     .then((session) => {
-      console.log(session);
       login(session.userData.username);
+      render({ state, appEl });
+      waitOnUsers();
       render({ state, appEl });
       return fetchUsers();
     })
@@ -37,8 +65,9 @@ function checkForSession() {
       return Promise.reject(err);
     })
     .then((users) => {
-      console.log(users);
       updateUsers(users.users);
+      render({ state, appEl });
+      waitOnMessages();
       render({ state, appEl });
       return fetchMessages();
     })
@@ -50,6 +79,11 @@ function checkForSession() {
       const { messagesList } = messages;
       updateMessages(messagesList);
       render({ state, appEl });
+      const scrollDiv = document.querySelector(".messages");
+      scrollDiv.scrollTop = scrollDiv.scrollHeight;
+      const inputEl = document.querySelector(".to-send");
+      inputEl.focus();
+      setInterval(checkForMessages, 5000);
     })
     .catch((err) => {
       if (err?.error == CLIENT.NO_SESSION) {

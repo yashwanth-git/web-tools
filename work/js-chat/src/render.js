@@ -2,12 +2,12 @@ const render = ({ state, appEl }) => {
   const html = `
         <main>
             ${generateLoader(state)}
-            ${generateStatusHtml(state)}
             ${getLogin(state)}
             ${generateNav(state)}
             <div class="messages-container">
               ${generateUserList(state)}
               ${generateMessages(state)}
+              ${generateOutgoing(state)}
             </div>
         </main>
     `;
@@ -20,16 +20,11 @@ const render = ({ state, appEl }) => {
   }
 
   function generateLoader(state) {
-    if (state.isLoginPending) {
+    if (state.isMessagePending || state.isUsersPending || state.isLoginPending) {
       return `
-        <div className="pre-loader">
-          <div className="styled-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
+      <div class="loader">
+        <i class="gg-spinner-alt"></i>
+      <div>
     `;
     } else {
       return ``;
@@ -51,6 +46,7 @@ const render = ({ state, appEl }) => {
               </div>
               <button type="submit" class="login-btn">Login</button>
           </form>
+          ${generateStatusHtml(state)}
         </div>
       </div>  
     `;
@@ -84,7 +80,7 @@ const render = ({ state, appEl }) => {
   }
 
   function generateMessages(state) {
-    if (state.isLoggedIn) {
+    if (state.isLoggedIn || state.isMessagePending) {
       if (Object.values(state.messages).length > 0) {
         return (
           `
@@ -107,12 +103,6 @@ const render = ({ state, appEl }) => {
             )
             .join("") +
           `</ol>
-              <div class="outgoing">
-                <form class="chat-send-form">
-                  <input type="text" class="to-send" name="message" placeholder="Type your message"/>
-                  <button type="submit" class="send-btn">Send</button>
-                </form>
-              </div>
             `
         );
       } else {
@@ -125,24 +115,39 @@ const render = ({ state, appEl }) => {
     }
   }
 
-  function generateUserList(state) {
+  function generateOutgoing(state) {
     if (state.isLoggedIn) {
+      return `
+        <div class="outgoing">
+            <form class="chat-send-form">
+              <input type="text" class="to-send" name="message" placeholder="Type your message"/>
+              <button type="submit" class="send-btn">Send</button>
+            </form>
+        </div>
+        `;
+    } else {
+      return ``;
+    }
+  }
+
+  function generateUserList(state) {
+    if (state.isLoggedIn || state.isUsersPending) {
       return (
         `<div class="users-list">
           <h3>Users List</h3>
           <ul class="users">` +
-          Object.values(state.users)
-            .map(
-              (user) => `
+        Object.values(state.users)
+          .map(
+            (user) => `
                   <li>
                     <div class="user ${user.online ? "active" : ""}">
                       <span class="sender">${user.username}</span>
                     </div>
                   </li>
                 `
-            )
-            .join("") +
-          `</ul>
+          )
+          .join("") +
+        `</ul>
         </div>`
       );
     } else {

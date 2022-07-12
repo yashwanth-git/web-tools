@@ -66,3 +66,18 @@ body {
   background-color: #0458e9;
   color: #ffffff;
 }
+.status{
+  display: flex;
+  align-items: center;
+  color: red;
+  justify-content: center;
+}
+.loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+}
+.loader i{
+  font-size:62px;
+}

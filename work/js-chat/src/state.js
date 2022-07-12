@@ -4,8 +4,9 @@ const state = {
   messages: {},
   users: {},
   isLoggedIn: false,
-  isLoginPending: true,
-  isMessagePending: true,
+  isLoginPending: false,
+  isMessagePending: false,
+  isUsersPending: false,
   username: "",
   error: "",
 };
@@ -45,8 +46,14 @@ export const updateMessages = (messages) => {
   state.error = "";
 };
 
+export const waitOnUsers = () =>{
+  state.users = {}
+  state.isUsersPending = true;
+  state.error = "";
+}
 export const updateUsers = (users) => {
   state.users = users;
+  state.isUsersPending = false;
   state.error = "";
 };
 

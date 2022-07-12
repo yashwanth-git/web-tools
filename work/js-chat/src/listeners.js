@@ -7,7 +7,33 @@ import {
   fetchMessages,
   fetchUsers,
 } from "./services";
-import { login, logout, updateMessages, setError, updateUsers } from "./state";
+import { login, logout, updateMessages, setError, updateUsers, waitOnUsers, waitOnMessages, waitOnLogin } from "./state";
+
+function checkForMessages() {
+  waitOnUsers();
+  fetchUsers()
+    .then((users) => {
+      updateUsers(users.users);
+      render({ state, appEl });
+      waitOnMessages();
+      return fetchMessages();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((messages) => {
+      const { messagesList } = messages;
+      updateMessages(messagesList);
+      render({ state, appEl });
+      const scrollDiv = document.querySelector(".messages");
+      scrollDiv.scrollTop = scrollDiv.scrollHeight;
+      const inputEl = document.querySelector(".to-send");
+      inputEl.focus();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 export function abilityToLogin({ state, appEl }) {
   appEl.addEventListener("submit", (e) => {
@@ -16,10 +42,13 @@ export function abilityToLogin({ state, appEl }) {
       return;
     }
     const username = document.querySelector(".username").value;
+    waitOnLogin();
     fetchLogin(username)
       .then((res) => {
         login(username);
         render({ state, appEl });
+        waitOnUsers();
+        render({state, appEl});
         return fetchUsers();
       })
       .catch((err) => {
@@ -29,6 +58,8 @@ export function abilityToLogin({ state, appEl }) {
       .then((users) => {
         updateUsers(users.users);
         render({ state, appEl });
+        waitOnMessages();
+        render({state, appEl});
         return fetchMessages();
       })
       .catch((err) => {
@@ -43,6 +74,7 @@ export function abilityToLogin({ state, appEl }) {
         inputEl.focus();
         const scrollDiv = document.querySelector(".messages");
         scrollDiv.scrollTop = scrollDiv.scrollHeight;
+        setInterval(checkForMessages, 5000);
       })
       .catch((err) => {
         setError(err?.error || "ERROR");
