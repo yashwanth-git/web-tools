@@ -13,7 +13,7 @@ const messagesList = {
     message: "Wassup?",
   },
   [id2]: {
-    username: "Murali",
+    username: "Jorts",
     message: "Nothing much bud!",
   },
 };

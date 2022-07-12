@@ -1,4 +1,3 @@
-import { SERVER } from "./constants";
 import render from "./render";
 import {
   fetchAddMessage,
@@ -7,10 +6,19 @@ import {
   fetchMessages,
   fetchUsers,
 } from "./services";
-import { login, logout, updateMessages, setError, updateUsers, waitOnUsers, waitOnMessages, waitOnLogin } from "./state";
+import state, {
+  login,
+  logout,
+  updateMessages,
+  setError,
+  updateUsers,
+  waitOnUsers,
+  waitOnMessages,
+  waitOnLogin,
+} from "./state";
 
+const appEl = document.querySelector("#chat-app");
 function checkForMessages() {
-  waitOnUsers();
   fetchUsers()
     .then((users) => {
       updateUsers(users.users);
@@ -42,13 +50,12 @@ export function abilityToLogin({ state, appEl }) {
       return;
     }
     const username = document.querySelector(".username").value;
-    waitOnLogin();
     fetchLogin(username)
       .then((res) => {
         login(username);
         render({ state, appEl });
         waitOnUsers();
-        render({state, appEl});
+        render({ state, appEl });
         return fetchUsers();
       })
       .catch((err) => {
@@ -59,7 +66,7 @@ export function abilityToLogin({ state, appEl }) {
         updateUsers(users.users);
         render({ state, appEl });
         waitOnMessages();
-        render({state, appEl});
+        render({ state, appEl });
         return fetchMessages();
       })
       .catch((err) => {

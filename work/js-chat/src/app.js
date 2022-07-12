@@ -2,10 +2,8 @@ import render from "./render";
 import state, {
   login,
   logout,
-  setError,
   updateMessages,
   updateUsers,
-  waitOnLogin,
   waitOnMessages,
   waitOnUsers,
 } from "./state";
@@ -49,7 +47,6 @@ function checkForMessages() {
 }
 
 function checkForSession() {
-  console.log(state)
   fetchSession()
     .then((session) => {
       login(session.userData.username);
