@@ -39,6 +39,10 @@ export function abilityToLogin({ state, appEl }) {
         const { messagesList } = messages;
         updateMessages(messagesList);
         render({ state, appEl });
+        const inputEl = document.querySelector(".to-send");
+        inputEl.focus();
+        const scrollDiv = document.querySelector(".messages");
+        scrollDiv.scrollTop = scrollDiv.scrollHeight;
       })
       .catch((err) => {
         setError(err?.error || "ERROR");
@@ -84,6 +88,8 @@ export function abilityToAddMessage({ state, appEl }) {
           render({ state, appEl });
           const scrollDiv = document.querySelector(".messages");
           scrollDiv.scrollTop = scrollDiv.scrollHeight;
+          const inputEl = document.querySelector(".to-send");
+          inputEl.focus();
         })
         .catch((err) => {
           logout();

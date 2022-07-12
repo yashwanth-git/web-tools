@@ -128,19 +128,22 @@ const render = ({ state, appEl }) => {
   function generateUserList(state) {
     if (state.isLoggedIn) {
       return (
-        `<ul class="users">` +
-        Object.values(state.users)
-          .map(
-            (user) => `
-                <li>
-                  <div class="user ${user.online ? 'active': ''}">
-                    <span class="sender">${user.username}</span>
-                  </div>
-                </li>
-              `
-          )
-          .join("") +
-        `</ul>`
+        `<div class="users-list">
+          <h3>Users List</h3>
+          <ul class="users">` +
+          Object.values(state.users)
+            .map(
+              (user) => `
+                  <li>
+                    <div class="user ${user.online ? "active" : ""}">
+                      <span class="sender">${user.username}</span>
+                    </div>
+                  </li>
+                `
+            )
+            .join("") +
+          `</ul>
+        </div>`
       );
     } else {
       return ``;
