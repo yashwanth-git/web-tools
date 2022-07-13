@@ -53,7 +53,7 @@ const render = ({ state, appEl }) => {
   }
 
   function generateNav(state) {
-    if (state.isLoggedIn) {
+    if (state.isLoggedIn && !state.isMessagePending && !state.isUsersPending) {
       return `
       <nav class="user-navbar">
       <ul>
@@ -80,7 +80,7 @@ const render = ({ state, appEl }) => {
   }
 
   function generateMessages(state) {
-    if (state.isLoggedIn || state.isMessagePending) {
+    if (state.isLoggedIn && !state.isMessagePending && !state.isUsersPending) {
       if (Object.values(state.messages).length > 0) {
         return (
           `
@@ -116,7 +116,7 @@ const render = ({ state, appEl }) => {
   }
 
   function generateOutgoing(state) {
-    if (state.isLoggedIn) {
+    if (state.isLoggedIn ) {
       return `
         <div class="outgoing">
             <form class="chat-send-form">
@@ -131,7 +131,7 @@ const render = ({ state, appEl }) => {
   }
 
   function generateUserList(state) {
-    if (state.isLoggedIn || state.isUsersPending) {
+    if (state.isLoggedIn && !state.isUsersPending) {
       return (
         `<div class="users-list">
           <h3>Users List</h3>

@@ -14,7 +14,6 @@ import state, {
   updateUsers,
   waitOnUsers,
   waitOnMessages,
-  waitOnLogin,
 } from "./state";
 
 const appEl = document.querySelector("#chat-app");
