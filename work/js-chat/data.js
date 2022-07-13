@@ -9,13 +9,9 @@ const id2 = uuid();
 
 const messagesList = {
   [id1]: {
-    username: "Yash",
-    message: "Wassup?",
-  },
-  [id2]: {
-    username: "Jorts",
-    message: "Nothing much bud!",
-  },
+    username: "ChatBot",
+    message: "Welcome to the Group Chat! Let the conversation begin",
+  }
 };
 
 const data = {
