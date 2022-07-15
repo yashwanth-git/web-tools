@@ -1,9 +1,12 @@
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Login from "./Login";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="app">
-      <h1>Hello World!</h1>
+      {!isLoggedIn && <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}
     </div>
   );
 }
