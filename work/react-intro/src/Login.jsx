@@ -1,6 +1,5 @@
-import React from "react";
-import { useState } from "react";
-import "./Login.css";
+import React, { useState }  from "react";
+import "./Form.css";
 
 function Login({setIsLoggedIn}) {
   const [error, setError] = useState("");
@@ -30,14 +29,10 @@ function Login({setIsLoggedIn}) {
   };
 
   return (
-    <>
-      <div className="heading">
-        <h1>Guessing Game</h1>
-      </div>
       <div className="login-container">
         <div className="login-form">
           <h2 className="login-title">Login</h2>
-          <form method="POST" action="./login">
+          <form>
             <div className="input-field">
               <input
                 type="text"
@@ -49,14 +44,13 @@ function Login({setIsLoggedIn}) {
               />
               <label htmlFor="username">Username</label>
             </div>
-            <button type="submit" onClick={submitHandler} className="login-btn">
+            <button onClick={submitHandler} className="login-btn">
               Login
             </button>
           </form>
-          {error && <span class="error-msg">{error}</span>}
+          {error && <span className="error-msg">{error}</span>}
         </div>
       </div>
-    </>
   );
 }
 
