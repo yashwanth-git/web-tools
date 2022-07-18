@@ -23,7 +23,7 @@ function Game() {
       setError(`The ${word} is not valid`);
     } else {
       const commonWords = compare(secretWord, word.toLowerCase());
-      if (commonWords > 0) {
+      if (commonWords >= 0) {
         setGameStat({
           class: "warning",
           message: `${word} had ${commonWords} letter in common`,
