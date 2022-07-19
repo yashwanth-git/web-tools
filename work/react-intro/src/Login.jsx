@@ -13,8 +13,8 @@ function Login({setIsLoggedIn}) {
   const submitHandler = (e) => {
     e.preventDefault();
     const formattedUname = username.trim().toLowerCase();
-    const regex = "^[a-zA-Z0-9]*$";
-    const unameRegexCheck = formattedUname.match(regex);
+    const patternCheck = "^[a-zA-Z0-9]*$";
+    const unameRegexCheck = formattedUname.match(patternCheck);
     if (username === "dog") {
       setError("The user is not valid");
       setUserName('')
