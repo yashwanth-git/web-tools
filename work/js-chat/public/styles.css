@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  font-family: sans-serif;
+}
+.user-navbar {
+  height: 15vh;
+  width: 100%;
+  padding: 12px 24px;
+}
+.user-navbar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.user-navbar li {
+  margin-left: 12px;
+}
+.user-message .message-label {
+  background-color: #008001;
+  padding: 6px 16px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.user-message .message-content{
+    font-size: 22px;
+}
+.user-details {
+  display: flex;
+  align-items: center;
+}
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0560ff;
+  color: #ffffff;
+  padding: 24px;
+  font-size: 26px;
+  margin-right: 8px;
+}
+.logout-btn {
+  font-size: 18px;
+  padding: 12px 24px;
+  color: #0560ff;
+  background-color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 5px;
+  margin-left: 16px;
+}
+.logout-btn:hover {
+  background-color: #0458e9;
+  color: #ffffff;
+}
+.status{
+  display: flex;
+  align-items: center;
+  color: red;
+  justify-content: center;
+}
+.loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+}
+.loader i{
+  font-size:62px;
+}

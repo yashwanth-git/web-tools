@@ -1,0 +1,33 @@
+@keyframes ringAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.pre-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vh;
+  width: 100%;
+}
+.pre-loader div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #0560ff;
+  border-radius: 50%;
+  animation: ringAnim 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #0560ff transparent transparent transparent;
+}
+.styled-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}

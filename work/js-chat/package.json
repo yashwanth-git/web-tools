@@ -1,0 +1,29 @@
+{
+  "name": "js-chat",
+  "version": "1.0.0",
+  "description": "* start from the up-to-date main branch (`git checkout main; git pull origin main`) * Create a feature branch named 'js-chat' (`git checkout -b js-chat`) * Create the files in this directory to have the require features * Add, commit, and push the branch to github * Create a PR to merge to main * Be sure to include the TA(s) and I as reviewers.   * Due by **Mon Jul 13, 11:59pm (ET)**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "node server.js",
+    "dev-server": "nodemon server.js",
+    "dev-client": "webpack --watch"
+  },
+  "keywords": [],
+  "author": "Yashwanth Sridharan",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "uuid": "^8.3.2",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
