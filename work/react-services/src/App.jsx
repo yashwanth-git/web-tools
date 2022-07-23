@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { LOGIN_STATUS, SERVER, CLIENT, MESSAGES } from "./constants";
+import {
+  LOGIN_STATUS,
+  MESSAGE_STATUS,
+  SERVER,
+  CLIENT,
+  MESSAGES,
+} from "./constants";
 import {
   fetchLogin,
   fetchSession,
@@ -16,13 +22,18 @@ function App() {
   const [userDetails, setUserDetails] = useState({});
   const [error, setError] = useState("");
   const [loginStatus, setLoginStatus] = useState(LOGIN_STATUS.PENDING);
+  const [messageStatus, setMessageStatus] = useState(MESSAGE_STATUS.PENDING);
 
   function checkForSession() {
     fetchSession()
       .then((session) => {
         const { userData } = session;
-        setUserDetails({ username: userData.username });
+        setUserDetails({
+          username: userData.username,
+          message: userData.message,
+        });
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
+        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         if (err?.error === SERVER.AUTH_MISSING) {
@@ -37,7 +48,10 @@ function App() {
     fetchLogin(username)
       .then((user) => {
         const { userData } = user;
-        setUserDetails({ username: userData.username });
+        setUserDetails({
+          username: userData.username,
+          message: userData.message,
+        });
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
       })
       .catch((err) => {
@@ -46,6 +60,7 @@ function App() {
   }
 
   function onUpdateMessage(message) {
+    setMessageStatus(MESSAGE_STATUS.PENDING);
     fetchMessage(message)
       .then((user) => {
         const { userData } = user;
@@ -53,6 +68,7 @@ function App() {
           username: userData.username,
           message: userData.message,
         });
+        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         setError(MESSAGES[err?.error] || "ERROR");
@@ -81,7 +97,11 @@ function App() {
         {loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
           <>
             <Navbar username={userDetails.username} onLogout={onLogout} />
-            <Message onUpdateMessage={onUpdateMessage} message={userDetails.message} />
+            {messageStatus === MESSAGE_STATUS.PENDING && <Loader></Loader>}
+            <Message
+              onUpdateMessage={onUpdateMessage}
+              message={userDetails.message}
+            />
           </>
         )}
       </main>

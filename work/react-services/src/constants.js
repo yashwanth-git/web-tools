@@ -3,6 +3,10 @@ export const LOGIN_STATUS = {
   NOT_LOGGED_IN: "notLoggedIn",
   IS_LOGGED_IN: "loggedIn",
 };
+export const MESSAGE_STATUS = {
+  PENDING: "pending",
+  IS_AVAILABLE: "available",
+};
 export const SERVER = {
   AUTH_MISSING: "auth-missing",
   AUTH_INSUFFICIENT: "auth-insufficient",

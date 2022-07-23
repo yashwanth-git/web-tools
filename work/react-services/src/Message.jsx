@@ -11,6 +11,7 @@ const Message = ({ onUpdateMessage, message }) => {
     e.preventDefault();
     if (userMessage) {
       onUpdateMessage(userMessage);
+      setUserMessage('');
     }
   };
 

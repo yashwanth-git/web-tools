@@ -10,9 +10,8 @@ function Login({ onLogin, error }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (username) {
-      onLogin(username);
-    }
+    onLogin(username);
+    setUserName("");
   };
 
   return (
