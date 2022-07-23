@@ -23,6 +23,7 @@ function Login({ onLogin, error }) {
           <div className="input-field">
             <input
               type="text"
+              id="username"
               className="username"
               name="username"
               value={username}

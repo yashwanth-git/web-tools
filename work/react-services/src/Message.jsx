@@ -1,9 +1,49 @@
+import { useState } from "react";
+import "./Form.css";
+const Message = ({ onUpdateMessage, message }) => {
+  const [userMessage, setUserMessage] = useState("");
 
+  const inputHandler = (e) => {
+    setUserMessage(e.target.value);
+  };
 
-const Message = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (userMessage) {
+      onUpdateMessage(userMessage);
+    }
+  };
+
   return (
-    <div>Message</div>
-  )
-}
+    <div className="update-container">
+      <div className="user-message">
+        <p>
+          <span className="message-label">Message</span>
+          <span className="message-content">
+            {!message ? "No message has been updated" : message}
+          </span>
+        </p>
+      </div>
+      <div className="update-form">
+        <h1 className="update-title">Update Message</h1>
+        <form onSubmit={submitHandler}>
+          <div className="input-field">
+            <input
+              type="text"
+              id="message"
+              className="message"
+              value={userMessage}
+              onInput={inputHandler}
+              name="message"
+              placeholder=" "
+            />
+            <label htmlFor="message">Message</label>
+          </div>
+          <button className="update-btn">Update</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Message
+export default Message;

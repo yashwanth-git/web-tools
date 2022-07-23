@@ -49,3 +49,23 @@ export function fetchLogin(username) {
         .then((err) => Promise.reject(err));
     });
 }
+
+export function fetchMessage(message) {
+  return fetch("/api/v1/message", {
+    method: "POST",
+    headers: new Headers({
+      "content-type": "application/json",
+    }),
+    body: JSON.stringify({ message }),
+  })
+    .catch(() => Promise.reject({ error: "networkError" }))
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response
+        .json()
+        .catch((error) => Promise.reject({ error }))
+        .then((err) => Promise.reject(err));
+    });
+}

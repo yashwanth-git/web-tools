@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import { LOGIN_STATUS, SERVER, CLIENT, MESSAGES } from "./constants";
-import { fetchLogin, fetchSession, fetchLogout } from "./services";
+import {
+  fetchLogin,
+  fetchSession,
+  fetchLogout,
+  fetchMessage,
+} from "./services";
 import "./App.css";
 import Login from "./Login";
 import Loader from "./Loader";
 import Navbar from "./Navbar";
+import Message from "./Message";
 
 function App() {
   const [userDetails, setUserDetails] = useState({});
@@ -39,6 +45,20 @@ function App() {
       });
   }
 
+  function onUpdateMessage(message) {
+    fetchMessage(message)
+      .then((user) => {
+        const { userData } = user;
+        setUserDetails({
+          username: userData.username,
+          message: userData.message,
+        });
+      })
+      .catch((err) => {
+        setError(MESSAGES[err?.error] || "ERROR");
+      });
+  }
+
   function onLogout() {
     setError("");
     setUserDetails({});
@@ -61,6 +81,7 @@ function App() {
         {loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
           <>
             <Navbar username={userDetails.username} onLogout={onLogout} />
+            <Message onUpdateMessage={onUpdateMessage} message={userDetails.message} />
           </>
         )}
       </main>
