@@ -25,7 +25,7 @@ app.get("/api/v1/session", (req, res) => {
   res.json({ userData });
 });
 
-app.post("/api/session", (req, res) => {
+app.post("/api/v1/session", (req, res) => {
   const { username } = req.body;
   if (username) {
     const formattedUname = username.trim().toLowerCase();
@@ -52,7 +52,7 @@ app.post("/api/session", (req, res) => {
   }
 });
 
-app.delete("/api/session", (req, res) => {
+app.delete("/api/v1/session", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
   if (sid || sessions.isValidSessionId(sid)) {
