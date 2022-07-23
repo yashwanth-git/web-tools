@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Form.css";
 
-function Login({ setIsLoggedIn }) {
+function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [username, setUserName] = useState("");
 
@@ -12,20 +12,9 @@ function Login({ setIsLoggedIn }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const formattedUname = username.trim().toLowerCase();
-    const patternCheck = "^[a-zA-Z0-9]*$";
-    const unameRegexCheck = formattedUname.match(patternCheck);
-    if (username === "dog") {
-      setError("The user is not valid");
-      setUserName("");
-      return;
+    if (username) {
+      onLogin(username);
     }
-    if (!unameRegexCheck || !formattedUname) {
-      setError("Invalid username. Username should contain valid characters");
-      setUserName("");
-      return;
-    }
-    setIsLoggedIn(true);
   };
 
   return (

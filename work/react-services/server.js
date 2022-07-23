@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 const data = require("./data");
 const sessions = require("./sessions");
+const users = require("./users");
 
 app.use(cookieParser());
 app.use(express.static("./build"));
@@ -28,8 +29,9 @@ app.get("/api/v1/session", (req, res) => {
 app.post("/api/v1/session", (req, res) => {
   const { username } = req.body;
   if (username) {
+    console.log(username);
     const formattedUname = username.trim().toLowerCase();
-    const validUser = sessions.validateUserName(formattedUname);
+    const validUser = users.validateUserName(formattedUname);
 
     if (!validUser) {
       res.status(401).json({ error: "auth-insufficient" });
@@ -42,7 +44,7 @@ app.post("/api/v1/session", (req, res) => {
     }
 
     const sessionId = sessions.createSession(username);
-    const userData = sessions.createUser(username);
+    const userData = users.createUser(username);
     userData.online = true;
     res.cookie("sid", sessionId);
     res.json({ userData });
