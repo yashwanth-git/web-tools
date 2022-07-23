@@ -22,14 +22,13 @@ app.get("/api/v1/session", (req, res) => {
   }
 
   const { username } = data.sessions[sid] || {};
-  const userData = sessions.findUser(username);
+  const userData = users.findUser(username);
   res.json({ userData });
 });
 
 app.post("/api/v1/session", (req, res) => {
   const { username } = req.body;
   if (username) {
-    console.log(username);
     const formattedUname = username.trim().toLowerCase();
     const validUser = users.validateUserName(formattedUname);
 
@@ -45,7 +44,6 @@ app.post("/api/v1/session", (req, res) => {
 
     const sessionId = sessions.createSession(username);
     const userData = users.createUser(username);
-    userData.online = true;
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
@@ -58,8 +56,7 @@ app.delete("/api/v1/session", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
   if (sid || sessions.isValidSessionId(sid)) {
-    const userData = sessions.findUser(username);
-    userData.online = false;
+    const userData = users.findUser(username);
     delete data.sessions[sid];
     res.clearCookie("sid");
   }

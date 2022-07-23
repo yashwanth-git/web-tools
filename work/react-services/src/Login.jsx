@@ -1,13 +1,11 @@
 import { useState } from "react";
 import "./Form.css";
 
-function Login({ onLogin }) {
-  const [error, setError] = useState("");
+function Login({ onLogin, error }) {
   const [username, setUserName] = useState("");
 
   const inputHandler = (e) => {
     setUserName(e.target.value);
-    setError(false);
   };
 
   const submitHandler = (e) => {
@@ -21,7 +19,7 @@ function Login({ onLogin }) {
     <div className="login-container">
       <div className="login-form">
         <h2 className="login-title">Login</h2>
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="input-field">
             <input
               type="text"
@@ -33,7 +31,7 @@ function Login({ onLogin }) {
             />
             <label htmlFor="username">Username</label>
           </div>
-          <button onClick={submitHandler} className="login-btn">
+          <button type="submit" className="login-btn">
             Login
           </button>
         </form>

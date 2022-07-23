@@ -22,6 +22,5 @@ export const MESSAGES = {
     "Your username/password combination does not match any records, please try again.",
   [SERVER.REQUIRED_USERNAME]:
     "Please enter a valid (letters and/or numbers) username",
-  [SERVER.REQUIRED_TASK]: "Please enter the task to do",
   default: "Something went wrong.  Please try again",
 };

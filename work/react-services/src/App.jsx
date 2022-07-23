@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { LOGIN_STATUS, SERVER, CLIENT } from "./constants";
+import { LOGIN_STATUS, SERVER, CLIENT, MESSAGES } from "./constants";
 import { fetchLogin, fetchSession, fetchLogout } from "./services";
 import "./App.css";
 import Login from "./Login";
 import Loader from "./Loader";
+import Navbar from "./Navbar";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [message, setMessage] = useState("");
+  const [userDetails, setUserDetails] = useState({});
   const [error, setError] = useState("");
   const [loginStatus, setLoginStatus] = useState(LOGIN_STATUS.PENDING);
 
   function checkForSession() {
     fetchSession()
       .then((session) => {
-        setUsername(session.username);
+        const { userData } = session;
+        setUserDetails({ username: userData.username });
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
       })
       .catch((err) => {
@@ -28,21 +29,22 @@ function App() {
 
   function onLogin(username) {
     fetchLogin(username)
-      .then((uname) => {
-        setUsername(uname);
+      .then((user) => {
+        const { userData } = user;
+        setUserDetails({ username: userData.username });
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
       })
       .catch((err) => {
-        setError(err?.error || "ERROR");
+        setError(MESSAGES[err?.error] || "ERROR");
       });
   }
 
   function onLogout() {
     setError("");
-    setUsername("");
+    setUserDetails({});
     setLoginStatus(LOGIN_STATUS.NOT_LOGGED_IN);
     fetchLogout().catch((err) => {
-      setError(err?.error || "ERROR");
+      setError(MESSAGES[err?.error] || "ERROR");
     });
   }
 
@@ -54,7 +56,12 @@ function App() {
       <main>
         {loginStatus === LOGIN_STATUS.PENDING && <Loader></Loader>}
         {loginStatus === LOGIN_STATUS.NOT_LOGGED_IN && (
-          <Login onLogin={onLogin}></Login>
+          <Login onLogin={onLogin} error={error}></Login>
+        )}
+        {loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
+          <>
+            <Navbar username={userDetails.username} onLogout={onLogout} />
+          </>
         )}
       </main>
     </div>
