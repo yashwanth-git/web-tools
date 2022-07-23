@@ -20,8 +20,16 @@ const findUser = (username) => {
   }
 };
 
+const updateMessage = (username, message) => {
+  if (users[username]) {
+    users[username].message = message;
+  }
+  return users[username];
+};
+
 module.exports = {
   validateUserName,
   createUser,
-  findUser
+  findUser,
+  updateMessage
 };
