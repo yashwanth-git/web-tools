@@ -48,11 +48,11 @@ function App() {
     fetchLogin(username)
       .then((user) => {
         const { userData } = user;
-        setUserDetails({
-          username: userData.username,
-          message: userData.message,
-        });
+        console.log(userData);
+        setUserDetails(userData);
+        console.log(userDetails);
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
+        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         setError(MESSAGES[err?.error] || "ERROR");
