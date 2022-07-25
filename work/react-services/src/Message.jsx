@@ -19,14 +19,14 @@ const Message = ({ onUpdateMessage, message }) => {
     <div className="update-container">
       <div className="user-message">
         <p>
-          <span className="message-label">Message</span>
+          <span className="message-label">Word</span>
           <span className="message-content">
-            {!message ? "No message has been updated" : message}
+            {!message ? "No word has been updated" : message}
           </span>
         </p>
       </div>
       <div className="update-form">
-        <h1 className="update-title">Update Message</h1>
+        <h1 className="update-title">Update Word</h1>
         <form onSubmit={submitHandler}>
           <div className="input-field">
             <input
@@ -38,7 +38,7 @@ const Message = ({ onUpdateMessage, message }) => {
               name="message"
               placeholder=" "
             />
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message">Word</label>
           </div>
           <button className="update-btn">Update</button>
         </form>
