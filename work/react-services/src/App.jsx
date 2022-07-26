@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   LOGIN_STATUS,
-  MESSAGE_STATUS,
+  WORD_STATUS,
   SERVER,
   CLIENT,
   MESSAGES,
@@ -10,19 +10,19 @@ import {
   fetchLogin,
   fetchSession,
   fetchLogout,
-  fetchMessage,
+  fetchWord,
 } from "./services";
 import "./App.css";
 import Login from "./Login";
 import Loader from "./Loader";
 import Navbar from "./Navbar";
-import Message from "./Message";
+import Word from "./Word";
 
 function App() {
   const [userDetails, setUserDetails] = useState({});
   const [error, setError] = useState("");
   const [loginStatus, setLoginStatus] = useState(LOGIN_STATUS.PENDING);
-  const [messageStatus, setMessageStatus] = useState(MESSAGE_STATUS.PENDING);
+  const [wordStatus, setWordStatus] = useState(WORD_STATUS.PENDING);
 
   function checkForSession() {
     fetchSession()
@@ -30,10 +30,10 @@ function App() {
         const { userData } = session;
         setUserDetails({
           username: userData.username,
-          message: userData.message,
+          word: userData.word,
         });
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
-        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
+        setWordStatus(WORD_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         if (err?.error === SERVER.AUTH_MISSING) {
@@ -50,23 +50,23 @@ function App() {
         const { userData } = user;
         setUserDetails(userData);
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
-        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
+        setWordStatus(WORD_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         setError(MESSAGES[err?.error] || "ERROR");
       });
   }
 
-  function onUpdateMessage(message) {
-    setMessageStatus(MESSAGE_STATUS.PENDING);
-    fetchMessage(message)
+  function onUpdateWord(word) {
+    setWordStatus(WORD_STATUS.PENDING);
+    fetchWord(word)
       .then((user) => {
         const { userData } = user;
         setUserDetails({
           username: userData.username,
-          message: userData.message,
+          word: userData.word,
         });
-        setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
+        setWordStatus(WORD_STATUS.IS_AVAILABLE);
       })
       .catch((err) => {
         setError(MESSAGES[err?.error] || "ERROR");
@@ -95,10 +95,10 @@ function App() {
         {loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
           <>
             <Navbar username={userDetails.username} onLogout={onLogout} />
-            {messageStatus === MESSAGE_STATUS.PENDING && <Loader></Loader>}
-            <Message
-              onUpdateMessage={onUpdateMessage}
-              message={userDetails.message}
+            {wordStatus === WORD_STATUS.PENDING && <Loader></Loader>}
+            <Word
+              onUpdateWord={onUpdateWord}
+              word={userDetails.word}
             />
           </>
         )}

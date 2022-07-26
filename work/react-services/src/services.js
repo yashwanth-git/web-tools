@@ -50,13 +50,13 @@ export function fetchLogin(username) {
     });
 }
 
-export function fetchMessage(message) {
-  return fetch("/api/v1/message", {
+export function fetchWord(word) {
+  return fetch("/api/v1/word", {
     method: "POST",
     headers: new Headers({
       "content-type": "application/json",
     }),
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ word }),
   })
     .catch(() => Promise.reject({ error: "networkError" }))
     .then((response) => {

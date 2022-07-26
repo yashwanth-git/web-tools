@@ -7,9 +7,9 @@ const validateUserName = (username) => {
   return isValid;
 };
 
-const createUser = (username, message = "") => {
+const createUser = (username, word = "") => {
   if (!users[username]) {
-    users[username] = { username, message };
+    users[username] = { username, word };
   }
   return users[username];
 };
@@ -20,9 +20,9 @@ const findUser = (username) => {
   }
 };
 
-const updateMessage = (username, message) => {
+const updateWord = (username, word) => {
   if (users[username]) {
-    users[username].message = message;
+    users[username].word = word;
   }
   return users[username];
 };
@@ -31,5 +31,5 @@ module.exports = {
   validateUserName,
   createUser,
   findUser,
-  updateMessage
+  updateWord
 };

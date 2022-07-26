@@ -3,7 +3,7 @@ export const LOGIN_STATUS = {
   NOT_LOGGED_IN: "notLoggedIn",
   IS_LOGGED_IN: "loggedIn",
 };
-export const MESSAGE_STATUS = {
+export const WORD_STATUS = {
   PENDING: "pending",
   IS_AVAILABLE: "available",
 };
@@ -11,7 +11,7 @@ export const SERVER = {
   AUTH_MISSING: "auth-missing",
   AUTH_INSUFFICIENT: "auth-insufficient",
   REQUIRED_USERNAME: "required-username",
-  REQUIRED_MESSAGE: "required-task",
+  REQUIRED_WORD: "required-word",
 };
 
 export const CLIENT = {

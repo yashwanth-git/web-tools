@@ -64,12 +64,12 @@ app.delete("/api/v1/session", (req, res) => {
   res.json({ username });
 });
 
-app.post("/api/v1/message", (req, res) => {
-  const { message } = req.body;
-  if (message) {
+app.post("/api/v1/word", (req, res) => {
+  const { word } = req.body;
+  if (word) {
     const sid = req.cookies.sid;
     const { username } = data.sessions[sid];
-    const userData = users.updateMessage(username, message);
+    const userData = users.updateWord(username, word);
     res.status(200).json({userData});
   }
 });

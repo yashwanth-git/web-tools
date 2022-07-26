@@ -1,27 +1,27 @@
 import { useState } from "react";
 import "./Form.css";
-const Message = ({ onUpdateMessage, message }) => {
-  const [userMessage, setUserMessage] = useState("");
+const Word = ({ onUpdateWord, word }) => {
+  const [userWord, setUserWord] = useState("");
 
   const inputHandler = (e) => {
-    setUserMessage(e.target.value);
+    setUserWord(e.target.value);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (userMessage) {
-      onUpdateMessage(userMessage);
-      setUserMessage('');
+    if (userWord) {
+      onUpdateWord(userWord);
+      setUserWord('');
     }
   };
 
   return (
     <div className="update-container">
-      <div className="user-message">
+      <div className="user-word">
         <p>
-          <span className="message-label">Word</span>
-          <span className="message-content">
-            {!message ? "No word has been updated" : message}
+          <span className="word-label">Word</span>
+          <span className="word-content">
+            {!word ? "No word has been updated" : word}
           </span>
         </p>
       </div>
@@ -31,14 +31,14 @@ const Message = ({ onUpdateMessage, message }) => {
           <div className="input-field">
             <input
               type="text"
-              id="message"
-              className="message"
-              value={userMessage}
+              id="word"
+              className="word"
+              value={userWord}
               onInput={inputHandler}
-              name="message"
+              name="word"
               placeholder=" "
             />
-            <label htmlFor="message">Word</label>
+            <label htmlFor="word">Word</label>
           </div>
           <button className="update-btn">Update</button>
         </form>
@@ -47,4 +47,4 @@ const Message = ({ onUpdateMessage, message }) => {
   );
 };
 
-export default Message;
+export default Word;
