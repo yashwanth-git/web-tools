@@ -48,9 +48,7 @@ function App() {
     fetchLogin(username)
       .then((user) => {
         const { userData } = user;
-        console.log(userData);
         setUserDetails(userData);
-        console.log(userDetails);
         setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
         setMessageStatus(MESSAGE_STATUS.IS_AVAILABLE);
       })
