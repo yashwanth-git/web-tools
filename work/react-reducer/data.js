@@ -7,11 +7,6 @@ const sessions = {};
 const id = uuid();
 
 const messagesList = {
-  [id]: {
-    id,
-    username: "ChatBot",
-    message: "Welcome to the Group Chat! Let the conversation begin",
-  }
 };
 
 const data = {

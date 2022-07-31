@@ -18,6 +18,7 @@ function reducer(state, action) {
         ...state,
         error: "",
         username: action.username,
+        loginStatus: LOGIN_STATUS.IS_LOGGED_IN,
       };
 
     case ACTIONS.LOG_OUT:
@@ -55,7 +56,6 @@ function reducer(state, action) {
         ...state,
         error: "",
         isMessagesPending: false,
-        loginStatus: LOGIN_STATUS.IS_LOGGED_IN,
         messages: action.messagesList,
       };
 
