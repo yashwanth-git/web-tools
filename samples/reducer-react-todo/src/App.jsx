@@ -108,7 +108,7 @@ function App() {
   function checkForSession() {
     fetchSession()
     .then( session => { // The returned object from the service call
-      dispatch({ type: ACTIONS.LOG_IN });
+      dispatch({ type: ACTIONS.LOG_IN, username: session.username });
       return fetchTodos(); // By returning this promise we can chain the original promise
     })
     .catch( err => {
