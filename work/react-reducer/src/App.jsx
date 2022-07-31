@@ -15,6 +15,7 @@ import Navbar from "./Navbar";
 import UsersList from "./UsersList";
 import Messages from "./Messages";
 import Outgoing from "./Outgoing";
+import Loader from "./Loader";
 
 import "./App.css";
 
@@ -74,9 +75,7 @@ function App() {
     fetchAddMessage(state.username, message)
       .then((msg) => {
         const { newMessage } = msg;
-        console.log(newMessage)
         dispatch({ type: ACTIONS.ADD_MESSAGE, newMessage });
-        console.log(state);
       })
       .catch((err) => {
         dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
@@ -88,6 +87,21 @@ function App() {
     fetchLogout().catch((err) => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
     });
+  }
+
+  function checkForMessages() {
+    fetchMessages()
+      .then((messages) => {
+        const { messagesList } = messages;
+        dispatch({ type: ACTIONS.LOAD_MESSAGES, messagesList });
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
+  if(state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN){
+    setInterval(checkForMessages, 5000);
   }
 
   useEffect(() => {
@@ -110,6 +124,7 @@ function App() {
             </div>
           </>
         )}
+        {state.loginStatus === LOGIN_STATUS.PENDING && <Loader />}
       </main>
     </div>
   );
