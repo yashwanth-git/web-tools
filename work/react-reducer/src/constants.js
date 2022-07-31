@@ -33,6 +33,8 @@ export const ACTIONS = {
   LOG_IN: "logIn",
   LOG_OUT: "logOut",
   START_LOADING_MESSAGES: "startLoadingMessages",
+  START_LOADING_USERS: "startLoadingUsers",
+  UPDATE_USERS: "updateUsers",
   ADD_MESSAGE: "addMessage",
   REPORT_ERROR: "reportError",
 };

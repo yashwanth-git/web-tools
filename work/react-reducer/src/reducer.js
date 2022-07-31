@@ -17,7 +17,6 @@ function reducer(state, action) {
       return {
         ...state,
         error: "",
-        loginStatus: LOGIN_STATUS.IS_LOGGED_IN,
         username: action.username,
       };
 
@@ -25,11 +24,24 @@ function reducer(state, action) {
       return {
         ...state,
         error: "",
-        isTodoPending: false,
-        todos: {},
         loginStatus: LOGIN_STATUS.NOT_LOGGED_IN,
-        lastAddedTodoId: "",
         username: "",
+      };
+
+    case ACTIONS.START_LOADING_USERS:
+      return {
+        ...state,
+        error: "",
+        isUsersPending: true,
+      };
+
+    case ACTIONS.UPDATE_USERS:
+      return {
+        ...state,
+        error: "",
+        isUsersPending: false,
+        users: action.usersList,
+        loginStatus: LOGIN_STATUS.IS_LOGGED_IN,
       };
 
     case ACTIONS.REPORT_ERROR:

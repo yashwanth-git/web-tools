@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from "react";
 import reducer, { initialState } from "./reducer";
 import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
-import { fetchLogin, fetchSession, fetchLogout } from "./services";
+import { fetchLogin, fetchSession, fetchLogout, fetchUsers } from "./services";
 
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -19,6 +19,13 @@ function App() {
       .then((session) => {
         const { username } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
+        dispatch({ type: ACTIONS.START_LOADING_USERS });
+         return fetchUsers();
+      })
+      .then((users) => {
+        const usersList = users.users;
+        console.log(usersList);
+        dispatch({ type: ACTIONS.UPDATE_USERS, usersList });
       })
       .catch((err) => {
         if (err?.error === SERVER.AUTH_MISSING) {
@@ -31,12 +38,19 @@ function App() {
 
   function onLogin(username) {
     fetchLogin(username)
-      .then((res) => {
+      .then(() => {
         dispatch({ type: ACTIONS.LOG_IN, username });
+        dispatch({ type: ACTIONS.START_LOADING_USERS });
+         return fetchUsers();
+      })
+      .then((users) => {
+        const usersList = users.users;
+        console.log(usersList);
+        dispatch({ type: ACTIONS.UPDATE_USERS, usersList });
       })
       .catch((err) => {
         dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
-      });
+      })
   }
 
   function onLogout() {
@@ -60,8 +74,8 @@ function App() {
           <>
             <Navbar username={state.username} onLogout={onLogout} />
             <div className="messages-container">
-              {/* <UsersList />
-              <Messages /> */}
+              <UsersList users={state.users} />
+              <Messages />
               <Outgoing />
             </div>
           </>
