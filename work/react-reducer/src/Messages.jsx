@@ -3,9 +3,9 @@ import "./Messages.css";
 const Messages = ({ messages }) => {
   return (
     <ol className="messages">
-      {messages && messages.length > 0 ? (
-        messages.map((message) => (
-          <li>
+      {Object.values(messages).length > 0 ? (
+        Object.values(messages).map((message) => (
+          <li key={message.id}>
             <div className="message">
               <span className="sender-avatar">
                 {message.username.charAt(0)}

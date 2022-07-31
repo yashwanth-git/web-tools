@@ -1,7 +1,14 @@
 import { useReducer, useEffect } from "react";
 import reducer, { initialState } from "./reducer";
 import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
-import { fetchLogin, fetchSession, fetchLogout, fetchUsers } from "./services";
+import {
+  fetchLogin,
+  fetchSession,
+  fetchLogout,
+  fetchUsers,
+  fetchMessages,
+  fetchAddMessage,
+} from "./services";
 
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -20,12 +27,17 @@ function App() {
         const { username } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
         dispatch({ type: ACTIONS.START_LOADING_USERS });
-         return fetchUsers();
+        return fetchUsers();
       })
       .then((users) => {
         const usersList = users.users;
-        console.log(usersList);
         dispatch({ type: ACTIONS.UPDATE_USERS, usersList });
+        dispatch({ type: ACTIONS.START_LOADING_MESSAGES });
+        return fetchMessages();
+      })
+      .then((messages) => {
+        const { messagesList } = messages;
+        dispatch({ type: ACTIONS.LOAD_MESSAGES, messagesList });
       })
       .catch((err) => {
         if (err?.error === SERVER.AUTH_MISSING) {
@@ -41,16 +53,34 @@ function App() {
       .then(() => {
         dispatch({ type: ACTIONS.LOG_IN, username });
         dispatch({ type: ACTIONS.START_LOADING_USERS });
-         return fetchUsers();
+        return fetchUsers();
       })
       .then((users) => {
         const usersList = users.users;
-        console.log(usersList);
         dispatch({ type: ACTIONS.UPDATE_USERS, usersList });
+        dispatch({ type: ACTIONS.START_LOADING_MESSAGES });
+        return fetchMessages();
+      })
+      .then((messages) => {
+        const { messagesList } = messages;
+        dispatch({ type: ACTIONS.LOAD_MESSAGES, messagesList });
       })
       .catch((err) => {
         dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
+  function onAddMessage(message) {
+    fetchAddMessage(state.username, message)
+      .then((msg) => {
+        const { newMessage } = msg;
+        console.log(newMessage)
+        dispatch({ type: ACTIONS.ADD_MESSAGE, newMessage });
+        console.log(state);
       })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
   }
 
   function onLogout() {
@@ -75,8 +105,8 @@ function App() {
             <Navbar username={state.username} onLogout={onLogout} />
             <div className="messages-container">
               <UsersList users={state.users} />
-              <Messages />
-              <Outgoing />
+              <Messages messages={state.messages} />
+              <Outgoing onAddMessage={onAddMessage} />
             </div>
           </>
         )}

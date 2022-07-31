@@ -67,6 +67,25 @@ app.delete("/api/v1/session", (req, res) => {
   res.json({ username });
 });
 
+app.get("/api/v1/messages", (req, res) => {
+  const sid = req.cookies.sid;
+  if (!sid || !sessions.isValidSessionId(sid)) {
+    res.clearCookie("sid");
+    res.status(401).json({ error: "auth-missing" });
+    return;
+  }
+
+  const { username } = data.sessions[sid] || {};
+  const userData = users.findUser(username);
+
+  if (userData.username) {
+    const { messagesList } = data;
+    res.json({ messagesList });
+  } else {
+    res.status(401).json({ error: "auth-missing" });
+  }
+});
+
 app.post("/api/v1/messages", (req, res) => {
   const sid = req.cookies.sid;
   if (!sid || !sessions.isValidSessionId(sid)) {
@@ -81,8 +100,8 @@ app.post("/api/v1/messages", (req, res) => {
   if (!userData.username || !message) {
     res.status(400).json({ error: "required-message" });
   }
-  const messagesList = messages.addMessage(username, message);
-  res.json({ messagesList });
+  const newMessage = messages.addMessage(username, message);
+  res.json({ newMessage });
 });
 
 app.get("/api/v1/users", (req, res) => {

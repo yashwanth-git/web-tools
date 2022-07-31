@@ -10,7 +10,7 @@ function addMessage(username, message) {
     username,
     message,
   };
-  return messagesList;
+  return messagesList[id];
 }
 module.exports = {
   addMessage,

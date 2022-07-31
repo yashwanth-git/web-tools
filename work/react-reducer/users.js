@@ -1,4 +1,5 @@
 const { users } = require("./data");
+const uuid = require("uuid").v4;
 
 const validateUserName = (username) => {
   let isValid = true;
@@ -8,8 +9,9 @@ const validateUserName = (username) => {
 };
 
 const createUser = (username) => {
+  const id = uuid();
   if (!users[username]) {
-    users[username] = { username };
+    users[username] = { username, id};
   }
   return users[username];
 };

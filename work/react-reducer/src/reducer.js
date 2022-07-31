@@ -41,7 +41,32 @@ function reducer(state, action) {
         error: "",
         isUsersPending: false,
         users: action.usersList,
+      };
+
+    case ACTIONS.START_LOADING_MESSAGES:
+      return {
+        ...state,
+        error: "",
+        isMessagesPending: true,
+      };
+
+    case ACTIONS.LOAD_MESSAGES:
+      return {
+        ...state,
+        error: "",
+        isMessagesPending: false,
         loginStatus: LOGIN_STATUS.IS_LOGGED_IN,
+        messages: action.messagesList,
+      };
+
+    case ACTIONS.ADD_MESSAGE:
+      return {
+        ...state,
+        error: "",
+        messages: {
+          ...state.messages,
+          [action.newMessage.id]: action.newMessage,
+        },
       };
 
     case ACTIONS.REPORT_ERROR:

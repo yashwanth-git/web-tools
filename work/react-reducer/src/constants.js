@@ -35,6 +35,7 @@ export const ACTIONS = {
   START_LOADING_MESSAGES: "startLoadingMessages",
   START_LOADING_USERS: "startLoadingUsers",
   UPDATE_USERS: "updateUsers",
+  LOAD_MESSAGES: "loadMessages",
   ADD_MESSAGE: "addMessage",
   REPORT_ERROR: "reportError",
 };

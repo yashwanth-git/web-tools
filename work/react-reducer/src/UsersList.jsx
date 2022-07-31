@@ -7,7 +7,7 @@ const UsersList = ({ users }) => {
       <h3>Users List</h3>
       <ul className="users">
         {Object.values(users).map((user) => (
-          <li>
+          <li key={user.id}>
             <div className={`user ${user.online ? "active" : ""}`}>
               <span className="sender">{user.username}</span>
             </div>

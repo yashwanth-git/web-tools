@@ -4,10 +4,11 @@ const users = {};
 
 const sessions = {};
 
-const id1 = uuid();
+const id = uuid();
 
 const messagesList = {
-  [id1]: {
+  [id]: {
+    id,
     username: "ChatBot",
     message: "Welcome to the Group Chat! Let the conversation begin",
   }
