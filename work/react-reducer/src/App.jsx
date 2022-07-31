@@ -1,9 +1,15 @@
 import { useReducer, useEffect } from "react";
 import reducer, { initialState } from "./reducer";
 import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
-import { fetchLogin, fetchSession } from "./services";
+import { fetchLogin, fetchSession, fetchLogout } from "./services";
 
 import Login from "./Login";
+import Navbar from "./Navbar";
+import UsersList from "./UsersList";
+import Messages from "./Messages";
+import Outgoing from "./Outgoing";
+
+import "./App.css";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,9 +39,17 @@ function App() {
       });
   }
 
+  function onLogout() {
+    dispatch({ type: ACTIONS.LOG_OUT });
+    fetchLogout().catch((err) => {
+      dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+    });
+  }
+
   useEffect(() => {
     checkForSession();
   }, []);
+
   return (
     <div className="app">
       <main>
@@ -43,7 +57,14 @@ function App() {
           <Login onLogin={onLogin} error={state.error} />
         )}
         {state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
-          <h1>Hello {state.username}</h1>
+          <>
+            <Navbar username={state.username} onLogout={onLogout} />
+            <div className="messages-container">
+              {/* <UsersList />
+              <Messages /> */}
+              <Outgoing />
+            </div>
+          </>
         )}
       </main>
     </div>

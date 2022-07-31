@@ -1,0 +1,41 @@
+.users-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.users-list h3 {
+  font-size: 22px;
+  margin-right: 12px;
+}
+.users {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  list-style: none;
+  font-size: 20px;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+.users li {
+  padding: 0 12px;
+}
+.users li:not(:last-child) {
+  border-right: 1px solid #000;
+}
+.user {
+  display: flex;
+  align-items: center;
+}
+.user.active::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 12px;
+  background-color: #008001;
+  border-radius: 50%;
+}
