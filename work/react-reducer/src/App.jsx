@@ -87,6 +87,7 @@ function App() {
     fetchLogout().catch((err) => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
     });
+    console.log(state);
   }
 
   function checkForMessages() {
@@ -100,9 +101,11 @@ function App() {
       });
   }
 
-  if(state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN){
-    setInterval(checkForMessages, 5000);
-  }
+  setInterval(() => {
+    if (state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN) {
+      checkForMessages();
+    }
+  }, 5000);
 
   useEffect(() => {
     checkForSession();
