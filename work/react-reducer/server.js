@@ -45,6 +45,7 @@ app.post("/api/v1/session", (req, res) => {
 
     const sessionId = sessions.createSession(username);
     const userData = users.createUser(username);
+    userData.online = true;
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
@@ -58,6 +59,7 @@ app.delete("/api/v1/session", (req, res) => {
   const { username } = sessions.isValidSessionId(sid);
   if (sid || sessions.isValidSessionId(sid)) {
     const userData = users.findUser(username);
+    userData.online = false;
     delete data.sessions[sid];
     res.clearCookie("sid");
   }
