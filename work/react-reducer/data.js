@@ -4,8 +4,6 @@ const users = {};
 
 const sessions = {};
 
-const id = uuid();
-
 const messagesList = {
 };
 
