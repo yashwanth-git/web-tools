@@ -3,6 +3,7 @@ import { LOGIN_STATUS, CLIENT, ACTIONS, MESSAGES } from "./constants";
 export const initialState = {
   error: "",
   username: "",
+  darkTheme: false,
   loginStatus: LOGIN_STATUS.PENDING,
 };
 
@@ -22,6 +23,12 @@ function reducer(state, action) {
         error: "",
         loginStatus: LOGIN_STATUS.NOT_LOGGED_IN,
         username: "",
+      };
+
+    case ACTIONS.TOGGLE_MODE:
+      return {
+        ...state,
+        darkTheme: !state.darkTheme,
       };
 
     case ACTIONS.REPORT_ERROR:

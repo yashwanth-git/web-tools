@@ -1,0 +1,12 @@
+#root,
+.app,
+.main-content {
+  height: 100%;
+}
+.main-content {
+  transition: all 350ms ease-in-out 0s;
+}
+.dark {
+  background: #242424;
+  color: #ffffff;
+}

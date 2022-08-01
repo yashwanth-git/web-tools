@@ -5,6 +5,7 @@ import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
 import { fetchLogin, fetchSession } from "./services";
 
 import Login from "./Login";
+import Navbar from "./Navbar";
 
 import "./App.css";
 
@@ -36,6 +37,10 @@ function App() {
       });
   }
 
+  const onChangeMode = () => {
+    dispatch({ type: ACTIONS.TOGGLE_MODE });
+  };
+
   useEffect(() => {
     checkForSession();
   }, []);
@@ -46,7 +51,16 @@ function App() {
         <Login onLogin={onLogin} error={state.error} />
       )}
       {state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
-        <h1>Hello, {state.username}</h1>
+        <>
+          <Navbar
+            username={state.username}
+            onChangeMode={onChangeMode}
+            darkTheme={state.darkTheme}
+          />
+          <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
+            <h1>Hello</h1>
+          </main>
+        </>
       )}
     </div>
   );

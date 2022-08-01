@@ -31,4 +31,5 @@ export const ACTIONS = {
   LOG_IN: "logIn",
   LOG_OUT: "logOut",
   REPORT_ERROR: "reportError",
+  TOGGLE_MODE: "toggleMode",
 };
