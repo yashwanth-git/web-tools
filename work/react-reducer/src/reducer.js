@@ -27,6 +27,8 @@ function reducer(state, action) {
         error: "",
         loginStatus: LOGIN_STATUS.NOT_LOGGED_IN,
         username: "",
+        users: {},
+        messages: {},
       };
 
     case ACTIONS.START_LOADING_USERS:
