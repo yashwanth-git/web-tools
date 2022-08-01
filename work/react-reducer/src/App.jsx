@@ -89,8 +89,14 @@ function App() {
     });
   }
 
-  function checkForMessages() {
-    fetchMessages()
+  function checkUpdates() {
+    fetchUsers()
+      .then((users) => {
+        const usersList = users.users;
+        dispatch({ type: ACTIONS.UPDATE_USERS, usersList });
+        dispatch({ type: ACTIONS.START_LOADING_MESSAGES });
+        return fetchMessages();
+      })
       .then((messages) => {
         const { messagesList } = messages;
         dispatch({ type: ACTIONS.LOAD_MESSAGES, messagesList });
@@ -102,7 +108,7 @@ function App() {
 
   useEffect(() => {
     if (state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN) {
-      const timer = setInterval(checkForMessages, 5000);
+      const timer = setInterval(checkUpdates, 5000);
       return () => clearInterval(timer);
     }
   }, [state]);
