@@ -15,7 +15,7 @@
 }
 .login-title {
   position: absolute;
-  top: -20px;
+  top: -24px;
   left: 40%;
   background: #fff;
   padding: 0 12px;
@@ -41,7 +41,7 @@
 }
 .username:focus + label,
 .username:not(:placeholder-shown) + label {
-  top: -10px;
+  top: -12px;
   background: #ffffff;
   font-size: 16px;
   color: #0458e9;
@@ -49,7 +49,7 @@
 .input-field label {
   position: absolute;
   left: 12px;
-  top: 16px;
+  top: 14px;
   font-size: 18px;
   color: #3b3b3b;
   background: #ffffff;
