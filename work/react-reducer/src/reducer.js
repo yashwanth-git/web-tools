@@ -8,7 +8,6 @@ export const initialState = {
   messages: {},
   isUsersPending: false,
   users: {},
-  lastAddedMessageId: "",
 };
 
 function reducer(state, action) {

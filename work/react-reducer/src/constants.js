@@ -8,8 +8,6 @@ export const SERVER = {
   AUTH_MISSING: "auth-missing",
   AUTH_INSUFFICIENT: "auth-insufficient",
   REQUIRED_USERNAME: "required-username",
-  REQUIRED_TASK: "required-task",
-  TASK_MISSING: "noSuchId",
 };
 
 export const CLIENT = {
