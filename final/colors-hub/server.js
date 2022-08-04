@@ -64,4 +64,8 @@ app.delete("/api/v1/session", (req, res) => {
   res.json({ username });
 });
 
+app.get("*", (req, res) => {
+  res.sendFile("./build/index.html");
+});
+
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

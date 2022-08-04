@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import reducer, { initialState } from "./reducer";
 import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
 
@@ -11,6 +11,16 @@ import "./App.css";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [page, setPage] = useState("home");
+
+  function onNavigate(e) {
+    if (
+      e.target.classList.value === "navbar-option" ||
+      e.target.classList.value === "logo"
+    ) {
+      setPage(e.target.dataset.page);
+    }
+  }
 
   function checkForSession() {
     fetchSession()
@@ -45,6 +55,10 @@ function App() {
     checkForSession();
   }, []);
 
+  useEffect(() => {
+    window.history.pushState({}, "", `/${page}`);
+  }, [page]);
+
   return (
     <div className="app">
       {state.loginStatus === LOGIN_STATUS.NOT_LOGGED_IN && (
@@ -56,9 +70,10 @@ function App() {
             username={state.username}
             onChangeMode={onChangeMode}
             darkTheme={state.darkTheme}
+            onNavigate={onNavigate}
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
-            <h1>Hello</h1>
+            {page === "home" && <h1>Hello</h1>}
           </main>
         </>
       )}

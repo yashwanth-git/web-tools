@@ -12,6 +12,7 @@
 .logo {
   font-weight: 600;
   margin-right: 16px;
+  cursor: pointer;
 }
 .sub-navbar {
   display: flex;

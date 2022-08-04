@@ -16,6 +16,13 @@ export const CLIENT = {
   UNKNOWN_ACTION: "unknownAction",
 };
 
+export const PAGES = {
+  HOME: "home",
+  CREATE: "create",
+  SAVED: "saved",
+  ABOUT: "about"
+};
+
 export const MESSAGES = {
   [CLIENT.NETWORK_ERROR]:
     "Trouble connecting to the network.  Please try again",
