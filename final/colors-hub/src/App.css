@@ -4,6 +4,7 @@
   height: 100%;
 }
 .main-content {
+  padding: 0px 32px;
   transition: all 350ms ease-in-out 0s;
 }
 .dark {

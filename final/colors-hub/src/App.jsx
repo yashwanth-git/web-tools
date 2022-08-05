@@ -8,6 +8,7 @@ import Login from "./Login";
 import Navbar from "./Navbar";
 
 import "./App.css";
+import Create from "./Create";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -73,7 +74,10 @@ function App() {
             onNavigate={onNavigate}
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
-            {page === "home" && <h1>Hello</h1>}
+            {page === "home" && <h1>Home</h1>}
+            {page === "create" && <Create/>}
+            {page === "saved" && <h1>Saved</h1>}
+            {page === "about" && <h1>About</h1>}
           </main>
         </>
       )}
