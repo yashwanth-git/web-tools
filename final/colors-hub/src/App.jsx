@@ -6,9 +6,9 @@ import { fetchLogin, fetchSession } from "./services";
 
 import Login from "./Login";
 import Navbar from "./Navbar";
+import Create from "./Create";
 
 import "./App.css";
-import Create from "./Create";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
