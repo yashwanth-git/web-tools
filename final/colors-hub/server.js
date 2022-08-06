@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const data = require("./data");
 const sessions = require("./sessions");
 const users = require("./users");
+const colors = require("./colors");
 
 app.use(cookieParser());
 app.use(express.static("./build"));
@@ -62,6 +63,32 @@ app.delete("/api/v1/session", (req, res) => {
   }
 
   res.json({ username });
+});
+
+app.get("/api/v1/colors", (req, res) => {
+  const sid = req.cookies.sid;
+  const { username } = sessions.isValidSessionId(sid);
+  if (sid || users.findUser(username)) {
+    const colorPalettes = colors.getColorsByUser(username);
+    res.status(200).json({ colorPalettes });
+  } else {
+    res.status(401).json({ error: "auth-insufficient" });
+  }
+});
+
+app.post("/api/v1/colors", (req, res) => {
+  const { colorPalettes } = req.body;
+  if (colorPalettes) {
+    const sid = req.cookies.sid;
+    const { username } = sessions.isValidSessionId(sid);
+    if (sid || users.findUser(username)) {
+      colors.createColors(username, colorPalettes);
+    } else {
+      res.status(401).json({ error: "auth-insufficient" });
+    }
+  } else {
+    res.status(400).json({ error: "required-colors" });
+  }
 });
 
 app.get("*", (req, res) => {
