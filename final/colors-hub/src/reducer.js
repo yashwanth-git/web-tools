@@ -35,9 +35,12 @@ function reducer(state, action) {
     case ACTIONS.ADD_COLORS:
       return {
         ...state,
-        colors: { ...state.colors, [Object.keys(action.colorPalette)]: action.colorPalette },
+        colors: {
+          ...state.colors,
+          [action.returnedPalette.id]: action.returnedPalette,
+        },
       };
-      
+
     case ACTIONS.REPORT_ERROR:
       return {
         ...state,

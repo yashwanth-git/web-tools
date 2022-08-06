@@ -14,6 +14,7 @@ import Navbar from "./Navbar";
 import Create from "./Create";
 
 import "./App.css";
+import Home from "./Home";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -63,7 +64,7 @@ function App() {
   function onCreateColorPalette(colorPalette) {
     fetchAddColors(colorPalette)
       .then((returnedPalette) => {
-        console.log(returnedPalette)
+        console.log(returnedPalette);
         dispatch({ type: ACTIONS.ADD_COLORS, returnedPalette });
       })
       .catch((err) => {
@@ -98,8 +99,10 @@ function App() {
             onLogout={onLogout}
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
-            {page === "home" && <h1>Home</h1>}
-            {page === "create" && <Create onCreateColorPalette={onCreateColorPalette} />}
+            {page === "home" && <Home colorPalettes={state.colors} />}
+            {page === "create" && (
+              <Create onCreateColorPalette={onCreateColorPalette} />
+            )}
             {page === "saved" && <h1>Saved</h1>}
             {page === "about" && <h1>About</h1>}
           </main>

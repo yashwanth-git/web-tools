@@ -69,7 +69,7 @@ app.get("/api/v1/colors", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
   if (sid || users.findUser(username)) {
-    const colorPalettes = colors.getColorsByUser(username);
+    const colorPalettes = data.colors;
     res.status(200).json({ colorPalettes });
   } else {
     res.status(401).json({ error: "auth-insufficient" });
