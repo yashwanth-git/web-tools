@@ -1,10 +1,12 @@
 import "./Navbar.css";
 import { PAGES } from "./constants";
 
-const Navbar = ({ username, onChangeMode, darkTheme, onNavigate }) => {
+const Navbar = ({ username, onChangeMode, darkTheme, onNavigate, onLogout }) => {
   return (
     <nav className="navbar" onClick={onNavigate}>
-      <span className="logo" data-page={PAGES.HOME}>ColorsHub</span>
+      <span className="logo" data-page={PAGES.HOME}>
+        ColorsHub
+      </span>
       <div className="sub-navbar">
         <ul className="navbar-options">
           <li className="navbar-option" data-page={PAGES.CREATE}>
@@ -19,6 +21,11 @@ const Navbar = ({ username, onChangeMode, darkTheme, onNavigate }) => {
         </ul>
         <ul className="navbar-extra">
           <li className="navbar-user">Welcome, {username}</li>
+          <li className="navbar-btn">
+            <button className="logout-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </li>
           <li className="navbar-mode">
             <label>
               <input

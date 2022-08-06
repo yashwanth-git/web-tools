@@ -8,6 +8,7 @@ export const SERVER = {
   AUTH_MISSING: "auth-missing",
   AUTH_INSUFFICIENT: "auth-insufficient",
   REQUIRED_USERNAME: "required-username",
+  REQUIRED_COLORS: "required-colors"
 };
 
 export const CLIENT = {
@@ -30,7 +31,7 @@ export const MESSAGES = {
     "Your username/password combination does not match any records, please try again.",
   [SERVER.REQUIRED_USERNAME]:
     "Please enter a valid (letters and/or numbers) username",
-  [SERVER.REQUIRED_TASK]: "Please enter the task to do",
+  [SERVER.REQUIRED_COLORS]: "Please enter the colors to add",
   default: "Something went wrong.  Please try again",
 };
 

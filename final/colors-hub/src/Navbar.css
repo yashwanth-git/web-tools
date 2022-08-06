@@ -32,7 +32,8 @@
 }
 .navbar-option,
 .navbar-user,
-.navbar-mode {
+.navbar-mode,
+.navbar-btn {
   margin-right: 16px;
 }
 .mode-selector {
@@ -68,4 +69,18 @@
   height: 16px;
   border-radius: 50%;
   transition: all 400ms ease 0s;
+}
+.logout-btn {
+  font-size: 16px;
+  padding: 6px 18px;
+  color: #0560ff;
+  background-color: #ffffff;
+  border: 1px solid #0560ff;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 5px;
+}
+.logout-btn:hover {
+  background-color: #0458e9;
+  color: #ffffff;
 }
