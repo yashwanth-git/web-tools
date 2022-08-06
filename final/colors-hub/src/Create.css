@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 0px 24px;
-  margin-top: 32px;
+  padding-top: 32px;
 }
 .color-box {
   display: flex;
