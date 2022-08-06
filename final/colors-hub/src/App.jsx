@@ -2,7 +2,12 @@ import { useReducer, useEffect, useState } from "react";
 import reducer, { initialState } from "./reducer";
 import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
 
-import { fetchLogin, fetchSession, fetchLogout } from "./services";
+import {
+  fetchLogin,
+  fetchSession,
+  fetchLogout,
+  fetchAddColors,
+} from "./services";
 
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -55,6 +60,17 @@ function App() {
     });
   }
 
+  function onCreateColorPalette(colorPalette) {
+    fetchAddColors(colorPalette)
+      .then((returnedPalette) => {
+        console.log(returnedPalette)
+        dispatch({ type: ACTIONS.ADD_COLORS, returnedPalette });
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
   const onChangeMode = () => {
     dispatch({ type: ACTIONS.TOGGLE_MODE });
   };
@@ -83,7 +99,7 @@ function App() {
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
             {page === "home" && <h1>Home</h1>}
-            {page === "create" && <Create/>}
+            {page === "create" && <Create onCreateColorPalette={onCreateColorPalette} />}
             {page === "saved" && <h1>Saved</h1>}
             {page === "about" && <h1>About</h1>}
           </main>

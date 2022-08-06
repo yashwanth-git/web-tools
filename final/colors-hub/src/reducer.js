@@ -5,6 +5,7 @@ export const initialState = {
   username: "",
   darkTheme: false,
   loginStatus: LOGIN_STATUS.PENDING,
+  colors: {},
 };
 
 function reducer(state, action) {
@@ -31,6 +32,12 @@ function reducer(state, action) {
         darkTheme: !state.darkTheme,
       };
 
+    case ACTIONS.ADD_COLORS:
+      return {
+        ...state,
+        colors: { ...state.colors, [Object.keys(action.colorPalette)]: action.colorPalette },
+      };
+      
     case ACTIONS.REPORT_ERROR:
       return {
         ...state,

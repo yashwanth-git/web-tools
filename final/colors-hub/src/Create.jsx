@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Create.css";
 
-const Create = () => {
+const Create = ({onCreateColorPalette}) => {
   const [colors, setColors] = useState({
     c1: "#dddddd",
     c2: "#cccccc",
@@ -13,6 +13,10 @@ const Create = () => {
     console.log(e.target.value);
     setColors({ ...colors, [e.target.name]: e.target.value });
   };
+
+  const clickHandler = () => {
+      onCreateColorPalette(colors);
+  }
   return (
     <div className="create">
       <h2>Create a Palette</h2>
@@ -45,6 +49,9 @@ const Create = () => {
           value={colors.c4}
           onChange={changeHandler}
         />
+      </div>
+      <div className="create-button-wrapper">
+          <button className="create-btn" onClick={clickHandler}>Create</button>
       </div>
     </div>
   );

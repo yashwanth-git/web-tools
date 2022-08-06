@@ -8,7 +8,7 @@ export const SERVER = {
   AUTH_MISSING: "auth-missing",
   AUTH_INSUFFICIENT: "auth-insufficient",
   REQUIRED_USERNAME: "required-username",
-  REQUIRED_COLORS: "required-colors"
+  REQUIRED_COLORS: "required-colors",
 };
 
 export const CLIENT = {
@@ -21,7 +21,7 @@ export const PAGES = {
   HOME: "home",
   CREATE: "create",
   SAVED: "saved",
-  ABOUT: "about"
+  ABOUT: "about",
 };
 
 export const MESSAGES = {
@@ -39,5 +39,6 @@ export const ACTIONS = {
   LOG_IN: "logIn",
   LOG_OUT: "logOut",
   REPORT_ERROR: "reportError",
+  ADD_COLORS: "addColors",
   TOGGLE_MODE: "toggleMode",
 };
