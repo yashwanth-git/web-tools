@@ -6,16 +6,22 @@ function getAllColors() {
 }
 
 function createColors(username, colorPalette) {
-    colors[username][uuidv4()] = colorPalette;
+  const id = uuidv4();
+  colors[username] = {
+    ...colors[username],
+    [id]: {
+      colorPalette,
+    },
+  };
+  return colors[username][id];
 }
 
-function getColorsByUser(username){
-    const colorPalettes = Object.values(colors[usernaem]);
-    return colorPalettes;
+function getColorsByUser(username) {
+  return colors[username]
 }
 
 module.exports = {
-    getAllColors,
-    createColors,
-    getColorsByUser
-}
+  getAllColors,
+  createColors,
+  getColorsByUser,
+};

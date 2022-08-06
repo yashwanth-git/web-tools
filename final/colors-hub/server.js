@@ -77,12 +77,14 @@ app.get("/api/v1/colors", (req, res) => {
 });
 
 app.post("/api/v1/colors", (req, res) => {
-  const { colorPalettes } = req.body;
-  if (colorPalettes) {
+  const { colorPalette } = req.body;
+  if (colorPalette) {
     const sid = req.cookies.sid;
     const { username } = sessions.isValidSessionId(sid);
     if (sid || users.findUser(username)) {
-      colors.createColors(username, colorPalettes);
+      const colPalette = colors.createColors(username, colorPalette);
+      console.log(colPalette);
+      res.json({ colPalette });
     } else {
       res.status(401).json({ error: "auth-insufficient" });
     }
@@ -91,8 +93,8 @@ app.post("/api/v1/colors", (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
-  res.sendFile("./build/index.html");
-});
+// app.get("*", (req, res) => {
+//  res.sendFile("./build/index.html");
+// });
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
