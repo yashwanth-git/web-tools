@@ -4,6 +4,7 @@ import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
 
 import {
   fetchLogin,
+  fetchAdmin,
   fetchSession,
   fetchLogout,
   fetchAddColors,
@@ -51,13 +52,23 @@ function App() {
   }
 
   function onLogin(username) {
-    fetchLogin(username)
-      .then(() => {
-        dispatch({ type: ACTIONS.LOG_IN, username });
-      })
-      .catch((err) => {
-        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
-      });
+    if (username === "admin") {
+      fetchAdmin(username)
+        .then((users, colors) => {
+          dispatch({ type: ACTIONS.ADMIN_LOGIN, users, colors });
+        })
+        .catch((err) => {
+          dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+        });
+    } else {
+      fetchLogin(username)
+        .then(() => {
+          dispatch({ type: ACTIONS.LOG_IN, username });
+        })
+        .catch((err) => {
+          dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+        });
+    }
   }
 
   function onLogout() {

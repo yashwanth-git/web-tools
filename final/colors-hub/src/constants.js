@@ -36,6 +36,7 @@ export const MESSAGES = {
 };
 
 export const ACTIONS = {
+  ADMIN_LOGIN: "adminLogin",
   LOG_IN: "logIn",
   LOG_OUT: "logOut",
   REPORT_ERROR: "reportError",

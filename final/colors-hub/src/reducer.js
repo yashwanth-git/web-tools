@@ -6,6 +6,7 @@ export const initialState = {
   darkTheme: false,
   loginStatus: LOGIN_STATUS.PENDING,
   colors: {},
+  isAdmin: false,
 };
 
 function reducer(state, action) {

@@ -7,9 +7,9 @@ const validateUserName = (username) => {
   return isValid;
 };
 
-const createUser = (username) => {
+const createUser = (username, saved = {}) => {
   if (!users[username]) {
-    users[username] = { username };
+    users[username] = { username, saved };
   }
   return users[username];
 };

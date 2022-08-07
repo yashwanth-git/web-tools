@@ -43,6 +43,11 @@ app.post("/api/v1/session", (req, res) => {
       return;
     }
 
+    if (username === "admin") {
+      res.json({ users: data.users, colors: data.colors });
+      return;
+    }
+
     const sessionId = sessions.createSession(username);
     const userData = users.createUser(username);
     userData.online = true;
@@ -91,13 +96,6 @@ app.post("/api/v1/colors", (req, res) => {
     }
   } else {
     res.status(400).json({ error: "required-colors" });
-  }
-});
-
-app.get("api/v1/admin", (req, res) => {
-  const { username } = req.body;
-  if (username || username === "admin") {
-    res.json({ users: data.users, colors: data.colors });
   }
 });
 
