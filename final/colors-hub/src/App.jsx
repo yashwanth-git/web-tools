@@ -7,6 +7,7 @@ import {
   fetchSession,
   fetchLogout,
   fetchAddColors,
+  fetchColors,
 } from "./services";
 
 import Login from "./Login";
@@ -34,6 +35,12 @@ function App() {
       .then((session) => {
         const { username } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
+        return fetchColors()
+      })
+      .then((colors) =>{
+        const {colorPalettes}= colors;
+        console.log(colorPalettes)
+        dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes})
       })
       .catch((err) => {
         if (err?.error === SERVER.AUTH_MISSING) {
