@@ -8,17 +8,8 @@ function getAllColors() {
 function createColors(username, colorPalette) {
   const id = uuidv4();
   const { c1, c2, c3, c4 } = colorPalette;
-  colors[username] = {
-    ...colors[username],
-    [id]: {
-      id,
-      c1,
-      c2,
-      c3,
-      c4,
-    },
-  };
-  return colors[username][id];
+  colors[id] = { c1, c2, c3, c4, username, id };
+  return colors[id];
 }
 
 function getColorsByUser(username) {
