@@ -59,6 +59,21 @@ app.post("/api/v1/session", (req, res) => {
   }
 });
 
+app.patch("/api/v1/session/:id", (req, res) => {
+  const sid = req.cookies.sid;
+  if (!sid || !sessions.isValidSessionId(sid)) {
+    res.clearCookie("sid");
+    res.status(401).json({ error: "auth-missing" });
+    return;
+  }
+
+  const { username } = data.sessions[sid] || {};
+  const userData = users.findUser(username);
+  const paletteId = req.params.id;
+  userData.savedPalettes.push(colors[paletteId]);
+  res.json({ userData });
+});
+
 app.delete("/api/v1/session", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
