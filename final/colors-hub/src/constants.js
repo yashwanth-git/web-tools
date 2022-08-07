@@ -40,5 +40,6 @@ export const ACTIONS = {
   LOG_OUT: "logOut",
   REPORT_ERROR: "reportError",
   ADD_COLORS: "addColors",
+  REPLACE_COLORS: "replaceColors",
   TOGGLE_MODE: "toggleMode",
 };

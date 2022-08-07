@@ -32,6 +32,12 @@ function reducer(state, action) {
         darkTheme: !state.darkTheme,
       };
 
+    case ACTIONS.REPLACE_COLORS:
+      return {
+        ...state,
+        colors: action.colorPalettes,
+      };
+
     case ACTIONS.ADD_COLORS:
       return {
         ...state,
