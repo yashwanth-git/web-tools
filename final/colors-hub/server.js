@@ -45,6 +45,7 @@ app.post("/api/v1/session", (req, res) => {
 
     const sessionId = sessions.createSession(username);
     const userData = users.createUser(username);
+    userData.online = true;
     res.cookie("sid", sessionId);
     res.json({ userData });
   } else {
@@ -58,6 +59,7 @@ app.delete("/api/v1/session", (req, res) => {
   const { username } = sessions.isValidSessionId(sid);
   if (sid || sessions.isValidSessionId(sid)) {
     const userData = users.findUser(username);
+    userData.online = false;
     delete data.sessions[sid];
     res.clearCookie("sid");
   }
@@ -92,8 +94,15 @@ app.post("/api/v1/colors", (req, res) => {
   }
 });
 
-// app.get("*", (req, res) => {
-//  res.sendFile("./build/index.html");
-// });
+app.get("api/v1/admin", (req, res) => {
+  const { username } = req.body;
+  if (username || username === "admin") {
+    res.json({ users: data.users, colors: data.colors });
+  }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile("./build/index.html");
+});
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
