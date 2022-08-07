@@ -6,13 +6,12 @@ const Home = ({ colorPalettes }) => {
     <div className="home">
       {Object.values(colorPalettes).length > 0 ? (
         Object.values(colorPalettes).map((c, index) => (
-          <div className="palette" key={c.id}>
+          <div className="palette" key={index}>
             <div className="colors">
               <div className="color c1" style={{ backgroundColor: c.c1 }}>
                 <span
                   className="color-name"
                   onClick={(e) => {
-                    console.log("Hello");
                     copytoClipboard(e, c.c1);
                   }}
                 >
