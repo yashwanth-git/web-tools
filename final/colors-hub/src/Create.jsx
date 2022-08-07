@@ -10,7 +10,6 @@ const Create = ({onCreateColorPalette}) => {
   });
 
   const changeHandler = (e) => {
-    console.log(e.target.value);
     setColors({ ...colors, [e.target.name]: e.target.value });
   };
 

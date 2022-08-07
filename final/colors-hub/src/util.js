@@ -1,5 +1,4 @@
 const copyToClipboard = (e, color) => {
-  console.log(color);
   var textArea = document.createElement("textarea");
   textArea.value = color;
   document.body.appendChild(textArea);
