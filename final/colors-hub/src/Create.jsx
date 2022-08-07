@@ -19,7 +19,7 @@ const Create = ({onCreateColorPalette}) => {
   }
   return (
     <div className="create">
-      <h2>Create a Palette</h2>
+      <h2>Create your Palette</h2>
       <div className="color-box">
         <input
           type="color"

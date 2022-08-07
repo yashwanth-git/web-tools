@@ -1,7 +1,6 @@
 import "./Home.css";
 
 const Home = ({ colorPalettes }) => {
-  console.log(Object.values(colorPalettes));
   return (
     <div className="home">
       {Object.values(colorPalettes).length > 0 ? (
@@ -23,7 +22,7 @@ const Home = ({ colorPalettes }) => {
             </div>
             <div className="colors-footer">
               <button className="save-btn">Save</button>
-              <span>{c.username}</span>
+              <span className="creator">{c.username}</span>
             </div>
           </div>
         ))
