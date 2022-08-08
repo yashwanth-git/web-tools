@@ -53,7 +53,7 @@ const Saved = ({ colorPalettes }) => {
             </div>
             <div className="colors-footer">
               <button className="save-btn" onClick={() => clickHandler(c.id)}>
-                Save
+                Unsave
               </button>
               <span className="creator">{c.username}</span>
             </div>

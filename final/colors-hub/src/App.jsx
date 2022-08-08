@@ -36,8 +36,9 @@ function App() {
   function checkForSession() {
     fetchSession()
       .then((session) => {
-        const { username } = session.userData;
+        const { username, savedPalettes } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
+        dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes})
         return fetchColors();
       })
       .then((colors) => {

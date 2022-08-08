@@ -58,6 +58,12 @@ function reducer(state, action) {
         },
       };
 
+    case ACTIONS.GET_SAVED_COLORS:
+      return {
+        ...state,
+        savedColors: action.savedPalettes,
+      };
+
     case ACTIONS.REPORT_ERROR:
       return {
         ...state,
