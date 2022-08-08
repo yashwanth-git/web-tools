@@ -67,6 +67,7 @@ function App() {
       fetchLogin(username)
         .then(() => {
           dispatch({ type: ACTIONS.LOG_IN, username });
+          setPage("home");
         })
         .catch((err) => {
           dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
@@ -79,6 +80,7 @@ function App() {
     fetchLogout().catch((err) => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
     });
+    setPage("");
   }
 
   function onCreateColorPalette(colorPalette) {
