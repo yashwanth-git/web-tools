@@ -59,20 +59,38 @@ app.post("/api/v1/session", (req, res) => {
   }
 });
 
-app.patch("/api/v1/session/:id", (req, res) => {
+app.post("/api/v1/users/colors", (req, res) => {
   const sid = req.cookies.sid;
   if (!sid || !sessions.isValidSessionId(sid)) {
     res.clearCookie("sid");
     res.status(401).json({ error: "auth-missing" });
     return;
   }
-
   const { username } = data.sessions[sid] || {};
   const userData = users.findUser(username);
-  const paletteId = req.params.id;
-  userData.savedPalettes.push(colors[paletteId]);
-  res.json({ userData });
+  const { paletteId } = req.body;
+  userData.savedPalettes[paletteId] = data.colors[paletteId];
+  res.json(userData.savedPalettes);
+  return;
 });
+
+// app.patch("/api/v1/session/:id", (req, res) => {
+//   console.log("APPP");
+//   // const sid = req.cookies.sid;
+//   // console.log(sid);
+//   // if (!sid || !sessions.isValidSessionId(sid)) {
+//   //   res.clearCookie("sid");
+//   //   res.status(401).json({ error: "auth-missing" });
+//   //   return;
+//   // }
+
+//   // const { username } = data.sessions[sid] || {};
+//   // const userData = users.findUser(username);
+//   // console.log(userData);
+//   // const paletteId = req.params.id;
+//   // userData.savedPalettes.push(colors[paletteId]);
+//   // res.json(userData);
+// });
 
 app.delete("/api/v1/session", (req, res) => {
   const sid = req.cookies.sid;
