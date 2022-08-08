@@ -9,6 +9,7 @@ import {
   fetchLogout,
   fetchAddColors,
   fetchColors,
+  fetchAddSavedColors,
 } from "./services";
 
 import Login from "./Login";
@@ -17,6 +18,7 @@ import Create from "./Create";
 
 import "./App.css";
 import Home from "./Home";
+import Saved from "./Saved";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -89,6 +91,16 @@ function App() {
       });
   }
 
+  function onSaveColorPalette(id) {
+    fetchAddSavedColors(id)
+      .then((savedPalette) => {
+        dispatch({ type: ACTIONS.ADD_SAVED_COLORS, savedPalette });
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
   const onChangeMode = () => {
     dispatch({ type: ACTIONS.TOGGLE_MODE });
   };
@@ -117,11 +129,19 @@ function App() {
             onLogout={onLogout}
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
-            {page === "home" && <Home colorPalettes={state.colors} />}
+            {page === "home" && (
+              <Home
+                colorPalettes={state.colors}
+                onSaveColorPalette={onSaveColorPalette}
+              />
+            )}
             {page === "create" && (
               <Create onCreateColorPalette={onCreateColorPalette} />
             )}
-            {page === "saved" && <h1>Saved</h1>}
+            {page === "saved" && <Saved
+                colorPalettes={state.savedColors}
+                onSaveColorPalette={onSaveColorPalette}
+              />}
             {page === "about" && <h1>About</h1>}
           </main>
         </>

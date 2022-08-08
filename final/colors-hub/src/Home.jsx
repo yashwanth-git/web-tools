@@ -1,7 +1,10 @@
 import "./Home.css";
 import copytoClipboard from "./util";
 
-const Home = ({ colorPalettes }) => {
+const Home = ({ colorPalettes, onSaveColorPalette }) => {
+  const clickHandler = (paletteId) => {
+    onSaveColorPalette(paletteId);
+  };
   return (
     <div className="home">
       {Object.values(colorPalettes).length > 0 ? (
@@ -48,7 +51,9 @@ const Home = ({ colorPalettes }) => {
               </div>
             </div>
             <div className="colors-footer">
-              <button className="save-btn">Save</button>
+              <button className="save-btn" onClick={() => clickHandler(c.id)}>
+                Save
+              </button>
               <span className="creator">{c.username}</span>
             </div>
           </div>

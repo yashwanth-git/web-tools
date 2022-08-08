@@ -6,6 +6,7 @@ export const initialState = {
   darkTheme: false,
   loginStatus: LOGIN_STATUS.PENDING,
   colors: {},
+  savedColors: {},
   isAdmin: false,
 };
 
@@ -45,6 +46,15 @@ function reducer(state, action) {
         colors: {
           ...state.colors,
           [action.returnedPalette.id]: action.returnedPalette,
+        },
+      };
+
+    case ACTIONS.ADD_SAVED_COLORS:
+      return {
+        ...state,
+        savedColors: {
+          ...state.savedColors,
+          [action.savedPalette.id]: action.savedPalette,
         },
       };
 
