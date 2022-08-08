@@ -44,5 +44,6 @@ export const ACTIONS = {
   REPLACE_COLORS: "replaceColors",
   ADD_SAVED_COLORS: "addSavedColors",
   GET_SAVED_COLORS: "getSavedColors",
+  REMOVE_SAVED_COLOR: "deleteSavedColor",
   TOGGLE_MODE: "toggleMode",
 };

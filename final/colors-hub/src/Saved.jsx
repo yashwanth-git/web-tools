@@ -1,11 +1,11 @@
 import "./Saved.css";
 import copytoClipboard from "./util";
 
-const Saved = ({ colorPalettes }) => {
-    const clickHandler = (e) => {
-        console.log(e);
-    }
-    console.log(colorPalettes);
+const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
+  const clickHandler = (id) => {
+    onRemoveSavedColorPalette(id);
+  };
+  console.log(colorPalettes);
   return (
     <div className="saved">
       {Object.values(colorPalettes).length > 0 ? (

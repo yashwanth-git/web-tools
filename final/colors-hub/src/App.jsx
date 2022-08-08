@@ -10,6 +10,7 @@ import {
   fetchAddColors,
   fetchColors,
   fetchAddSavedColors,
+  fetchRemoveSavedColors,
 } from "./services";
 
 import Login from "./Login";
@@ -38,7 +39,7 @@ function App() {
       .then((session) => {
         const { username, savedPalettes } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
-        dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes})
+        dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes });
         return fetchColors();
       })
       .then((colors) => {
@@ -104,6 +105,17 @@ function App() {
       });
   }
 
+  function onRemoveSavedColorPalette(id) {
+    fetchRemoveSavedColors(id)
+      .then((removedPalettedId) => {
+        dispatch({ type: ACTIONS.REMOVE_SAVED_COLOR, removedPalettedId });
+        checkForSession();
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
   const onChangeMode = () => {
     dispatch({ type: ACTIONS.TOGGLE_MODE });
   };
@@ -141,10 +153,12 @@ function App() {
             {page === "create" && (
               <Create onCreateColorPalette={onCreateColorPalette} />
             )}
-            {page === "saved" && <Saved
+            {page === "saved" && (
+              <Saved
                 colorPalettes={state.savedColors}
-                onSaveColorPalette={onSaveColorPalette}
-              />}
+                onRemoveSavedColorPalette={onRemoveSavedColorPalette}
+              />
+            )}
             {page === "about" && <h1>About</h1>}
           </main>
         </>

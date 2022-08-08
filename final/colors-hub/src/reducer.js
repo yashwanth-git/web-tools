@@ -64,6 +64,14 @@ function reducer(state, action) {
         savedColors: action.savedPalettes,
       };
 
+    case ACTIONS.REMOVE_SAVED_COLOR:
+      const savedColorsCopy = { ...state.savedColors };
+      delete savedColorsCopy[action.id];
+      return {
+        ...state,
+        savedColors: savedColorsCopy,
+      };
+
     case ACTIONS.REPORT_ERROR:
       return {
         ...state,
