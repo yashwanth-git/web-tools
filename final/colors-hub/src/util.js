@@ -1,4 +1,4 @@
-const copyToClipboard = (e, color) => {
+export const copyToClipboard = (e, color) => {
   var textArea = document.createElement("textarea");
   textArea.value = color;
   document.body.appendChild(textArea);
@@ -11,4 +11,13 @@ const copyToClipboard = (e, color) => {
   }, 2000);
 };
 
-export default copyToClipboard;
+export const compareColors = (colors, saved) => {
+  for (let color of Object.values(colors)) {
+    for (let savedColor of Object.values(saved)) {
+      if (color.id === savedColor.id) {
+        color.saved = true;
+      }
+    }
+  }
+  return colors;
+};
