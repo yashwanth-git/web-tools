@@ -16,10 +16,10 @@ import {
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Create from "./Create";
-
-import "./App.css";
 import Home from "./Home";
 import Saved from "./Saved";
+
+import "./App.css";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -147,6 +147,7 @@ function App() {
             {page === "home" && (
               <Home
                 colorPalettes={state.colors}
+                savedPalettes={state.savedColors}
                 onSaveColorPalette={onSaveColorPalette}
               />
             )}

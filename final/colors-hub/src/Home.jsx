@@ -1,10 +1,13 @@
 import "./Home.css";
-import copytoClipboard from "./util";
+import { compareColors, copyToClipboard } from "./util";
 
-const Home = ({ colorPalettes, onSaveColorPalette }) => {
+const Home = ({ colorPalettes, savedPalettes, onSaveColorPalette }) => {
   const clickHandler = (paletteId) => {
     onSaveColorPalette(paletteId);
   };
+
+  compareColors(colorPalettes, savedPalettes);
+
   return (
     <div className="home">
       {Object.values(colorPalettes).length > 0 ? (
@@ -15,7 +18,7 @@ const Home = ({ colorPalettes, onSaveColorPalette }) => {
                 <span
                   className="color-name"
                   onClick={(e) => {
-                    copytoClipboard(e, c.c1);
+                    copyToClipboard(e, c.c1);
                   }}
                 >
                   {c.c1}
@@ -25,7 +28,7 @@ const Home = ({ colorPalettes, onSaveColorPalette }) => {
               <div className="color c2" style={{ backgroundColor: c.c2 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c2)}
+                  onClick={(e) => copyToClipboard(e, c.c2)}
                 >
                   {c.c2}
                 </span>
@@ -34,7 +37,7 @@ const Home = ({ colorPalettes, onSaveColorPalette }) => {
               <div className="color c3" style={{ backgroundColor: c.c3 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c3)}
+                  onClick={(e) => copyToClipboard(e, c.c3)}
                 >
                   {c.c3}
                 </span>
@@ -43,7 +46,7 @@ const Home = ({ colorPalettes, onSaveColorPalette }) => {
               <div className="color c4" style={{ backgroundColor: c.c4 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c4)}
+                  onClick={(e) => copyToClipboard(e, c.c4)}
                 >
                   {c.c4}
                 </span>
@@ -51,8 +54,12 @@ const Home = ({ colorPalettes, onSaveColorPalette }) => {
               </div>
             </div>
             <div className="colors-footer">
-              <button className="save-btn" onClick={() => clickHandler(c.id)}>
-                Save
+              <button
+                className="save-btn"
+                onClick={() => clickHandler(c.id)}
+                disabled={c.saved}
+              >
+                {c.saved === true ? "Saved" : "Save"}
               </button>
               <span className="creator">{c.username}</span>
             </div>

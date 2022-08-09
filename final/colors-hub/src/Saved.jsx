@@ -1,11 +1,11 @@
 import "./Saved.css";
-import copytoClipboard from "./util";
+import { copyToClipboard } from "./util";
 
 const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
   const clickHandler = (id) => {
     onRemoveSavedColorPalette(id);
   };
-  console.log(colorPalettes);
+
   return (
     <div className="saved">
       {Object.values(colorPalettes).length > 0 ? (
@@ -16,7 +16,7 @@ const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
                 <span
                   className="color-name"
                   onClick={(e) => {
-                    copytoClipboard(e, c.c1);
+                    copyToClipboard(e, c.c1);
                   }}
                 >
                   {c.c1}
@@ -26,7 +26,7 @@ const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
               <div className="color c2" style={{ backgroundColor: c.c2 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c2)}
+                  onClick={(e) => copyToClipboard(e, c.c2)}
                 >
                   {c.c2}
                 </span>
@@ -35,7 +35,7 @@ const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
               <div className="color c3" style={{ backgroundColor: c.c3 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c3)}
+                  onClick={(e) => copyToClipboard(e, c.c3)}
                 >
                   {c.c3}
                 </span>
@@ -44,7 +44,7 @@ const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
               <div className="color c4" style={{ backgroundColor: c.c4 }}>
                 <span
                   className="color-name"
-                  onClick={(e) => copytoClipboard(e, c.c4)}
+                  onClick={(e) => copyToClipboard(e, c.c4)}
                 >
                   {c.c4}
                 </span>
