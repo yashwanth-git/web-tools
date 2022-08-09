@@ -50,12 +50,10 @@ function reducer(state, action) {
       };
 
     case ACTIONS.ADD_SAVED_COLORS:
+      console.log(action.savedPalette);
       return {
         ...state,
-        savedColors: {
-          ...state.savedColors,
-          [action.savedPalette.id]: action.savedPalette,
-        },
+        savedColors: action.savedPalette,
       };
 
     case ACTIONS.GET_SAVED_COLORS:
