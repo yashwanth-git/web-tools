@@ -23,7 +23,7 @@ import Saved from "./Saved";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState("home");
 
   function onNavigate(e) {
     if (
