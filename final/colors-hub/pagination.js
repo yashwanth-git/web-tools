@@ -8,20 +8,10 @@ function paginate(model) {
     const results = {};
 
     if (endIndex < Object.keys(model).length) {
-      console.log("First cond");
-      results.next = {
-        page: page + 1,
-        limit: limit,
-      };
+      results.next = page + 1;
     }
 
-    if (startIndex > 0) {
-      console.log("second cond");
-      results.previous = {
-        page: page - 1,
-        limit: limit,
-      };
-    }
+    results.lastPage = Math.floor(Object.keys(model).length / limit) + 1;
 
     results.colorPalettes = Object.keys(model)
       .slice(startIndex, endIndex)
