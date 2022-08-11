@@ -9,6 +9,7 @@ const data = require("./data");
 const sessions = require("./sessions");
 const users = require("./users");
 const colors = require("./colors");
+const { paginate } = require("./pagination");
 
 app.use(cookieParser());
 app.use(express.static("./build"));
@@ -102,12 +103,11 @@ app.delete("/api/v1/session", (req, res) => {
   res.json({ username });
 });
 
-app.get("/api/v1/colors", (req, res) => {
+app.get("/api/v1/colors", paginate(data.colors), (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
   if (sid || users.findUser(username)) {
-    const colorPalettes = data.colors;
-    res.status(200).json({ colorPalettes });
+    res.status(200).json(res.paginatedResults);
   } else {
     res.status(401).json({ error: "auth-insufficient" });
   }
