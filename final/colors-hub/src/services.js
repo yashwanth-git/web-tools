@@ -110,8 +110,8 @@ export function fetchRemoveSavedColors(paletteId) {
     });
 }
 
-export function fetchColors() {
-  return fetch("/api/v1/colors", {
+export function fetchColors(page = 1, limit = 2) {
+  return fetch(`/api/v1/colors?page=${page}&limit=${limit}`, {
     method: "GET",
   })
     .catch(() => Promise.reject({ error: "networkError" }))

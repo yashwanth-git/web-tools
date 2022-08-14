@@ -8,6 +8,9 @@ export const initialState = {
   colors: {},
   savedColors: {},
   isAdmin: false,
+  currentPage: 1,
+  nextPage: 1,
+  lastPage: 1,
 };
 
 function reducer(state, action) {
@@ -40,6 +43,14 @@ function reducer(state, action) {
         colors: action.colorPalettes,
       };
 
+    case ACTIONS.PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage,
+        nextPage: action.next,
+        lastPage: action.lastPage,
+      };
+
     case ACTIONS.ADD_COLORS:
       return {
         ...state,
@@ -50,7 +61,6 @@ function reducer(state, action) {
       };
 
     case ACTIONS.ADD_SAVED_COLORS:
-      console.log(action.savedPalette);
       return {
         ...state,
         savedColors: action.savedPalette,
