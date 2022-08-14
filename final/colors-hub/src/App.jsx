@@ -60,6 +60,12 @@ function App() {
     fetchLogin(username)
       .then(() => {
         dispatch({ type: ACTIONS.LOG_IN, username });
+        return fetchColors();
+      })
+      .then((results) => {
+        const { colorPalettes, next, lastPage, currentPage } = results;
+        dispatch({ type: ACTIONS.PAGE, next, currentPage, lastPage });
+        dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
         setPage("home");
       })
       .catch((err) => {
@@ -202,7 +208,6 @@ function App() {
                 currentPage={state.currentPage}
                 lastPage={state.lastPage}
                 nextPage={state.nextPage}
-                pageLimit={state.pageLimit}
                 onPageChange={onPageChange}
               />
             )}
@@ -217,7 +222,7 @@ function App() {
             )}
             {page === "about" && <h1>About</h1>}
           </main>
-        </>        
+        </>
       )}
     </div>
   );
