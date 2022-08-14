@@ -1,6 +1,6 @@
 import "./Pagination.css";
 
-const Pagination = ({ currentPage, nextPage, lastPage, pageLimit, onPageChange }) => {
+const Pagination = ({ currentPage, lastPage, onPageChange }) => {
   const getPaginationGroup = () => {
     return new Array(lastPage).fill().map((_, idx) => 1 + idx);
   };
