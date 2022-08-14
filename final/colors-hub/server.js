@@ -44,11 +44,6 @@ app.post("/api/v1/session", (req, res) => {
       return;
     }
 
-    if (username === "admin") {
-      res.json({ users: data.users, colors: data.colors });
-      return;
-    }
-
     const sessionId = sessions.createSession(username);
     const userData = users.createUser(username);
     userData.online = true;

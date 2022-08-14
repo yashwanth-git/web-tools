@@ -57,24 +57,14 @@ function App() {
   }
 
   function onLogin(username) {
-    if (username === "admin") {
-      fetchAdmin(username)
-        .then((users, colors) => {
-          dispatch({ type: ACTIONS.ADMIN_LOGIN, users, colors });
-        })
-        .catch((err) => {
-          dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
-        });
-    } else {
-      fetchLogin(username)
-        .then(() => {
-          dispatch({ type: ACTIONS.LOG_IN, username });
-          setPage("home");
-        })
-        .catch((err) => {
-          dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
-        });
-    }
+    fetchLogin(username)
+      .then(() => {
+        dispatch({ type: ACTIONS.LOG_IN, username });
+        setPage("home");
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
   }
 
   function onLogout() {
@@ -179,6 +169,7 @@ function App() {
       }
     }
   };
+
   useEffect(() => {
     checkForSession();
   }, []);
@@ -226,7 +217,7 @@ function App() {
             )}
             {page === "about" && <h1>About</h1>}
           </main>
-        </>
+        </>        
       )}
     </div>
   );
