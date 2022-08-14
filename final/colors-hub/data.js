@@ -9,6 +9,12 @@ const id2 = uuidv4();
 const id3 = uuidv4();
 const id4 = uuidv4();
 const id5 = uuidv4();
+const id6 = uuidv4();
+const id7 = uuidv4();
+const id8 = uuidv4();
+const id9 = uuidv4();
+const id10 = uuidv4();
+const id11 = uuidv4();
 
 const colors = {
   [id1]: {
@@ -50,6 +56,54 @@ const colors = {
     c4: "#dda15e",
     username: "Yash",
     id: id5,
+  },
+  [id6]: {
+    c1: "#003049",
+    c2: "#d62828",
+    c3: "#f77f00",
+    c4: "#fcbf49",
+    username: "Jorts",
+    id: id6,
+  },
+  [id7]: {
+    c1: "#8ecae6",
+    c2: "#219ebc",
+    c3: "#023047",
+    c4: "#ffb703",
+    username: "Perry",
+    id: id7,
+  },
+  [id8]: {
+    c1: "#0081a7",
+    c2: "#00afb9",
+    c3: "#fdfcdc",
+    c4: "#fed9b7",
+    username: "Perry",
+    id: id8,
+  },
+  [id9]: {
+    c1: "#03071e",
+    c2: "#370617",
+    c3: "#6a040f",
+    c4: "#9d0208",
+    username: "Perry",
+    id: id9,
+  },
+  [id10]: {
+    c1: "#002642",
+    c2: "#840032",
+    c3: "#e59500",
+    c4: "#e5dada",
+    username: "Perry",
+    id: id10,
+  },
+  [id11]: {
+    c1: "#0a0908",
+    c2: "#22333b",
+    c3: "#eae0d5",
+    c4: "#c6ac8f",
+    username: "Perry",
+    id: id11,
   },
 };
 
