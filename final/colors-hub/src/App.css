@@ -6,8 +6,14 @@
 .main-content {
   padding: 0px 32px;
   transition: all 350ms ease-in-out 0s;
+  min-height:100%;
 }
 .dark {
   background: #242424;
+}
+.dark .pagination{
   color: #ffffff;
+}
+.dark .pagination li{
+  border:1px solid #ffffff;
 }
