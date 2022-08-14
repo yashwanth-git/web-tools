@@ -91,7 +91,7 @@ export function fetchRemoveSavedColors(paletteId) {
     });
 }
 
-export function fetchColors(page = 1, limit = 10) {
+export function fetchColors(page = 1, limit = 8) {
   return fetch(`/api/v1/colors?page=${page}&limit=${limit}`, {
     method: "GET",
   })
