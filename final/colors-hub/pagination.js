@@ -11,7 +11,12 @@ function paginate(model) {
       results.next = page + 1;
     }
 
-    results.lastPage = Math.floor(Object.keys(model).length / limit) + 1;
+
+    if(Object.keys(model).length > limit){
+      results.lastPage = Math.ceil(Object.keys(model).length / limit);
+    }
+
+    results.currentPage = page;
 
     results.colorPalettes = Object.keys(model)
       .slice(startIndex, endIndex)
