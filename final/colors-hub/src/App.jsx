@@ -122,7 +122,6 @@ function App() {
   };
 
   const onPageChange = (e) => {
-    e.stopPropagation();
     if (e.target.classList.contains("pages")) {
       const current = e.target.dataset.page;
 
@@ -141,15 +140,33 @@ function App() {
           return Promise.reject(err);
         });
     }
-    if (e.target.classList.contains("fa fa-angle-left")) {
+    if (e.target.dataset.move === "left") {
       const newPage = state.currentPage - 1;
-      if (newPage) {
+      if (!newPage < 1) {
         fetchColors(newPage)
           .then((results) => {
-            const { colorPalettes, next, lastPage } = results;
-            if (next) {
-              dispatch({ type: ACTIONS.PAGE, next, lastPage });
+            const { colorPalettes, next, currentPage, lastPage } = results;
+
+            dispatch({ type: ACTIONS.PAGE, currentPage, next, lastPage });
+            dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
+          })
+          .catch((err) => {
+            if (err?.error === SERVER.AUTH_MISSING) {
+              dispatch({ type: ACTIONS.LOG_OUT });
+              return Promise.reject({ error: CLIENT.NO_SESSION });
             }
+            return Promise.reject(err);
+          });
+      }
+    }
+    if (e.target.dataset.move === "right") {
+      const newPage = state.currentPage + 1;
+      if (newPage <= state.lastPage) {
+        fetchColors(newPage)
+          .then((results) => {
+            const { colorPalettes, next, currentPage, lastPage } = results;
+
+            dispatch({ type: ACTIONS.PAGE, currentPage, next, lastPage });
             dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
           })
           .catch((err) => {

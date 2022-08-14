@@ -8,8 +8,8 @@ const Pagination = ({ currentPage, nextPage, lastPage, pageLimit, onPageChange }
   return (
     totalPages.length > 0 && (
       <ul className="pagination">
-        <li className="move-left" onClick={onPageChange}>
-          <i className="fa fa-angle-left" aria-hidden="true"></i>
+        <li className="move-left" data-move="left" onClick={onPageChange}>
+          <i className="fa fa-angle-left" data-move="left" aria-hidden="true"></i>
         </li>
         {totalPages.map((p) => (
           <li
@@ -21,8 +21,8 @@ const Pagination = ({ currentPage, nextPage, lastPage, pageLimit, onPageChange }
             {p}
           </li>
         ))}
-        <li className="move-right" onClick={onPageChange}>
-          <i className="fa fa-angle-right" aria-hidden="true"></i>
+        <li className="move-right" data-move="right" onClick={onPageChange}>
+          <i className="fa fa-angle-right" aria-hidden="true" data-move="right"></i>
         </li>
       </ul>
     )
