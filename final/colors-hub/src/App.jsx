@@ -42,8 +42,9 @@ function App() {
         dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes });
         return fetchColors();
       })
-      .then((colors) => {
-        const { colorPalettes } = colors;
+      .then((results) => {
+        const { colorPalettes, next, lastPage, currentPage } = results;
+        dispatch({ type: ACTIONS.PAGE, next, currentPage, lastPage });
         dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
       })
       .catch((err) => {
@@ -120,6 +121,47 @@ function App() {
     dispatch({ type: ACTIONS.TOGGLE_MODE });
   };
 
+  const onPageChange = (e) => {
+    e.stopPropagation();
+    if (e.target.classList.contains("pages")) {
+      const current = e.target.dataset.page;
+
+      fetchColors(current)
+        .then((results) => {
+          const { colorPalettes, next, currentPage, lastPage } = results;
+
+          dispatch({ type: ACTIONS.PAGE, currentPage, next, lastPage });
+          dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
+        })
+        .catch((err) => {
+          if (err?.error === SERVER.AUTH_MISSING) {
+            dispatch({ type: ACTIONS.LOG_OUT });
+            return Promise.reject({ error: CLIENT.NO_SESSION });
+          }
+          return Promise.reject(err);
+        });
+    }
+    if (e.target.classList.contains("fa fa-angle-left")) {
+      const newPage = state.currentPage - 1;
+      if (newPage) {
+        fetchColors(newPage)
+          .then((results) => {
+            const { colorPalettes, next, lastPage } = results;
+            if (next) {
+              dispatch({ type: ACTIONS.PAGE, next, lastPage });
+            }
+            dispatch({ type: ACTIONS.REPLACE_COLORS, colorPalettes });
+          })
+          .catch((err) => {
+            if (err?.error === SERVER.AUTH_MISSING) {
+              dispatch({ type: ACTIONS.LOG_OUT });
+              return Promise.reject({ error: CLIENT.NO_SESSION });
+            }
+            return Promise.reject(err);
+          });
+      }
+    }
+  };
   useEffect(() => {
     checkForSession();
   }, []);
@@ -149,6 +191,11 @@ function App() {
                 colorPalettes={state.colors}
                 savedPalettes={state.savedColors}
                 onSaveColorPalette={onSaveColorPalette}
+                currentPage={state.currentPage}
+                lastPage={state.lastPage}
+                nextPage={state.nextPage}
+                pageLimit={state.pageLimit}
+                onPageChange={onPageChange}
               />
             )}
             {page === "create" && (

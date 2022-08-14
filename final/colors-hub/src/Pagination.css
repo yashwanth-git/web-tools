@@ -1,0 +1,32 @@
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 12px;
+  left: 46%;
+}
+.pages,
+.move-left,
+.move-right {
+  padding: 8px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition:all 200ms ease-in-out;
+}
+.move-right,
+.move-left {
+  font-size: 24px;
+  padding: 8px;
+}
+.active {
+  background-color: #0560ff;
+  border: 1px solid #0560ff;
+  color: #ffffff;
+}
