@@ -9,7 +9,6 @@ const Home = ({
   currentPage,
   nextPage,
   lastPage,
-  pageLimit,
   onPageChange
 }) => {
   const clickHandler = (paletteId) => {
@@ -84,7 +83,6 @@ const Home = ({
         currentPage={currentPage}
         nextPage={nextPage}
         lastPage={lastPage}
-        pageLimit={pageLimit}
         onPageChange={onPageChange}
       />
     </>
