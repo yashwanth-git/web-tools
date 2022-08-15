@@ -15,6 +15,8 @@ function Login({ onLogin, error }) {
   };
 
   return (
+    <>
+    <h1 class="app-heading">Welcome to ColorsHub</h1>
     <div className="login-container">
       <div className="login-form">
         <h2 className="login-title">Login</h2>
@@ -38,6 +40,7 @@ function Login({ onLogin, error }) {
         {error && <span className="error-msg">{error}</span>}
       </div>
     </div>
+    </>
   );
 }
 

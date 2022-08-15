@@ -1,3 +1,9 @@
+.app-heading{
+  font-size:32px;
+  text-align: center;
+  font-weight: 400;
+  margin:32px 0;
+}
 .login-form-container {
   display: flex;
   align-items: center;
