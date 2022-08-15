@@ -32,7 +32,7 @@ app.get("/api/v1/session", (req, res) => {
       delete userData.savedPalettes[palette];
     }
   });
-  
+
   res.json({ userData });
 });
 

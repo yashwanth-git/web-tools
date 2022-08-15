@@ -8,7 +8,6 @@ export const initialState = {
   colors: {},
   savedColors: {},
   userColors: {},
-  isAdmin: false,
   currentPage: 1,
   nextPage: 1,
   lastPage: 1,
@@ -91,7 +90,7 @@ function reducer(state, action) {
     case ACTIONS.REMOVE_USER_COLOR:
       const userColorCopy = { ...state.userColors };
       console.log(userColorCopy);
-      console.log(userColorCopy[action.removedPalettedId])
+      console.log(userColorCopy[action.removedPalettedId]);
       delete userColorCopy[action.re];
       return {
         ...state,

@@ -234,7 +234,10 @@ function App() {
               />
             )}
             {page === "user-colors" && (
-              <MyColors colorPalettes={state.userColors} onRemoveUserColor={onRemoveUserColor} />
+              <MyColors
+                colorPalettes={state.userColors}
+                onRemoveUserColor={onRemoveUserColor}
+              />
             )}
             {page === "about" && <h1>About</h1>}
           </main>
