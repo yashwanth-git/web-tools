@@ -1,13 +1,14 @@
-.loader{
-    height:100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.loader {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.gg-spinner-alt, .gg-spinner-alt::before{
-    width:65px;
-    height:65px;
+.gg-spinner-alt,
+.gg-spinner-alt::before {
+  width: 65px;
+  height: 65px;
 }
-.gg-spinner-alt::before{
-    border-width: 6px;
+.gg-spinner-alt::before {
+  border-width: 6px;
 }
