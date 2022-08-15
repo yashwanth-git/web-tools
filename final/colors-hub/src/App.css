@@ -17,3 +17,6 @@
 .dark .pagination li{
   border:1px solid #ffffff;
 }
+.dark *{
+  box-shadow: none;
+}
