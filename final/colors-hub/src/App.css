@@ -26,9 +26,6 @@
 .dark .about{
   color:#ffffff;
 }
-.dark .about-socials svg{
-  fill: #ffffff;
-}
 .dark .about-desc, .dark .about-details{
-  color:#6b6b6b;
+  color:#b5b5b5;
 }

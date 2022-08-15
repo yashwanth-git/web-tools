@@ -8,29 +8,14 @@
   padding: 46px 0;
   text-align: center;
 }
-.about-heading{
-    font-size: 32px;
-    font-weight: 400;
+.about-heading {
+  font-size: 32px;
+  font-weight: 400;
 }
-.about-desc{
-    padding-top:24px;
+.about-desc {
+  padding-top: 24px;
 }
-.about-details{
-    padding-top:28px;
+.about-details {
+  padding-top: 28px;
 }
-.about-socials{
-    padding-top:22px;
-}
-.about-socials .contact:not(:last-child){
-    padding-right: 16px;
-    transition: all 250ms ease-in-out;
-}
-.linkedIn:hover svg{
-    fill: rgb(0, 119, 181);
-}
-.github:hover svg{
-    fill: rgb(127, 34, 143);
-}
-.instagram:hover svg{
-    fill: rgb(221, 0, 162);
-}
+
