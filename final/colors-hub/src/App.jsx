@@ -20,6 +20,7 @@ import Home from "./Home";
 import Saved from "./Saved";
 import MyColors from "./MyColors";
 import About from "./About";
+import Loader from "./Loader";
 
 import "./App.css";
 
@@ -41,6 +42,7 @@ function App() {
       .then((session) => {
         const { username, savedPalettes, userPalettes } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
+        dispatch({ type: ACTIONS.COLORS_PENDING });
         dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes });
         dispatch({ type: ACTIONS.GET_USER_COLORS, userPalettes });
         return fetchColors();
@@ -63,6 +65,7 @@ function App() {
     fetchLogin(username)
       .then(() => {
         dispatch({ type: ACTIONS.LOG_IN, username });
+        dispatch({ type: ACTIONS.COLORS_PENDING });
         return fetchColors();
       })
       .then((results) => {
@@ -215,15 +218,18 @@ function App() {
           />
           <main className={`main-content ${state.darkTheme ? "dark" : ""}`}>
             {page === "home" && (
-              <Home
-                colorPalettes={state.colors}
-                savedPalettes={state.savedColors}
-                onSaveColorPalette={onSaveColorPalette}
-                currentPage={state.currentPage}
-                lastPage={state.lastPage}
-                nextPage={state.nextPage}
-                onPageChange={onPageChange}
-              />
+              <>
+                {state.isColorsPending && <Loader />}
+                <Home
+                  colorPalettes={state.colors}
+                  savedPalettes={state.savedColors}
+                  onSaveColorPalette={onSaveColorPalette}
+                  currentPage={state.currentPage}
+                  lastPage={state.lastPage}
+                  nextPage={state.nextPage}
+                  onPageChange={onPageChange}
+                />
+              </>
             )}
             {page === "create" && (
               <Create onCreateColorPalette={onCreateColorPalette} />

@@ -41,6 +41,7 @@ export const ACTIONS = {
   LOG_IN: "logIn",
   LOG_OUT: "logOut",
   REPORT_ERROR: "reportError",
+  COLORS_PENDING: "colorsPending",
   ADD_COLORS: "addColors",
   REPLACE_COLORS: "replaceColors",
   ADD_SAVED_COLORS: "addSavedColors",

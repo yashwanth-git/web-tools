@@ -5,6 +5,7 @@ export const initialState = {
   username: "",
   darkTheme: false,
   loginStatus: LOGIN_STATUS.PENDING,
+  isColorsPending: false,
   colors: {},
   savedColors: {},
   userColors: {},
@@ -36,10 +37,17 @@ function reducer(state, action) {
         ...state,
         darkTheme: !state.darkTheme,
       };
+    
+    case ACTIONS.COLORS_PENDING:
+      return{
+        ...state,
+        isColorsPending: true,
+      }
 
     case ACTIONS.REPLACE_COLORS:
       return {
         ...state,
+        isColorsPending: false,
         colors: action.colorPalettes,
       };
 
