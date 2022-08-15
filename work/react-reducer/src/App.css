@@ -1,0 +1,6 @@
+.messages-container{
+    max-width: 800px;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+  }
