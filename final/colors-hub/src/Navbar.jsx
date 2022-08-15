@@ -18,6 +18,9 @@ const Navbar = ({ username, onChangeMode, darkTheme, onNavigate, onLogout }) => 
           <li className="navbar-option" data-page={PAGES.ABOUT}>
             About
           </li>
+          <li className="navbar-option" data-page={PAGES.USER_COLORS}>
+            My Colors
+          </li>
         </ul>
         <ul className="navbar-extra">
           <li className="navbar-user">Welcome, {username}</li>
