@@ -8,8 +8,10 @@ const Create = ({onCreateColorPalette}) => {
     c3: "#bbbbbb",
     c4: "#aaaaaa",
   });
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   const changeHandler = (e) => {
+    setBtnDisabled(false);
     setColors({ ...colors, [e.target.name]: e.target.value });
   };
 
@@ -19,6 +21,7 @@ const Create = ({onCreateColorPalette}) => {
   return (
     <div className="create">
       <h2>Create your Palette</h2>
+      <p>Change the color value below to create a palette</p>
       <div className="color-box">
         <input
           type="color"
@@ -50,7 +53,7 @@ const Create = ({onCreateColorPalette}) => {
         />
       </div>
       <div className="create-button-wrapper">
-          <button className="create-btn" onClick={clickHandler}>Create</button>
+          <button className="create-btn" onClick={clickHandler} disabled={btnDisabled}>Create</button>
       </div>
     </div>
   );

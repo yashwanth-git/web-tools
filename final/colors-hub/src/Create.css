@@ -10,6 +10,9 @@
   font-size:32px;
   font-weight: 400;
 }
+.create p{
+  padding-bottom: 24px;
+}
 .color-box {
   display: flex;
   flex-direction: column;
