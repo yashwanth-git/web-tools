@@ -25,6 +25,14 @@ app.get("/api/v1/session", (req, res) => {
 
   const { username } = data.sessions[sid] || {};
   const userData = users.findUser(username);
+  const savedCopy = userData.savedPalettes;
+
+  Object.keys(savedCopy).forEach((palette) => {
+    if (!data.colors[palette]) {
+      delete userData.savedPalettes[palette];
+    }
+  });
+  
   res.json({ userData });
 });
 
@@ -85,6 +93,22 @@ app.delete("/api/v1/users/saved-colors", (req, res) => {
   return;
 });
 
+app.delete("/api/v1/users/user-colors", (req, res) => {
+  const sid = req.cookies.sid;
+  if (!sid || !sessions.isValidSessionId(sid)) {
+    res.clearCookie("sid");
+    res.status(401).json({ error: "auth-missing" });
+    return;
+  }
+  const { username } = data.sessions[sid] || {};
+  const userData = users.findUser(username);
+  const { paletteId } = req.body;
+  delete data.colors[paletteId];
+  delete userData.userPalettes[paletteId];
+  res.json(paletteId);
+  return;
+});
+
 app.delete("/api/v1/session", (req, res) => {
   const sid = req.cookies.sid;
   const { username } = sessions.isValidSessionId(sid);
@@ -116,7 +140,7 @@ app.post("/api/v1/colors", (req, res) => {
     if (sid || users.findUser(username)) {
       const colPalette = colors.createColors(username, colorPalette);
       const userData = users.findUser(username);
-      userData.userPalettes[colPalette.id] = colorPalette;
+      userData.userPalettes[colPalette.id] = colPalette;
       res.json({ colPalette });
     } else {
       res.status(401).json({ error: "auth-insufficient" });
