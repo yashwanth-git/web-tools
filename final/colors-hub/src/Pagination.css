@@ -3,9 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 12px;
-  left: 46%;
 }
 .pages,
 .move-left,
