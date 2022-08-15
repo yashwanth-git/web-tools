@@ -11,6 +11,9 @@
 .dark {
   background: #242424;
 }
+.dark .no-content{
+  color: #ffffff;
+}
 .dark .pagination{
   color: #ffffff;
 }
