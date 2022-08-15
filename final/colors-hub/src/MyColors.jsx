@@ -1,9 +1,10 @@
 import "./MyColors.css";
 import { copyToClipboard } from "./util";
 
-const MyColors = ({ colorPalettes }) => {
+const MyColors = ({ colorPalettes, onRemoveUserColor }) => {
   const clickHandler = (id) => {
     console.log(id);
+    onRemoveUserColor(id);
   };
   return (
     <div className="my-colors">

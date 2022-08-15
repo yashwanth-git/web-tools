@@ -47,6 +47,7 @@ export const ACTIONS = {
   GET_SAVED_COLORS: "getSavedColors",
   GET_USER_COLORS: "getUserColors",
   REMOVE_SAVED_COLOR: "deleteSavedColor",
+  REMOVE_USER_COLOR: "removeUserColor",
   PAGE: "page",
   TOGGLE_MODE: "toggleMode",
 };

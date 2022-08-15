@@ -43,12 +43,12 @@ function reducer(state, action) {
         ...state,
         colors: action.colorPalettes,
       };
-    
+
     case ACTIONS.GET_USER_COLORS:
       return {
         ...state,
-        userColors: action.userPalettes
-      }
+        userColors: action.userPalettes,
+      };
 
     case ACTIONS.PAGE:
       return {
@@ -81,10 +81,21 @@ function reducer(state, action) {
 
     case ACTIONS.REMOVE_SAVED_COLOR:
       const savedColorsCopy = { ...state.savedColors };
-      delete savedColorsCopy[action.id];
+      console.log(savedColorsCopy[action.removedPalettedId]);
+      delete savedColorsCopy[action.removedPalettedId];
       return {
         ...state,
         savedColors: savedColorsCopy,
+      };
+
+    case ACTIONS.REMOVE_USER_COLOR:
+      const userColorCopy = { ...state.userColors };
+      console.log(userColorCopy);
+      console.log(userColorCopy[action.removedPalettedId])
+      delete userColorCopy[action.re];
+      return {
+        ...state,
+        userColors: userColorCopy,
       };
 
     case ACTIONS.REPORT_ERROR:

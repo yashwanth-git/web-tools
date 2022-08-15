@@ -4,13 +4,13 @@ import { LOGIN_STATUS, CLIENT, SERVER, ACTIONS } from "./constants";
 
 import {
   fetchLogin,
-  fetchAdmin,
   fetchSession,
   fetchLogout,
   fetchAddColors,
   fetchColors,
   fetchAddSavedColors,
   fetchRemoveSavedColors,
+  fetchRemoveUserColor,
 } from "./services";
 
 import Login from "./Login";
@@ -21,7 +21,6 @@ import Saved from "./Saved";
 import MyColors from "./MyColors";
 
 import "./App.css";
-
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -109,6 +108,17 @@ function App() {
     fetchRemoveSavedColors(id)
       .then((removedPalettedId) => {
         dispatch({ type: ACTIONS.REMOVE_SAVED_COLOR, removedPalettedId });
+        checkForSession();
+      })
+      .catch((err) => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error });
+      });
+  }
+
+  function onRemoveUserColor(id) {
+    fetchRemoveUserColor(id)
+      .then((removedPalettedId) => {
+        dispatch({ type: ACTIONS.REMOVE_USER_COLOR, removedPalettedId });
         checkForSession();
       })
       .catch((err) => {
@@ -223,7 +233,9 @@ function App() {
                 onRemoveSavedColorPalette={onRemoveSavedColorPalette}
               />
             )}
-            {page === "user-colors" && <MyColors colorPalettes={state.userColors}/>}
+            {page === "user-colors" && (
+              <MyColors colorPalettes={state.userColors} onRemoveUserColor={onRemoveUserColor} />
+            )}
             {page === "about" && <h1>About</h1>}
           </main>
         </>
