@@ -6,6 +6,7 @@
 * The saved palettes will be placed under Saved page
 * The user created palettes will be placed under My Colors page and only the creator can delete their color palette
 * The theme can be changed to night mode manually using the toggle option to the right side of the navbar
+* If you want to copy the color hex code of any of the color in the palette, just click on the color label. The color hex code will be copied to the clipboard for you to use
 * Each page can hold a maximum of 8 colors, after which the color palettes will be paginated to move to the next page
   
 ## How To Use ColorsHub
