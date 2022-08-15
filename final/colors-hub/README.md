@@ -26,3 +26,4 @@
 ## Other Resources Used
 - "Google Fonts - Poppins" - https://fonts.googleapis.com/
 - "Font Awesome by Dave Gandy - http://fontawesome.io"
+- "CSS.GG by Astrit" - https://css.gg/
