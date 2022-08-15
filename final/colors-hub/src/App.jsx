@@ -19,6 +19,7 @@ import Create from "./Create";
 import Home from "./Home";
 import Saved from "./Saved";
 import MyColors from "./MyColors";
+import About from "./About";
 
 import "./App.css";
 
@@ -239,7 +240,7 @@ function App() {
                 onRemoveUserColor={onRemoveUserColor}
               />
             )}
-            {page === "about" && <h1>About</h1>}
+            {page === "about" && <About />}
           </main>
         </>
       )}
