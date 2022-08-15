@@ -15,11 +15,11 @@ const Navbar = ({ username, onChangeMode, darkTheme, onNavigate, onLogout }) => 
           <li className="navbar-option" data-page={PAGES.SAVED}>
             Saved
           </li>
-          <li className="navbar-option" data-page={PAGES.ABOUT}>
-            About
-          </li>
           <li className="navbar-option" data-page={PAGES.USER_COLORS}>
             My Colors
+          </li>
+          <li className="navbar-option" data-page={PAGES.ABOUT}>
+            About
           </li>
         </ul>
         <ul className="navbar-extra">

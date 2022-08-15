@@ -60,7 +60,7 @@ const Saved = ({ colorPalettes, onRemoveSavedColorPalette }) => {
           </div>
         ))
       ) : (
-        <div>No Colors</div>
+        <div>No Colors found on your Saved</div>
       )}
     </div>
   );

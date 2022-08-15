@@ -20,6 +20,10 @@
   cursor: pointer;
   transition:all 200ms ease-in-out;
 }
+.pages:not(.active):hover, .move-left:hover, .move-right:hover{
+  color:#ffffff;
+  background-color: #3f81f3;;
+}
 .move-right,
 .move-left {
   font-size: 24px;

@@ -59,7 +59,7 @@ const MyColors = ({ colorPalettes }) => {
           </div>
         ))
       ) : (
-        <div>No Colors</div>
+        <div>You have not created any colors</div>
       )}
     </div>
   );
