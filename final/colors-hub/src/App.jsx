@@ -18,8 +18,10 @@ import Navbar from "./Navbar";
 import Create from "./Create";
 import Home from "./Home";
 import Saved from "./Saved";
+import MyColors from "./MyColors";
 
 import "./App.css";
+
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -37,9 +39,10 @@ function App() {
   function checkForSession() {
     fetchSession()
       .then((session) => {
-        const { username, savedPalettes } = session.userData;
+        const { username, savedPalettes, userPalettes } = session.userData;
         dispatch({ type: ACTIONS.LOG_IN, username });
         dispatch({ type: ACTIONS.GET_SAVED_COLORS, savedPalettes });
+        dispatch({ type: ACTIONS.GET_USER_COLORS, userPalettes });
         return fetchColors();
       })
       .then((results) => {
@@ -220,6 +223,7 @@ function App() {
                 onRemoveSavedColorPalette={onRemoveSavedColorPalette}
               />
             )}
+            {page === "user-colors" && <MyColors colorPalettes={state.userColors}/>}
             {page === "about" && <h1>About</h1>}
           </main>
         </>
