@@ -22,6 +22,7 @@ export const PAGES = {
   CREATE: "create",
   SAVED: "saved",
   ABOUT: "about",
+  USER_COLORS: "user-colors",
 };
 
 export const MESSAGES = {
@@ -44,6 +45,7 @@ export const ACTIONS = {
   REPLACE_COLORS: "replaceColors",
   ADD_SAVED_COLORS: "addSavedColors",
   GET_SAVED_COLORS: "getSavedColors",
+  GET_USER_COLORS: "getUserColors",
   REMOVE_SAVED_COLOR: "deleteSavedColor",
   PAGE: "page",
   TOGGLE_MODE: "toggleMode",

@@ -107,6 +107,22 @@ export function fetchColors(page = 1, limit = 8) {
     });
 }
 
+export function fetchUserColors(){
+  return fetch(`/api/v1/user-colors`, {
+    method: "GET",
+  })
+    .catch(() => Promise.reject({ error: "networkError" }))
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response
+        .json()
+        .catch((error) => Promise.reject({ error }))
+        .then((err) => Promise.reject(err));
+    });
+}
+
 export function fetchAddColors(colorPalette) {
   return fetch("/api/v1/colors", {
     method: "POST",

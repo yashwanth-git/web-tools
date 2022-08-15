@@ -7,6 +7,7 @@ export const initialState = {
   loginStatus: LOGIN_STATUS.PENDING,
   colors: {},
   savedColors: {},
+  userColors: {},
   isAdmin: false,
   currentPage: 1,
   nextPage: 1,
@@ -42,6 +43,12 @@ function reducer(state, action) {
         ...state,
         colors: action.colorPalettes,
       };
+    
+    case ACTIONS.GET_USER_COLORS:
+      return {
+        ...state,
+        userColors: action.userPalettes
+      }
 
     case ACTIONS.PAGE:
       return {
