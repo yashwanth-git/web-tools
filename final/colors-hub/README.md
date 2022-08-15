@@ -4,8 +4,8 @@
 * The users have to login to view the palettes created by others, save any interesting color palettes, and even create their own palette and share it to the world
 * The palettes will have the name of the creator on it (to identify who created the palette)
 * The saved palettes will be placed under Saved page
-* The user created palettes will be placed under My Colors page and the creator can delete the color palette
-* For now, the theme can be changed to night mode manually using the toggle option to the right side of the navbar
+* The user created palettes will be placed under My Colors page and only the creator can delete their color palette
+* The theme can be changed to night mode manually using the toggle option to the right side of the navbar
 * Each page can hold a maximum of 8 colors, after which the color palettes will be paginated to move to the next page
   
 ## How To Use ColorsHub
