@@ -16,8 +16,14 @@ function getColorsByUser(username) {
   return colors[username];
 }
 
+function getUserColors(username){
+  const userColors = Object.entries(colors).filter((color) => color.username == username);
+  return userColors;
+}
+
 module.exports = {
   getAllColors,
   createColors,
   getColorsByUser,
+  getUserColors
 };
