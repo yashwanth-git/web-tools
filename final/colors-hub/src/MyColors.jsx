@@ -3,7 +3,6 @@ import { copyToClipboard } from "./util";
 
 const MyColors = ({ colorPalettes, onRemoveUserColor }) => {
   const clickHandler = (id) => {
-    console.log(id);
     onRemoveUserColor(id);
   };
   return (

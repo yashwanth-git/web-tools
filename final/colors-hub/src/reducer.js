@@ -88,7 +88,6 @@ function reducer(state, action) {
 
     case ACTIONS.REMOVE_SAVED_COLOR:
       const savedColorsCopy = { ...state.savedColors };
-      console.log(savedColorsCopy[action.removedPalettedId]);
       delete savedColorsCopy[action.removedPalettedId];
       return {
         ...state,
@@ -97,8 +96,6 @@ function reducer(state, action) {
 
     case ACTIONS.REMOVE_USER_COLOR:
       const userColorCopy = { ...state.userColors };
-      console.log(userColorCopy);
-      console.log(userColorCopy[action.removedPalettedId]);
       delete userColorCopy[action.re];
       return {
         ...state,
