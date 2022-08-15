@@ -36,6 +36,9 @@
 .navbar-btn {
   margin-right: 16px;
 }
+.navbar-option:hover{
+  color: #0560ff;
+}
 .mode-selector {
   appearance: none;
   visibility: hidden;
