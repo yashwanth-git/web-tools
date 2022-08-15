@@ -115,6 +115,8 @@ app.post("/api/v1/colors", (req, res) => {
     const { username } = sessions.isValidSessionId(sid);
     if (sid || users.findUser(username)) {
       const colPalette = colors.createColors(username, colorPalette);
+      const userData = users.findUser(username);
+      userData.userPalettes[colPalette.id] = colorPalette;
       res.json({ colPalette });
     } else {
       res.status(401).json({ error: "auth-insufficient" });
