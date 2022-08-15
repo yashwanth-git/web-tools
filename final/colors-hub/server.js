@@ -151,7 +151,7 @@ app.post("/api/v1/colors", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile("./build/index.html");
+  res.sendFile("./build/index.html", { root: '.' });
 });
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
