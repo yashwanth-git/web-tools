@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# ColorsHub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* ColorsHub is collection of user created color palettes to share to the world
+* The users have to login to view the palettes created by others, save any interesting color palettes, and even create their own palette and share it to the world
+* The palettes will have the name of the creator on it (to identify who created the palette)
+* The saved palettes will be placed under Saved page
+* The user created palettes will be placed under My Colors page and the creator can delete the color palette
+* For now, the theme can be changed to night mode manually using the toggle option to the right side of the navbar
+* Each page can hold a maximum of 8 colors, after which the color palettes will be paginated to move to the next page
+  
+## How To Use ColorsHub
 
-## Available Scripts
+- Login to the application
+- Browse through the color palettes
+- Save any palette which you like for your future reference
+- If you have any interesting color palettes on your mind, create one and share it
+- You can find the palettes you created in My Colors
 
-In the project directory, you can run:
+## Instructions To Run The Application
 
-### `npm start`
+- Clone the repository
+- Run `git checkout final-project` and `cd final/colorshub`
+- Run `npm install` and once that is done run `npm run build`
+- Once the build folder is created, run `npm start` to start the application. The application will be running in `http://localhost:4000/`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other Resources Used
+- "Google Fonts - Poppins" - https://fonts.googleapis.com/
+- "Font Awesome by Dave Gandy - http://fontawesome.io"
