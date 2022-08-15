@@ -6,6 +6,10 @@
   padding: 0px 24px;
   padding-top: 32px;
 }
+.create h2{
+  font-size:32px;
+  font-weight: 400;
+}
 .color-box {
   display: flex;
   flex-direction: column;

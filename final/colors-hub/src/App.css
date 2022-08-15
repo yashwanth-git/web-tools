@@ -23,6 +23,9 @@
 .dark *{
   box-shadow: none;
 }
+.dark .create h2{
+  color:#ffffff;
+}
 .dark .about{
   color:#ffffff;
 }
