@@ -1,0 +1,21 @@
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0px auto;
+  padding: 46px 0;
+  text-align: center;
+}
+.about-heading {
+  font-size: 32px;
+  font-weight: 400;
+}
+.about-desc {
+  padding-top: 24px;
+}
+.about-details {
+  padding-top: 28px;
+}
+
